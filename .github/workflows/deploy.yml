@@ -1,24 +1,22 @@
-# This is a basic workflow to automatically build a Svelte app and deploy it to GitHub Pages
-
 name: Deploy to GitHub Pages
-
+permissions:
+  contents: write
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Install and Build
         run: |
           npm install
           npm run build
-          
+
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.5
+        uses: JamesIves/github-pages-deploy-action@v4.3.4
         with:
-          branch: gh-pages
           folder: build
