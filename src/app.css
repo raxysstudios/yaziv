@@ -1,3 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Finlandica:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+	@apply bg-slate-100 dark:bg-gray-800;
+}
+
+.iconify {
+	font-size: 24px;
+}
+img {
+	-webkit-user-drag: none;
+	-khtml-user-drag: none;
+	-moz-user-drag: none;
+	-o-user-drag: none;
+}
+
+.card {
+	@apply bg-white dark:bg-gray-700 shadow-sm hover:shadow-md rounded-sm;
+}
+
+.thm-img {
+	@apply invert dark:invert-0 select-none pointer-events-none;
+}
+
+* {
+	@apply duration-150 font-['Finlandica'] dark:text-white;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h1 * {
+	@apply text-4xl font-['Finlandica'] uppercase font-semibold;
+}
+
+h2,
+h2 * {
+	@apply text-2xl font-['Finlandica'] capitalize font-semibold;
+}
+
+h3,
+h3 * {
+	@apply text-lg font-['Finlandica'] font-semibold;
+}
