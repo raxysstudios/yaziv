@@ -3,9 +3,9 @@
 	export let onselect: (a: string) => {};
 </script>
 
-<div class="flex flex-row flex-wrap gap-4">
+<div class="font-semibold capitalize flex flex-col items-start gap-2 p-4">
 	{#each catalogue as item}
-		<p on:click={() => onselect(item)}>
+		<p class="btn px-6 py-2" on:click={() => onselect(item)}>
 			{item}
 		</p>
 	{/each}

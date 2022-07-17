@@ -46,3 +46,7 @@ h3,
 h3 * {
 	@apply text-lg font-['Finlandica'] font-semibold;
 }
+
+.btn {
+	@apply cursor-pointer rounded-3xl hover:bg-slate-200 active:rounded-md select-none;
+}
