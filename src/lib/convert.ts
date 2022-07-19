@@ -14,7 +14,7 @@ export default function convert(source: string, pairs: Pairs) {
   source = " " + source.replace(/\n/g, "\n ").trim();
   let result = "";
 
-  for (let i = 0; i < source.length; ) {
+  for (let i = 0; i < source.length;) {
     let found = false;
     for (const [from, to] of pairs) {
       if (!from || !to) continue;

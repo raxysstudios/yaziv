@@ -31,7 +31,7 @@
 	}
 
 	function copy() {
-		() => navigator.clipboard.writeText(output);
+		navigator.clipboard.writeText(output);
 	}
 
 	function reverse() {
