@@ -44,11 +44,12 @@
 				</option>
 			{/each}
 		</select>
-		{#if converter.sample}
-			<div class="btn">
-				<Icon icon="ic:round-upload-file" />
-			</div>
-		{/if}
+		<!-- <div class="btn">
+			<Icon icon="ic:round-help-outline" />
+		</div> -->
+		<div class="btn">
+			<Icon icon="ic:round-upload-file" />
+		</div>
 	</div>
 	<div class="flex flex-row gap-2 h-min">
 		<select class="flex-1 btn" bind:value={to}>
