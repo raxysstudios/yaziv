@@ -22,11 +22,13 @@
 		return intermediate;
 	}
 
+	function copy() {
+		() => navigator.clipboard.writeText(output);
+	}
+
 	function reverse() {
-		// const o = input;
-		// const m = mappingFrom;
-		// mappingFrom = mappingTo;
-		// mappingTo = m;
+		[from, to] = [to, from];
+		input = output;
 	}
 </script>
 
@@ -57,7 +59,7 @@
 				</option>
 			{/each}
 		</select>
-		<div class="btn" on:click={() => navigator.clipboard.writeText(output)}>
+		<div class="btn" on:click={copy}>
 			<Icon icon="ic:round-content-copy" />
 		</div>
 		<div class="btn" on:click={reverse}>
