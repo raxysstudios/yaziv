@@ -30,8 +30,10 @@
 
 <h3 class="btn m-4 mb-0 flex flex-row gap-2 items-center capitalize relative" on:click={toggleMenu}>
 	<Icon icon={converter ? 'ic:round-menu' : 'ic:round-menu-open'} />
-	{language}
-	{#if !converter}
+	{#if converter}
+		{language}
+	{:else}
+		<span class="absolute left-0 right-0 text-center">yaziv</span>
 		<Raxys class="absolute right-0" />
 	{/if}
 </h3>
