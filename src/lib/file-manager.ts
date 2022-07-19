@@ -1,4 +1,11 @@
-const link = document.createElement("a");
+let link: HTMLAnchorElement;
+
+export function initFileManager() { 
+    link = document.createElement("a");   
+    reader = new FileReader();
+    input = document.createElement("input");
+    input.type = "file";
+}
 
 export function downloadFile(content: string, filename: string) {
   link.href =
@@ -6,9 +13,8 @@ export function downloadFile(content: string, filename: string) {
   link.download = filename;
   link.click();
 }
-const reader = new FileReader();
-const input = document.createElement("input");
-input.type = "file";
+let reader: FileReader;
+let input :HTMLInputElement;
 
 export function uploadFile(
   onload: (content: string, name: string) => void,

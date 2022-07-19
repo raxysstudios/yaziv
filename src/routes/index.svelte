@@ -5,12 +5,14 @@
 	import CatalogueView from '$lib/catalogue-view.svelte';
 	import Icon from '@iconify/svelte';
 	import Raxys from '$lib/raxys.svelte';
+	import { initFileManager } from '$lib/file-manager';
 
 	let catalogue = [] as string[];
 	let language = '';
 	let converter: Converter | undefined;
 
 	onMount(async () => {
+		initFileManager();
 		catalogue = await fetch('catalogue.json').then((r) => r.json());
 		language = localStorage.getItem('language') ?? '';
 		if (language && catalogue.includes(language)) await load(language);
