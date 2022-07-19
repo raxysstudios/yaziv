@@ -48,5 +48,5 @@ h3 * {
 }
 
 .btn {
-	@apply cursor-pointer rounded-3xl hover:bg-slate-200 active:rounded-md select-none;
+	@apply p-2 cursor-pointer rounded-md hover:bg-slate-200 active:bg-slate-300 select-none;
 }

@@ -21,25 +21,23 @@
 		converter = await fetch(`${language}.json`).then((r) => r.json());
 		localStorage.setItem('language', language);
 	}
+
+	function toggleMenu() {
+		if (converter) converter = undefined;
+		else load(language);
+	}
 </script>
 
-<h3
-	class="btn m-4 mb-0 p-2 flex flex-row gap-2 items-center capitalize relative"
-	on:click={() => (converter = undefined)}
->
-	<Icon icon="ic:baseline-menu" />
+<h3 class="btn m-4 mb-0 flex flex-row gap-2 items-center capitalize relative" on:click={toggleMenu}>
+	<Icon icon={converter ? 'ic:round-menu' : 'ic:round-menu-open'} />
 	{language}
 	{#if !converter}
-		<Raxys class="absolute right-2" />
+		<Raxys class="absolute right-0" />
 	{/if}
 </h3>
 
 {#if converter}
-	<div class="grid sm:grid-cols-2 sm:grid-rows-[auto_1fr] gap-4 p-4 h-screen">
-		<div class="flex flex-row h-min" />
-		<div class="flex flex-row h-min" />
-		<ConverterView {converter} />
-	</div>
+	<ConverterView {converter} />
 {:else}
 	<CatalogueView {catalogue} onselect={load} />
 {/if}
