@@ -32,46 +32,60 @@
 	}
 </script>
 
-<div
-	class="grid sm:grid-cols-2 grid-rows-[auto_auto_1fr_1fr] sm:grid-rows-[auto_1fr] gap-4 p-4 h-full"
->
-	<div class="flex flex-row gap-2 h-min">
-		<select class="flex-1 btn" bind:value={from}>
-			{#each converter.mappings as mapping, i}
-				<option value={mapping}>
-					{i + 1}.
-					{mapping.name}
-				</option>
-			{/each}
-		</select>
-		<!-- <div class="btn">
+<div id="table" class="flex flex-col w-full h-full sm:flex-row gap-4 p-4">
+	<div>
+		<div class="flex flex-row gap-2 h-min">
+			<select class="flex-1 btn" bind:value={from}>
+				{#each converter.mappings as mapping, i}
+					<option value={mapping}>
+						{i + 1}.
+						{mapping.name}
+					</option>
+				{/each}
+			</select>
+			<!-- <div class="btn">
 			<Icon icon="ic:round-help-outline" />
 		</div> -->
-		<div class="btn">
-			<Icon icon="ic:round-upload-file" />
+			<div class="btn">
+				<Icon icon="ic:round-upload-file" />
+			</div>
 		</div>
+		<textarea
+			class="bg-transparent flex-1"
+			bind:value={input}
+			placeholder={process(sample, null, from)}
+		/>
 	</div>
-	<div class="flex flex-row gap-2 h-min">
-		<select class="flex-1 btn" bind:value={to}>
-			{#each converter.mappings as mapping, i}
-				<option value={mapping}>
-					{i + 1}.
-					{mapping.name}
-				</option>
-			{/each}
-		</select>
-		<div class="btn" on:click={copy}>
-			<Icon icon="ic:round-content-copy" />
+	<div>
+		<div class="flex flex-row gap-2 h-min">
+			<select class="flex-1 btn" bind:value={to}>
+				{#each converter.mappings as mapping, i}
+					<option value={mapping}>
+						{i + 1}.
+						{mapping.name}
+					</option>
+				{/each}
+			</select>
+			<div class="btn" on:click={copy}>
+				<Icon icon="ic:round-content-copy" />
+			</div>
+			<div class="btn" on:click={reverse}>
+				<Icon icon="ic:round-swap-horiz" />
+			</div>
 		</div>
-		<div class="btn" on:click={reverse}>
-			<Icon icon="ic:round-swap-horiz" />
-		</div>
+		<textarea
+			class="bg-slate-200 flex-1"
+			value={output}
+			placeholder={process(sample, null, to)}
+			readonly
+		/>
 	</div>
-	<textarea class="bg-transparent" bind:value={input} placeholder={process(sample, null, from)} />
-	<textarea class="bg-slate-200" value={output} placeholder={process(sample, null, to)} readonly />
 </div>
 
 <style lang="postcss">
+	#table > div {
+		@apply flex flex-col gap-4 flex-1;
+	}
 	textarea {
 		@apply p-4 rounded-md resize-none;
 	}
