@@ -29,7 +29,7 @@
 </script>
 
 <h3
-	class="btn m-4 mb-0 flex flex-row gap-2 items-center capitalize relative"
+	class="btn flex flex-row gap-2 items-center capitalize relative"
 	style="height: 44px;"
 	on:click={toggleMenu}
 >

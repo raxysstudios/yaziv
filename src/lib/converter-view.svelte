@@ -42,7 +42,7 @@
 	}
 </script>
 
-<div id="table" class="flex flex-col w-full h-full sm:flex-row gap-4 p-4">
+<div id="table" class="flex flex-col w-full h-full sm:flex-row gap-4">
 	<div>
 		<div class="flex flex-row gap-2 h-min">
 			<select class="flex-1 btn" bind:value={from}>
@@ -107,7 +107,7 @@
 
 <style lang="postcss">
 	#table > div {
-		@apply flex flex-col gap-4 flex-1;
+		@apply flex flex-col gap-2 flex-1;
 	}
 	textarea {
 		@apply p-4 rounded-md resize-none;
