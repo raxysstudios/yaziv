@@ -96,7 +96,7 @@
 			<MappingView mapping={to} reverse={true} />
 		{:else}
 			<textarea
-				class="bg-slate-200 flex-1"
+				class="card flex-1"
 				value={output}
 				placeholder={process(sample, null, to)}
 				readonly
@@ -110,7 +110,7 @@
 		@apply flex flex-col gap-2 flex-1;
 	}
 	textarea {
-		@apply p-4 rounded-md resize-none;
+		@apply p-2 rounded-md resize-none;
 	}
 	select {
 		@apply bg-transparent font-semibold capitalize;

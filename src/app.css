@@ -11,6 +11,7 @@ body {
 .iconify {
 	font-size: 24px;
 }
+
 img {
 	-webkit-user-drag: none;
 	-khtml-user-drag: none;
@@ -27,9 +28,13 @@ img {
 }
 
 * {
-	@apply duration-150 font-['Finlandica'] dark:text-white;
+	@apply duration-150 font-['Finlandica'] dark:text-white outline-none;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	-webkit-tap-highlight-color: transparent;
+}
+
+select option {
+	@apply bg-slate-100 dark:bg-gray-800 dark:text-white;
 }
 
 h1,
@@ -48,5 +53,5 @@ h3 * {
 }
 
 .btn {
-	@apply p-2 cursor-pointer rounded-md hover:bg-slate-200 active:bg-slate-300 select-none;
+	@apply p-2 cursor-pointer rounded-md hover:bg-slate-200 dark:hover:bg-slate-700 active:bg-slate-300 dark:active:bg-slate-600 select-none;
 }
