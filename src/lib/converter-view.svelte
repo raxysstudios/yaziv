@@ -80,12 +80,17 @@
 					</option>
 				{/each}
 			</select>
-			<div class="btn" on:click={copy}>
-				<Icon icon="ic:round-content-copy" />
-			</div>
-			<div class="btn" on:click={reverse}>
-				<Icon icon="ic:round-swap-horiz" />
-			</div>
+			{#if output}
+				<div class="btn" on:click={copy}>
+					<Icon icon="ic:round-content-copy" />
+				</div>
+			{/if}
+
+			{#if !to.partial}
+				<div class="btn" on:click={reverse}>
+					<Icon icon="ic:round-swap-horiz" />
+				</div>
+			{/if}
 		</div>
 		{#if showMapping}
 			<MappingView mapping={to} reverse={true} />

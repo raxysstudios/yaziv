@@ -2,6 +2,7 @@ export type Pairs = [string, string][];
 
 export type Mapping = {
   name: string;
+  partial: boolean | undefined;
   pairs: Pairs;
 };
 
