@@ -2,12 +2,14 @@
 	import Icon from '@iconify/svelte';
 	import convert from './convert';
 	import { downloadFile, uploadFile } from './file-manager';
+	import MappingView from './mapping-view.svelte';
 	import type { Converter, Mapping, Pairs } from './types';
 
 	export let converter: Converter;
 	let from = converter.mappings[0];
 	let to = converter.mappings[1];
 
+	let showMapping = false;
 	$: sample = process(converter.sample ?? '', converter.mappings[0]);
 
 	let input = '';
@@ -51,18 +53,22 @@
 					</option>
 				{/each}
 			</select>
-			<!-- <div class="btn">
-			<Icon icon="ic:round-help-outline" />
-		</div> -->
+			<div class="btn" on:click={() => (showMapping = !showMapping)}>
+				<Icon icon={showMapping ? 'ic:round-keyboard-hide' : 'ic:round-keyboard'} />
+			</div>
 			<div class="btn" on:click={processFile}>
 				<Icon icon="ic:round-upload-file" />
 			</div>
 		</div>
-		<textarea
-			class="bg-transparent flex-1"
-			bind:value={input}
-			placeholder={process(sample, null, from)}
-		/>
+		{#if showMapping}
+			<MappingView mapping={from} />
+		{:else}
+			<textarea
+				class="bg-transparent flex-1"
+				bind:value={input}
+				placeholder={process(sample, null, from)}
+			/>
+		{/if}
 	</div>
 	<div>
 		<div class="flex flex-row gap-2 h-min">
@@ -81,12 +87,16 @@
 				<Icon icon="ic:round-swap-horiz" />
 			</div>
 		</div>
-		<textarea
-			class="bg-slate-200 flex-1"
-			value={output}
-			placeholder={process(sample, null, to)}
-			readonly
-		/>
+		{#if showMapping}
+			<MappingView mapping={to} reverse={true} />
+		{:else}
+			<textarea
+				class="bg-slate-200 flex-1"
+				value={output}
+				placeholder={process(sample, null, to)}
+				readonly
+			/>
+		{/if}
 	</div>
 </div>
 
