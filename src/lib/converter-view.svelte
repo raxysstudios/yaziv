@@ -53,11 +53,11 @@
 					</option>
 				{/each}
 			</select>
-			<div class="btn" on:click={() => (showMapping = !showMapping)}>
-				<Icon icon={showMapping ? 'ic:round-keyboard-hide' : 'ic:round-keyboard'} />
-			</div>
 			<div class="btn" on:click={processFile}>
 				<Icon icon="ic:round-upload-file" />
+			</div>
+			<div class="btn" on:click={() => (showMapping = !showMapping)}>
+				<Icon icon={showMapping ? 'ic:round-keyboard-hide' : 'ic:round-keyboard'} />
 			</div>
 		</div>
 		{#if showMapping}
@@ -85,7 +85,6 @@
 					<Icon icon="ic:round-content-copy" />
 				</div>
 			{/if}
-
 			{#if !to.partial}
 				<div class="btn" on:click={reverse}>
 					<Icon icon="ic:round-swap-horiz" />
@@ -113,7 +112,7 @@
 		@apply p-2 rounded-md resize-none;
 	}
 	select {
-		@apply bg-transparent font-semibold capitalize;
+		@apply font-semibold capitalize;
 		-webkit-appearance: none;
 		-moz-appearance: none;
 	}
