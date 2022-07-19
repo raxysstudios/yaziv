@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import convert from './convert';
+	import { downloadFile, uploadFile } from './file-manager';
 	import type { Converter, Mapping, Pairs } from './types';
 
 	export let converter: Converter;
@@ -20,6 +21,13 @@
 			intermediate = convert(intermediate, pairs);
 		}
 		return intermediate;
+	}
+
+	function processFile() {
+		uploadFile((c, n) => {
+			const text = process(c, from, to);
+			downloadFile(text, `${to.name} - ${n}`);
+		}, '.txt');
 	}
 
 	function copy() {
@@ -46,7 +54,7 @@
 			<!-- <div class="btn">
 			<Icon icon="ic:round-help-outline" />
 		</div> -->
-			<div class="btn">
+			<div class="btn" on:click={processFile}>
 				<Icon icon="ic:round-upload-file" />
 			</div>
 		</div>
