@@ -28,7 +28,11 @@
 	}
 </script>
 
-<h3 class="btn m-4 mb-0 flex flex-row gap-2 items-center capitalize relative" on:click={toggleMenu}>
+<h3
+	class="btn m-4 mb-0 flex flex-row gap-2 items-center capitalize relative"
+	style="height: 44px;"
+	on:click={toggleMenu}
+>
 	<Icon icon={converter ? 'ic:round-menu' : 'ic:round-menu-open'} />
 	{#if converter}
 		{language}
