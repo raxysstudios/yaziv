@@ -46,11 +46,13 @@
 	<div>
 		<div class="flex flex-row gap-2 h-min">
 			<select class="flex-1 btn" bind:value={from}>
-				{#each converter.mappings as mapping, i}
-					<option value={mapping}>
-						{i + 1}.
-						{mapping.name}
-					</option>
+				{#each converter.mappings as m, i}
+					{#if !m.partial}
+						<option value={m}>
+							{i + 1}.
+							{m.name}
+						</option>
+					{/if}
 				{/each}
 			</select>
 			<div class="btn" on:click={processFile}>
@@ -73,10 +75,10 @@
 	<div>
 		<div class="flex flex-row gap-2 h-min">
 			<select class="flex-1 btn" bind:value={to}>
-				{#each converter.mappings as mapping, i}
-					<option value={mapping}>
+				{#each converter.mappings as m, i}
+					<option value={m}>
 						{i + 1}.
-						{mapping.name}
+						{m.name}
 					</option>
 				{/each}
 			</select>
