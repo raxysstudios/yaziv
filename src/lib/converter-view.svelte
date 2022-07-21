@@ -1,36 +1,18 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
-	import convert from './convert';
-	import { downloadFile, uploadFile } from './file-manager';
+	import { processText, processFile } from './process';
 	import MappingView from './mapping-view.svelte';
-	import type { Converter, Mapping, Pairs } from './types';
+	import type { Converter } from './types';
 
 	export let converter: Converter;
 	let from = converter.mappings[0];
 	let to = converter.mappings[1];
 
 	let showMapping = false;
-	$: sample = process(converter.sample ?? '', converter.mappings[0]);
+	$: sample = processText(converter.sample ?? '', converter.mappings[0]);
 
 	let input = '';
-	$: output = process(input, from, to);
-
-	function process(input: string, from: Mapping | null = null, to: Mapping | null = null) {
-		let intermediate = input;
-		if (from) intermediate = convert(intermediate, from.pairs);
-		if (to) {
-			const pairs = to.pairs.map((p) => p.slice().reverse()) as Pairs;
-			intermediate = convert(intermediate, pairs);
-		}
-		return intermediate;
-	}
-
-	function processFile() {
-		uploadFile((c, n) => {
-			const text = process(c, from, to);
-			downloadFile(text, `${to.name} - ${n}`);
-		}, '.txt');
-	}
+	$: output = processText(input, from, to);
 
 	function copy() {
 		navigator.clipboard.writeText(output);
@@ -55,7 +37,7 @@
 					{/if}
 				{/each}
 			</select>
-			<div class="btn" on:click={processFile}>
+			<div class="btn" on:click={() => processFile(from, to)}>
 				<Icon icon="ic:round-upload-file" />
 			</div>
 			<div class="btn" on:click={() => (showMapping = !showMapping)}>
@@ -68,7 +50,7 @@
 			<textarea
 				class="bg-transparent flex-1"
 				bind:value={input}
-				placeholder={process(sample, null, from)}
+				placeholder={processText(sample, null, from)}
 			/>
 		{/if}
 	</div>
@@ -99,7 +81,7 @@
 			<textarea
 				class="card flex-1"
 				value={output}
-				placeholder={process(sample, null, to)}
+				placeholder={processText(sample, null, to)}
 				readonly
 			/>
 		{/if}
