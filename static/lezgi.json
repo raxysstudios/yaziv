@@ -1,8 +1,4 @@
 {
-    "default": [
-        0,
-        0
-    ],
     "mappings": [
         {
             "name": "Cyrilliс",
@@ -276,6 +272,10 @@
                     "m"
                 ],
                 [
+                    "нья",
+                    "nja"
+                ],
+                [
                     "н",
                     "n"
                 ],
@@ -304,8 +304,16 @@
                     "ije"
                 ],
                 [
+                    "ия",
+                    "ija"
+                ],
+                [
                     "а",
                     "a"
+                ],
+                [
+                    "уя",
+                    "uja"
                 ],
                 [
                     "уь",
@@ -344,17 +352,21 @@
                     " ja"
                 ],
                 [
+                    "э",
+                    "e"
+                ],
+                [
                     "и",
                     "i"
                 ]
             ]
         },
         {
-            "name": "Latin (M. Shirvani proposal)",
+            "name": "Latin (M. Shirvani)",
             "pairs": []
         },
         {
-            "name": "Latin (I. Stvilia proposal)",
+            "name": "Latin (I. Stvilia)",
             "pairs": [
                 [
                     "ghw",
@@ -447,5 +459,5 @@
             ]
         }
     ],
-    "sample": "Sa ǧilera Isa sinaǧ ijiz k'anz, qqararaǧna sa tavratdardi Adavaj xabar q'una:\n– Ja Muallim, ebedi ümürdiv agaq'un patal, za vuč avun lazim ja?\n– Qqanunda vuč kxhenva? – žavab gana Isadi. – Anaj vuna vuč k'elzava?\nAda žavab gana:\n– Viridaj Rebbi Allaj rik'in sidq'idaj, žuvan viri čandaldi, žuvan muq'uv gwajdini k'an xhuxh, «žuv xhiz žuvan muq'uv gwajdini k'an xhuxh».\n– Vuna düzdakaz žavab gana, – lahana Isadi; – vuna hak' avunno aja, val čan žeda.\nAmma, vičin sual düzdi jaz qqalurun patal, ada Isadiz lahana:\n– Bes, zi muq'uv gwajdi vuž ja?\nA sualdiz žavab jaz, Isadi adaz q'isa aqajna:\n– Sa insan Jarusalimdaj Jerihandiz fizwajla, am qqačaǧrin ǧile hatna; aburu adalaj peker xt'unna, gatana, am req'idaj čkadal ǧana, čebni qfena. A req'äj sa xaxam fizwaz xhana, adaz gatanvajdi akurla, am q'asuxdaj qqwalavaj eläčna fena. Ha i čkadal ataj levidini hak' avuna: gatanvajdi akun kumazni, patavaj eläč'na fena. Hanlaj sa samarijatvi fidajla, am akunmazni, adaz a kasdin jazux atana. Am adan patav fena, čexirdiv čüxwena, adan xireriz zejtundin č'em jana, kut'unna. Vičin lamral aq'adarna am muhmanxanadiz xkana va hanani adaq gelqqwena. Pakahan juqquz vič qfidajla, q'we dinar aqqufna ada muhmanxanadin ijesidiz vilikamaz gana va lahana: «Adaq gelqqüǧ; artuxan xarž aqqatajt'a, elqqwrna xkwedajla, za vav vaxguda». Vaz čiz, qqačaǧrin ǧile hataj kas patal a pudakaj vuž muq'uv gwajdi tir?\nTavratdardi lahana:\n– Adaz qsanval avurdi.\nInal Isadi lahana:\n– Alad, žuvani hak' aja.\nLuk'a 10:25-37"
+    "sample": "Етим Эмин фугъара я мубтала.  \nБала я вун, дуьнья, бала я, бала.  \nНиз амукьна и дуьнья, бес, заз къала?  \nБениагьад гьич са касдиз, дуьнья гьей!"
 }
