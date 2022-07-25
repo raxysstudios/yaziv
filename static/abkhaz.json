@@ -300,6 +300,7 @@
         },
         {
             "name": "IPA",
+            "lowercase": true,
             "pairs": []
         }
     ]

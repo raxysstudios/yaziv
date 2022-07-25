@@ -51,6 +51,7 @@
 				class="bg-transparent flex-1"
 				bind:value={input}
 				placeholder={processText(sample, null, from)}
+				dir={from.rtl ? 'rtl' : 'auto'}
 			/>
 		{/if}
 	</div>
@@ -82,6 +83,7 @@
 				class="card flex-1"
 				value={output}
 				placeholder={processText(sample, null, to)}
+				dir={to.rtl ? 'rtl' : 'auto'}
 				readonly
 			/>
 		{/if}

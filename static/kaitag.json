@@ -160,6 +160,7 @@
     },
     {
       "name": "IPA",
+      "lowercase": true,
       "pairs": [
         [
           "ɪ",

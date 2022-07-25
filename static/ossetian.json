@@ -456,6 +456,7 @@
     {
       "name": "IPA",
       "partial": true,
+      "lowercase": true,
       "pairs": [
         [
           "gʷ",

@@ -168,6 +168,7 @@
         },
         {
             "name": "ajam",
+            "rtl": true,
             "pairs": [
                 [
                     " آ",
