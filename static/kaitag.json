@@ -155,6 +155,15 @@
       "pairs": []
     },
     {
+      "name": "latin 2",
+      "pairs": [
+        [
+          "h",
+          "ʼ"
+        ]
+      ]
+    },
+    {
       "name": "IPA",
       "lowercase": true,
       "pairs": [
