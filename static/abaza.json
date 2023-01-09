@@ -310,6 +310,6 @@
             "name": "cyrillic",
             "lowercase": true,
             "pairs": []
-        },
+        }
     ]
 }
