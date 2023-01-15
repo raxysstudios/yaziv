@@ -1,14 +1,15 @@
 <script lang="ts">
 	import convert from '$lib/convert';
-	import { downloadFile, uploadFile } from '$lib/file-manager';
 	import type { Pairs } from '$lib/types';
-	import Icon from '@iconify/svelte';
 
 	let input = '';
 	$: output = convert(input, pairs);
 
 	let config = '';
-	$: pairs = <Pairs>config.split('\n').map((l) => l.split('.').splice(0, 2));
+	$: pairs = <Pairs>config
+		.split('\n')
+		.filter((l) => l.includes('.'))
+		.map((l) => l.split('.').splice(0, 2));
 
 	function exportJson() {
 		alert(JSON.stringify(pairs));
