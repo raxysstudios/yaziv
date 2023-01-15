@@ -10,27 +10,31 @@
 	let config = '';
 	$: pairs = <Pairs>config.split('\n').map((l) => l.split('.').splice(0, 2));
 
-	function downloadPairs() {
-		downloadFile(JSON.stringify(pairs), 'yaziv.json');
+	function exportJson() {
+		alert(JSON.stringify(pairs));
 	}
 
-	function uploadPairs() {
-		uploadFile((c, _) => {
-			config = (<Pairs>JSON.parse(c)).map((p) => p.join('.')).join('\n');
-		});
+	function importJson() {
+		const pairs = <Pairs>JSON.parse(prompt('enter pairs json') ?? '');
+		config = pairs.map((p) => p[0] + '.' + p[1]).join('\n');
 	}
 </script>
 
 <div class="flex flex-row gap-4">
-	<div class="flex flex-col gap-2">
-		<textarea bind:value={input} />
-		<textarea value={output} readonly />
+	<div class="flex flex-col">
+		<p>Original text</p>
+		<textarea class="w-64 h-32" bind:value={input} />
+		<div class="h-4" />
+		<p>Converted text</p>
+		<textarea class="w-64 h-32" value={output} readonly />
 	</div>
-	<textarea bind:value={config} />
-	<div class="btn" on:click={downloadPairs}>
-		<Icon icon="ic:round-file-download" />
-	</div>
-	<div class="btn" on:click={uploadPairs}>
-		<Icon icon="ic:round-upload-file" />
+	<div class="flex flex-col">
+		<p>Conversion pairs</p>
+		<p class="text-sm">a pair per line, elements in a pair split by a dot (.)</p>
+		<textarea class="h-64" bind:value={config} />
+		<div class="flex">
+			<div class="btn" on:click={exportJson}>To JSON</div>
+			<div class="btn" on:click={importJson}>From JSON</div>
+		</div>
 	</div>
 </div>
