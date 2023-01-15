@@ -7,28 +7,33 @@
 		<link rel="icon" href="./favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta http-equiv="content-security-policy" content="">
-	<link rel="stylesheet" href="/_app/immutable/assets/__layout-9372b05a.css">
-	<link rel="modulepreload" href="/_app/immutable/start-2cd6424f.js">
+	<link rel="stylesheet" href="/_app/immutable/assets/__layout-5009420d.css">
+	<link rel="modulepreload" href="/_app/immutable/start-c6db747f.js">
 	<link rel="modulepreload" href="/_app/immutable/chunks/index-ed81f732.js">
 	<link rel="modulepreload" href="/_app/immutable/pages/__layout.svelte-f4700ba7.js">
-	<link rel="modulepreload" href="/_app/immutable/pages/editor.svelte-7139c75c.js">
-	<link rel="modulepreload" href="/_app/immutable/chunks/Icon-59fccba4.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/editor.svelte-faea2945.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/functions-a7e2d51d.js">
 	</head>
 	<body>
 		<div class="flex flex-col p-4 gap-4 h-screen">
 
 
-<div class="flex flex-row gap-4"><div class="flex flex-col gap-2"><textarea></textarea>
-		<textarea readonly></textarea></div>
-	<textarea></textarea>
-	<div class="btn"></div>
-	<div class="btn"></div></div>
+<div class="flex flex-row gap-4"><div class="flex flex-col"><p>Original text</p>
+		<textarea class="w-64 h-32"></textarea>
+		<div class="h-4"></div>
+		<p>Converted text</p>
+		<textarea class="w-64 h-32" readonly></textarea></div>
+	<div class="flex flex-col"><p>Conversion pairs</p>
+		<p class="text-sm">a pair per line, elements in a pair split by a dot (.)</p>
+		<textarea class="h-64"></textarea>
+		<div class="flex"><div class="btn">To JSON</div>
+			<div class="btn">From JSON</div></div></div></div>
 
 
-		<script type="module" data-sveltekit-hydrate="1f9l2b">
-		import { start } from "/_app/immutable/start-2cd6424f.js";
+		<script type="module" data-sveltekit-hydrate="1apm9oj">
+		import { start } from "/_app/immutable/start-c6db747f.js";
 		start({
-			target: document.querySelector('[data-sveltekit-hydrate="1f9l2b"]').parentNode,
+			target: document.querySelector('[data-sveltekit-hydrate="1apm9oj"]').parentNode,
 			paths: {"base":"","assets":""},
 			session: {},
 			route: true,
