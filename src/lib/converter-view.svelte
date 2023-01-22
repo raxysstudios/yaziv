@@ -5,8 +5,8 @@
 	import type { Converter } from './types';
 
 	export let converter: Converter;
-	let from = converter.mappings[0];
-	let to = converter.mappings[1];
+	let from = converter.mappings[converter.default?.[0] ?? 0];
+	let to = converter.mappings[converter.default?.[1] ?? 1];
 
 	let showMapping = false;
 	$: sample = processText(converter.sample ?? '', converter.mappings[0]);
