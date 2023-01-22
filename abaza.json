@@ -304,7 +304,7 @@
             "pairs": []
         },
         {
-            "name": "latin",
+            "name": "latin (Chirikba)",
             "pairs": [
                 [
                     "k’i",
@@ -605,7 +605,7 @@
             ]
         },
         {
-            "name": "transliteration",
+            "name": "transliteration (Wikitionary)",
             "pairs": [
                 [
                     "a",
