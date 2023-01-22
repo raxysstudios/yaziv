@@ -2,11 +2,12 @@
     "sample": "Бызшва йъау зымгӏва удырында — зквла йгьынкъвугум.",
     "default": [
         1,
-        0
+        2
     ],
     "mappings": [
         {
-            "name": "ӏPA",
+            "name": "IPA",
+            "lowercase": true,
             "pairs": [
                 [
                     "a",
