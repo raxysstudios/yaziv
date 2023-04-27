@@ -28,6 +28,7 @@
 	}
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <h3
 	class="btn flex flex-row gap-2 items-center capitalize relative"
 	style="height: 44px;"

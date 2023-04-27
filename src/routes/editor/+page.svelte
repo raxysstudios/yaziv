@@ -34,7 +34,9 @@
 		<p class="text-sm">a pair per line, elements in a pair split by a dot (.)</p>
 		<textarea class="h-64" bind:value={config} />
 		<div class="flex">
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div class="btn" on:click={exportJson}>To JSON</div>
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div class="btn" on:click={importJson}>From JSON</div>
 		</div>
 	</div>
