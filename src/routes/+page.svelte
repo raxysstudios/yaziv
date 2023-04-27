@@ -18,7 +18,7 @@
 
 	async function load(_language: string) {
 		language = _language;
-		converter = await fetch(`${language}.json`).then((r) => r.json());
+		converter = await fetch(`languages/${language}.json`).then((r) => r.json());
 		localStorage.setItem('language', language);
 	}
 
