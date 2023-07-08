@@ -2,14 +2,15 @@ export type Pairs = [string, string][];
 
 export type Mapping = {
 	name: string;
-	partial: boolean | undefined;
-	rtl: boolean | undefined;
-	lowercase: boolean | undefined;
+	constraint?: 'to' | 'from';
+	rtl?: boolean;
+	lowercase?: boolean;
 	pairs: Pairs;
 };
 
 export type Converter = {
 	iso: string;
+	voice?: { tts?: boolean; asr?: boolean };
 	sample?: string;
 	default?: [number, number];
 	mappings: Mapping[];

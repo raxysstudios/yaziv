@@ -42,10 +42,9 @@
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<div class="flex flex-row gap-2 h-min">
 			<select class="flex-1 btn" bind:value={from}>
-				{#each converter.mappings as m, i}
-					{#if !m.partial}
+				{#each converter.mappings as m}
+					{#if m.constraint != 'to'}
 						<option value={m}>
-							{i + 1}.
 							{m.name}
 						</option>
 					{/if}
@@ -72,10 +71,15 @@
 	</div>
 	<div>
 		<div class="flex flex-row gap-2 h-min">
+			{#if converter.voice?.tts}
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<div class="btn" on:click={copy}>
+					<Icon icon="fluent-emoji-flat:robot" />
+				</div>
+			{/if}
 			<select class="flex-1 btn" bind:value={to}>
-				{#each converter.mappings as m, i}
+				{#each converter.mappings as m}
 					<option value={m}>
-						{i + 1}.
 						{m.name}
 					</option>
 				{/each}
@@ -86,7 +90,7 @@
 					<Icon icon="ic:round-content-copy" />
 				</div>
 			{/if}
-			{#if !to.partial}
+			{#if to.constraint != 'from'}
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<div class="btn" on:click={reverse}>
 					<Icon icon="ic:round-swap-horiz" />

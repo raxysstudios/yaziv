@@ -1,7 +1,10 @@
 {
   "iso": "oss",
   "sample": "Цӕй ма, лӕппутӕ, бавналӕм,\nНӕ тыхтӕ иумӕ бавзарӕм!",
-  "speech": true,
+  "voice": {
+    "tts": true,
+    "asr": true
+  },
   "mappings": [
     {
       "name": "cyrillic",
@@ -477,7 +480,7 @@
     },
     {
       "name": "IPA",
-      "partial": true,
+      "constraint": "to",
       "lowercase": true,
       "pairs": [
         [
