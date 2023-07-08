@@ -1,0 +1,18 @@
+{
+    "iso": "krc",
+    "voice": {
+        "tts": true,
+        "asr": true
+    },
+    "mappings": [
+        {
+            "name": "Cyrillic",
+            "pairs": []
+        },
+        {
+            "name": "Latin",
+            "pairs": []
+        }
+    ],
+    "sample": "Кече ахшы болсун!"
+}
