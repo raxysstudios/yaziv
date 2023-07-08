@@ -1,0 +1,18 @@
+{
+    "iso": "ava",
+    "voice": {
+        "tts": true,
+        "asr": true
+    },
+    "mappings": [
+        {
+            "name": "Cyrillic",
+            "pairs": []
+        },
+        {
+            "name": "Latin",
+            "pairs": []
+        }
+    ],
+    "sample": "Ворчӏами вац!"
+}

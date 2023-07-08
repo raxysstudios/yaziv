@@ -1,6 +1,10 @@
 {
     "iso": "kum",
     "sample": "Гёчюрювчюню ишин къарамагъа жумлаланы языгъыз.",
+    "voice": {
+        "tts": true,
+        "asr": true
+    },
     "mappings": [
         {
             "name": "cyrillic",
