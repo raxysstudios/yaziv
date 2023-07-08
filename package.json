@@ -32,8 +32,5 @@
 		"vite": "^4.3.0",
 		"vite-plugin-pwa": "^0.14.7"
 	},
-	"type": "module",
-	"dependencies": {
-		"svelte-simple-modal": "^1.6.1"
-	}
+	"type": "module"
 }
