@@ -4,8 +4,9 @@
 	import { goto } from '$app/navigation';
 	import { langs } from '../langs';
 
-	async function load(iso: string) {
-		localStorage.setItem('lang', iso);
+	async function load(iso: string | null = null) {
+		if (iso) localStorage.setItem('lang', iso);
+		else iso = localStorage.getItem('lang');
 		goto('/?lang=' + iso);
 	}
 </script>
@@ -14,7 +15,7 @@
 <h3
 	class="btn flex flex-row gap-2 capitalize relative items-center"
 	style="height: 44px;"
-	on:click={() => goto('/')}
+	on:click={() => load()}
 >
 	<Icon icon="ic:round-menu-open" />
 	yaziv
