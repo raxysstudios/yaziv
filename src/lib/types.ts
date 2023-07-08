@@ -9,6 +9,7 @@ export type Mapping = {
 };
 
 export type Converter = {
+	iso: string;
 	sample?: string;
 	default?: [number, number];
 	mappings: Mapping[];
