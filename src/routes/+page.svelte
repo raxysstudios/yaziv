@@ -9,7 +9,7 @@
 
 	onMount(async () => {
 		const iso = localStorage.getItem('lang');
-		if (!(iso && iso in langs)) goto('/menu');
+		if (!(iso && iso in langs)) return goto('/menu');
 		converter = await fetch(`langs/${iso}.json`).then((r) => r.json());
 	});
 </script>
