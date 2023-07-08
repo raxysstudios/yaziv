@@ -8,7 +8,7 @@
 		loading = true;
 
 		const app = await client('https://mms-meta-mms--rt5v2.hf.space/');
-		const result: any = await app.predict('/predict_1', [input, 'oss (Ossetic)', 1]);
+		const result: any = await app.predict('/predict_1', [input, 'oss', 1]);
 
 		let url = result.data[0].value.name;
 		src = 'https://mms-meta-mms--rt5v2.hf.space/file=' + url;
