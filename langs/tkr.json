@@ -1,6 +1,10 @@
 {
     "iso": "tkr",
     "sample": "Йыӏхъейнче цӏа мед гёххьанас,\nгьакьвараъуйн кӏира мед экӏ хъихьес.",
+    "voice": {
+        "tts": true,
+        "asr": true
+    },
     "mappings": [
         {
             "name": "cyrillic",
