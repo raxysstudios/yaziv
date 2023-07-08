@@ -1,0 +1,18 @@
+{
+    "iso": "dar",
+    "voice": {
+        "tts": true,
+        "asr": true
+    },
+    "mappings": [
+        {
+            "name": "Cyrillic",
+            "pairs": []
+        },
+        {
+            "name": "Latin",
+            "pairs": []
+        }
+    ],
+    "sample": "Се сагати хабурти лера хӏела хӏянчиличир?"
+}
