@@ -5,7 +5,7 @@ export const langs: Record<string, string> = {
 	ava: 'avar',
 	dar: 'dargwa',
 	// kat: 'georgian',
-	// krc: 'karachay-balkar',
+	krc: 'karachay-balkar',
 	xdq: 'kaitag',
 	kum: 'kumyk',
 	lez: 'lezgi',
