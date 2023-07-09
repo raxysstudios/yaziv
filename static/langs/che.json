@@ -1,0 +1,18 @@
+{
+    "iso": "che",
+    "sample": "Маршалла хаттар.",
+    "voice": {
+        "tts": true,
+        "asr": true
+    },
+    "mappings": [
+        {
+            "name": "cyrillic",
+            "pairs": []
+        },
+        {
+            "name": "latin",
+            "pairs": []
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "iso": "nog",
+    "sample": "Тагы да келерсиз деп билемен.",
+    "voice": {
+        "tts": true,
+        "asr": true
+    },
+    "mappings": [
+        {
+            "name": "cyrillic",
+            "pairs": []
+        },
+        {
+            "name": "latin",
+            "pairs": []
+        }
+    ]
+}
