@@ -10,7 +10,11 @@ export type Mapping = {
 
 export type Converter = {
 	iso: string;
-	voice?: { tts?: boolean; asr?: boolean };
+	voice?: {
+		tts?: boolean;
+		asr?: boolean;
+		intact?: boolean;
+	};
 	sample?: string;
 	default?: [number, number];
 	mappings: Mapping[];

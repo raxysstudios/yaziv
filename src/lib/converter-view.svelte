@@ -110,7 +110,11 @@
 		{#if ai}
 			<VoiceView
 				iso={converter.iso}
-				input={input ? processText(input, from, converter.mappings[0]) : converter.sample}
+				input={input
+					? converter.voice?.intact
+						? input
+						: processText(input, from, converter.mappings[0])
+					: converter.sample}
 			/>
 		{:else if showMapping}
 			<MappingView mapping={to} reverse={true} />
