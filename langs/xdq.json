@@ -180,7 +180,7 @@
             "pairs": []
         },
         {
-            "name": "cyrillic ext",
+            "name": "cyrillic 2.0",
             "pairs": [
                 [
                     "ъ",
@@ -211,7 +211,7 @@
                     "qh"
                 ],
                 [
-                    "ӷ",
+                    "ғ",
                     "ğ"
                 ],
                 [
