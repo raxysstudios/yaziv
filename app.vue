@@ -7,6 +7,6 @@
 
 <style>
 * {
-  @apply transition duration-150 ease-in-out;
+  @apply transition duration-100 ease-in-out;
 }
 </style>
