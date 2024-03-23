@@ -7,6 +7,7 @@ const { lang } = await useLang();
 const converter = ref<ConverterConfig>();
 const from = ref<Mapping>();
 const to = ref<Mapping>()
+const showPairs = ref(false);
 
 watch(lang, async (val) => {
   if (!val) return;
@@ -19,8 +20,7 @@ watch(lang, async (val) => {
   }
 }, {
   immediate: true
-})
-
+});
 
 const placeholders = computed(() => {
   const sample = chainConvert(
@@ -36,17 +36,14 @@ const input = ref('');
 const output = computed(() => chainConvert(
   input.value, from.value, to.value
 ));
-// const showMapping = ref(false);
 
 function copyToClipboard() {
   navigator.clipboard.writeText(output.value);
 }
-
 function reverse() {
   [from.value, to.value] = [to.value, from.value];
   input.value = output.value;
 }
-
 function clear() {
   input.value = '';
 }
@@ -61,22 +58,31 @@ function clear() {
         <USelectMenu class="flex-1" v-model="to" :options="converter?.mappings" option-attribute="name" />
       </div>
       <div class="flex flex-row gap-1">
-        <div class="flex flex-1 flex-col gap-1">
-          <UTextarea v-model="input" size="xl" :placeholder="placeholders.from" />
-          <div class="flex flex-row gap-1">
-            <!-- <UButton class="flex-none" icon="i-heroicons-document-arrow-up" variant="ghost" @click="clear" /> -->
-            <UButton class="flex-none" icon="i-heroicons-trash" variant="ghost" @click="clear" />
-          </div>
-        </div>
-        <div class="flex flex-1 flex-col gap-1">
-          <UTextarea v-model="output" disabled variant="none" color="gray" size="xl" :placeholder="placeholders.to"
-            :ui="{ base: 'disabled:!cursor-text' }" />
-          <div class="flex flex-row gap-1">
-            <div class="flex-1" />
+        <WorkArea>
+          <UTextarea v-model="input" autoresize variant="none" :padded="false" size="xl"
+            :placeholder="placeholders.from" />
+          <template #v-bar>
+            <UButton class="flex-none" icon="i-heroicons-x-mark" variant="ghost" @click="clear" />
+          </template>
+          <template #h-bar>
+            <UButton class="flex-none" icon="i-heroicons-document-arrow-up" variant="ghost" @click="clear" />
+          </template>
+        </WorkArea>
+        <WorkArea>
+          <UTextarea v-model="output" autoresize disabled variant="none" :padded="false" color="gray" size="xl"
+            :placeholder="placeholders.to" :ui="{ base: 'disabled:!cursor-text' }" />
+          <template #v-bar>
             <UButton class="flex-none" icon="i-heroicons-clipboard-document" variant="ghost" @click="copyToClipboard" />
-          </div>
-        </div>
+          </template>
+          <template #h-bar>
+            <UButton class="flex-none" icon="i-heroicons-information-circle" variant="ghost"
+              @click="showPairs = !showPairs" />
+          </template>
+        </WorkArea>
       </div>
+      <UModal v-model="showPairs">
+        <PairsList :from="from" :to="to" />
+      </UModal>
     </div>
   </div>
 </template>
