@@ -17,10 +17,6 @@ defineProps({
 </template>
 
 <style scoped>
-* {
-    @apply transition duration-150 ease-in-out;
-}
-
 .disabled {
     @apply opacity-50;
 }
