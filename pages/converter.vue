@@ -10,6 +10,7 @@ const converter = ref<ConverterConfig>();
 const from = ref<Mapping>();
 const to = ref<Mapping>()
 const showPairs = ref(false);
+const route = useRoute()
 
 
 watch(lang, async (val) => {
@@ -52,14 +53,23 @@ function clear() {
 }
 
 
+const links = [
+  [{
+    label: 'Home',
+    icon: 'i-heroicons-home',
+    to: '/'
+  }]
+]
+
 
 
 </script>
 
 <template>
-  <div class="w-full flex justify-center p-3 md:p-5 lg:p-10">
+  <UHorizontalNavigation :links="links" class="border-b border-gray-200 dark:border-gray-800" />
+  <div class="w-full flex justify-center p-3 py-5 md:p-5 lg:p-10">
     <div v-if="converter"
-      class="flex flex-col w-full  lg:w-2/3 min-h-80  shadow-custom max-w-5xl overflow-clip  rounded-lg">
+      class="flex flex-col w-full  lg:w-2/3 min-h-80  shadow-twenty max-w-5xl overflow-clip  rounded-lg">
       <div class="flex justify-self-center   focus:bg-gray-100">
         <USelectMenu class="flex-1 ring-0" v-model="from" :options="converter?.mappings" option-attribute="name" :ui="{
 
@@ -80,7 +90,7 @@ function clear() {
           :popper="{ offsetDistance: 0, arrow: false }" size="xl" trailing-icon="false" />
 
       </div>
-      <div class="grid lg:grid-cols-2 md:max:grid-cols-1 gap-1 h-full">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-1 h-full">
         <WorkArea class="flex-1 p-2 ">
           <UTextarea v-model="input" autoresize variant="none" :padded="false" size="xl"
             :placeholder="placeholders.from" class="w-full" />
