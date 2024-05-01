@@ -5,12 +5,11 @@ import { chainConvert } from '~/utils/converter';
 import { ref } from 'vue';
 
 
-const { lang } = await useLang();
+const { lang, currentLang } = await useLang();
 const converter = ref<ConverterConfig>();
 const from = ref<Mapping>();
 const to = ref<Mapping>()
 const showPairs = ref(false);
-const route = useRoute()
 
 
 watch(lang, async (val) => {
@@ -55,19 +54,19 @@ function clear() {
 
 const links = [
   [{
-    label: 'Home',
-    icon: 'i-heroicons-home',
+    label: `Yaziv`,
+    icon: 'i-heroicons-arrow-left',
+    badge: currentLang.value?.name,
     to: '/'
   }]
 ]
 
-
-
 </script>
 
 <template>
-  <UHorizontalNavigation :links="links" class="shadow-sm border-b border-gray-200 dark:border-gray-800" />
-  <div class="w-full flex justify-center p-3 py-5 md:p-5 lg:p-10">
+  <UHorizontalNavigation :links="links" class="border-gray-200 dark:border-gray-800 "
+    :ui="{ container: 'lg:ml-[17%]', base: 'gap-2 items-center justify-center', badge: { base: 'items-center' } }" />
+  <div class="w-full flex flex-col items-center justify-center px-2  py-2 md:p-5">
     <div v-if="converter"
       class="flex flex-col w-full  lg:w-2/3 min-h-80  shadow-thirty max-w-5xl overflow-clip  rounded-lg">
       <div class="flex justify-self-center   focus:bg-gray-100">
@@ -90,8 +89,8 @@ const links = [
           :popper="{ offsetDistance: 0, arrow: false }" size="xl" trailing-icon="false" />
 
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-1 h-full">
-        <WorkArea class="flex-1 p-2 ">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-1 h-full flex-grow">
+        <WorkArea class="flex-1 p-2">
           <UTextarea v-model="input" autoresize variant="none" :padded="false" size="xl"
             :placeholder="placeholders.from" class="w-full" />
           <template #v-bar>
@@ -108,14 +107,20 @@ const links = [
             <UButton class="flex-none" icon="i-heroicons-clipboard-document" variant="ghost" @click="copyToClipboard" />
           </template>
           <template #h-bar>
-            <UButton class="flex-none" icon="i-heroicons-information-circle" variant="ghost" size="xl"
-              @click="showPairs = !showPairs" />
+            <!-- <UButton class="flex-none" icon="i-heroicons-information-circle" variant="ghost" size="xl"
+              @click="showPairs = !showPairs" /> -->
           </template>
         </WorkArea>
       </div>
-      <UModal v-model="showPairs" :ui="{ container: 'items-center lg:items-end' }">
+      <!-- <UModal v-model="showPairs" :ui="{ container: 'items-center lg:items-end' }">
         <PairsList :from="from" :to="to" />
-      </UModal>
+
+      </UModal> -->
+
     </div>
+
+
+    <PairsList :from="from" :to="to" class="border-t w-full  lg:w-1/2 m-auto" />
   </div>
+
 </template>

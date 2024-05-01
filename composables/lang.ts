@@ -39,6 +39,9 @@ const allLangs = [
 
 export default async function useLang() {
   const lang = useState('lang', () => '');
+  const currentLang = computed(() => {
+    return allLangs.find((l) => l.id === lang.value);
+  });
   watch(lang, (val) => {
     localStorage.setItem('lang', val);
   });
@@ -46,5 +49,5 @@ export default async function useLang() {
     lang.value = localStorage.getItem('lang') ?? '';
   });
 
-  return { lang, allLangs };
+  return { lang, currentLang, allLangs };
 }
