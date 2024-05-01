@@ -6,8 +6,8 @@
                 <slot name="v-bar" />
             </div>
         </div>
-        <div class="flex flex-row gap-1">
-            <slot name="h-bar" />
+        <div class="flex flex-row gap-1 mt-auto">
+            <slot name="h-bar"/>
         </div>
     </div>
 </template>

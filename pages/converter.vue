@@ -2,12 +2,15 @@
 import useLang from '~/composables/lang';
 
 import { chainConvert } from '~/utils/converter';
+import { ref } from 'vue';
+
 
 const { lang } = await useLang();
 const converter = ref<ConverterConfig>();
 const from = ref<Mapping>();
 const to = ref<Mapping>()
 const showPairs = ref(false);
+
 
 watch(lang, async (val) => {
   if (!val) return;
@@ -47,40 +50,60 @@ function reverse() {
 function clear() {
   input.value = '';
 }
+
+
+
+
 </script>
 
 <template>
-  <div class="w-full flex justify-center p-1">
-    <div v-if="converter" class="flex flex-col gap-1 w-1/2">
-      <div class="flex justify-self-center gap-1">
-        <USelectMenu class="flex-1" v-model="from" :options="converter?.mappings" option-attribute="name" />
-        <UButton icon="i-heroicons-arrows-right-left" variant="ghost" @click="reverse" />
-        <USelectMenu class="flex-1" v-model="to" :options="converter?.mappings" option-attribute="name" />
+  <div class="w-full flex justify-center p-3 md:p-5 lg:p-10">
+    <div v-if="converter"
+      class="flex flex-col w-full  lg:w-2/3 min-h-80  shadow-custom max-w-5xl overflow-clip  rounded-lg">
+      <div class="flex justify-self-center   focus:bg-gray-100">
+        <USelectMenu class="flex-1 ring-0" v-model="from" :options="converter?.mappings" option-attribute="name" :ui="{
+
+          rounded: 'rounded-none', color: { white: { outline: 'focus:ring-0 shadow-none border-b outline-none ring-0 ring-shadow-none hover:bg-green-50 transition-all duration-150 text-center' } }, base: '!cursor-pointer !justify-center',
+
+        }"
+          :ui-menu="{ rounded: 'rounded-none', option: { rounded: 'rounded-none', base: 'cursor-pointer', selected: 'font-bold', padding: 'p-2' }, ring: 'ring-0', padding: 'p-0', }"
+          :popper="{ offsetDistance: 0, arrow: false }" size="xl" trailing-icon="false" />
+        <UButton icon="i-heroicons-arrows-right-left" variant="ghost" @click="reverse" size="lg" class="border-b"
+          :ui="{ rounded: 'rounded-none' }" />
+
+        <USelectMenu class="flex-1 ring-0" v-model="to" :options="converter?.mappings" option-attribute="name" :ui="{
+
+          rounded: 'rounded-none', color: { white: { outline: 'focus:ring-0 shadow-none border-b outline-none ring-0 ring-shadow-none hover:bg-green-50 transition-all duration-150 text-center' } }, base: '!cursor-pointer !justify-center',
+
+        }"
+          :ui-menu="{ rounded: 'rounded-none', option: { rounded: 'rounded-none', base: 'cursor-pointer', selected: 'font-bold', padding: 'p-2' }, ring: 'ring-0', padding: 'p-0', }"
+          :popper="{ offsetDistance: 0, arrow: false }" size="xl" trailing-icon="false" />
+
       </div>
-      <div class="flex flex-row gap-1">
-        <WorkArea>
+      <div class="grid lg:grid-cols-2 md:max:grid-cols-1 gap-1 h-full">
+        <WorkArea class="flex-1 p-2 ">
           <UTextarea v-model="input" autoresize variant="none" :padded="false" size="xl"
-            :placeholder="placeholders.from" />
+            :placeholder="placeholders.from" class="w-full" />
           <template #v-bar>
             <UButton class="flex-none" icon="i-heroicons-x-mark" variant="ghost" @click="clear" />
           </template>
           <template #h-bar>
-            <UButton class="flex-none" icon="i-heroicons-document-arrow-up" variant="ghost" @click="clear" />
+            <UButton class="flex-none" icon="i-heroicons-document-arrow-up" variant="ghost" @click="clear" size="xl" />
           </template>
         </WorkArea>
-        <WorkArea>
+        <WorkArea class="flex-1 p-2 bg-gray-100">
           <UTextarea v-model="output" autoresize disabled variant="none" :padded="false" color="gray" size="xl"
-            :placeholder="placeholders.to" :ui="{ base: 'disabled:!cursor-text' }" />
+            :placeholder="placeholders.to" :ui="{ base: 'disabled:!cursor-text' }" class="w-full" />
           <template #v-bar>
             <UButton class="flex-none" icon="i-heroicons-clipboard-document" variant="ghost" @click="copyToClipboard" />
           </template>
           <template #h-bar>
-            <UButton class="flex-none" icon="i-heroicons-information-circle" variant="ghost"
+            <UButton class="flex-none" icon="i-heroicons-information-circle" variant="ghost" size="xl"
               @click="showPairs = !showPairs" />
           </template>
         </WorkArea>
       </div>
-      <UModal v-model="showPairs">
+      <UModal v-model="showPairs" :ui="{ container: 'items-center lg:items-end' }">
         <PairsList :from="from" :to="to" />
       </UModal>
     </div>
