@@ -107,8 +107,8 @@ const links = [
             <UButton class="flex-none" icon="i-heroicons-clipboard-document" variant="ghost" @click="copyToClipboard" />
           </template>
           <template #h-bar>
-            <!-- <UButton class="flex-none" icon="i-heroicons-information-circle" variant="ghost" size="xl"
-              @click="showPairs = !showPairs" /> -->
+            <UButton class="flex-none" icon="i-heroicons-information-circle" variant="ghost" size="xl"
+              @click="showPairs = !showPairs" />
           </template>
         </WorkArea>
       </div>
@@ -120,7 +120,8 @@ const links = [
     </div>
 
 
-    <PairsList :from="from" :to="to" class="border-t w-full  lg:w-1/2 m-auto" />
+    <PairsList :from="from" :to="to" class="border-t w-full  lg:w-1/2 m-auto"
+      :class="{ 'display': showPairs, 'hidden': !showPairs }" />
   </div>
 
 </template>
