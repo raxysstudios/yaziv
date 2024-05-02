@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue';
 import useLang from '~/composables/lang';
+import type { Lang } from '~/utils/types';
 const { lang, allLangs } = await useLang();
 
 const props = defineProps({

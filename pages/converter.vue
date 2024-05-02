@@ -2,7 +2,8 @@
 import useLang from '~/composables/lang';
 
 import { chainConvert } from '~/utils/converter';
-import { ref } from 'vue';
+import { computed, ref, watch } from 'vue';
+import type { ConverterConfig, Mapping } from '~/utils/types';
 
 
 const { lang, currentLang } = await useLang();
@@ -66,9 +67,9 @@ const links = [
 <template>
   <UHorizontalNavigation :links="links" class="border-gray-200 dark:border-gray-800 "
     :ui="{ container: 'lg:ml-[17%]', base: 'gap-2 items-center justify-center', badge: { base: 'items-center' } }" />
-  <div class="w-full flex flex-col items-center justify-center px-2  py-2 md:p-5">
+  <div class="w-full flex flex-col items-center  px-2  py-2 md:p-5">
     <div v-if="converter"
-      class="flex flex-col w-full  lg:w-2/3 min-h-80  shadow-thirty max-w-5xl overflow-clip  rounded-lg">
+      class="flex flex-col w-full lg:w-2/3 h-[70vh] md:h-80 shadow-thirty max-w-5xl overflow-hidden  rounded-lg">
       <div class="flex justify-self-center   focus:bg-gray-100">
         <USelectMenu class="flex-1 ring-0" v-model="from" :options="converter?.mappings" option-attribute="name" :ui="{
 
@@ -90,9 +91,9 @@ const links = [
 
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-1 h-full flex-grow">
-        <WorkArea class="flex-1 p-2">
-          <UTextarea v-model="input" autoresize variant="none" :padded="false" size="xl"
-            :placeholder="placeholders.from" class="w-full" />
+        <WorkArea class="flex-1 p-2 h-full">
+          <UTextarea v-model="input" variant="none" :padded="false" size="xl" :placeholder="placeholders.from"
+            class="w-full h-full" :ui="{ base: 'h-full' }" />
           <template #v-bar>
             <UButton class="flex-none" icon="i-heroicons-x-mark" variant="ghost" @click="clear" />
           </template>
@@ -100,9 +101,9 @@ const links = [
             <UButton class="flex-none" icon="i-heroicons-document-arrow-up" variant="ghost" @click="clear" size="xl" />
           </template>
         </WorkArea>
-        <WorkArea class="flex-1 p-2 bg-gray-100">
-          <UTextarea v-model="output" autoresize disabled variant="none" :padded="false" color="gray" size="xl"
-            :placeholder="placeholders.to" :ui="{ base: 'disabled:!cursor-text' }" class="w-full" />
+        <WorkArea class="flex-1 p-2 bg-gray-100 ">
+          <UTextarea v-model="output" disabled variant="none" :padded="false" :rows="5" color="gray" size="xl"
+            :placeholder="placeholders.to" :ui="{ base: 'disabled:!cursor-text, h-full' }" class="w-full h-full" />
           <template #v-bar>
             <UButton class="flex-none" icon="i-heroicons-clipboard-document" variant="ghost" @click="copyToClipboard" />
           </template>
@@ -112,11 +113,6 @@ const links = [
           </template>
         </WorkArea>
       </div>
-      <!-- <UModal v-model="showPairs" :ui="{ container: 'items-center lg:items-end' }">
-        <PairsList :from="from" :to="to" />
-
-      </UModal> -->
-
     </div>
 
 

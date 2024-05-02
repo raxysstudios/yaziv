@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Mapping } from '~/utils/types';
 import { chainConvert } from '~/utils/converter';
+import { computed, ref } from 'vue';
 
 const props = defineProps<{
   from?: Mapping
