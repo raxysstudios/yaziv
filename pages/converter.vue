@@ -128,7 +128,7 @@ onMounted(() => {
 
 
     <PairsList :from="from" :to="to" class="border-t w-full  lg:w-1/2 m-auto"
-      :class="{ 'display': showPairs, 'hidden': !showPairs }" />
+      :class="{ 'display': showPairs, 'hidden': !showPairs }" v-show="from && from?.pairs.length > 0" />
   </div>
 
 </template>
