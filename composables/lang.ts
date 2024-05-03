@@ -39,15 +39,24 @@ const allLangs = [
 
 export default async function useLang() {
   const lang = useState('lang', () => '');
-  const currentLang = computed(() => {
-    return allLangs.find((l) => l.id === lang.value);
-  });
+  const currLang = useState('currLang', () => '');
+
   watch(lang, (val) => {
     localStorage.setItem('lang', val);
   });
-  onMounted(async () => {
-    lang.value = localStorage.getItem('lang') ?? '';
+
+  watch(currLang, (val) => {
+    localStorage.setItem('currLang', val)
+    console.log('from lang.ts:', currLang.value);
+
   });
 
-  return { lang, currentLang, allLangs };
+  onMounted(async () => {
+    lang.value = localStorage.getItem('lang') ?? '';
+    currLang.value = localStorage.getItem('currLang') ?? '';
+  });
+
+
+
+  return { lang, currLang, allLangs };
 }

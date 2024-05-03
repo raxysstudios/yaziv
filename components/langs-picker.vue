@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue';
 import useLang from '~/composables/lang';
 import type { Lang } from '~/utils/types';
-const { lang, allLangs } = await useLang();
+const { lang, currLang, allLangs } = await useLang();
 
 const props = defineProps({
   autoPick: Boolean,
@@ -17,10 +17,13 @@ onMounted(() => {
   }, [] as Lang[]);
 });
 
+
 function pick(l: Lang) {
   if (props.autoPick) {
     lang.value = lang.value == l.id ? '' : l.id;
+    currLang.value = currLang.value == l.name ? '' : l.name;
   }
+  currLang.value = l.name;
   emit('pick', l);
 }
 </script>

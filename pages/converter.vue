@@ -3,22 +3,25 @@ import useLang from '~/composables/lang';
 
 import { chainConvert } from '~/utils/converter';
 import { computed, ref, watch } from 'vue';
-import type { ConverterConfig, Mapping } from '~/utils/types';
+import type { ConverterConfig, Lang, Mapping } from '~/utils/types';
 
 
-const { lang, currentLang } = await useLang();
+const { lang, currLang, allLangs } = await useLang();
 const converter = ref<ConverterConfig>();
 const from = ref<Mapping>();
 const to = ref<Mapping>()
 const showPairs = ref(false);
+const currentl = ref<string>('');
 
 
 
 watch(lang, async (val) => {
+
   if (!val) return;
   converter.value = await $fetch<ConverterConfig>(
     `/langs/${val}/converter.json`
   ).catch(() => undefined);
+
   if (converter.value) {
     from.value = converter.value.mappings[0];
     to.value = converter.value.mappings[1];
@@ -53,16 +56,21 @@ function clear() {
   input.value = '';
 }
 
+let links: any[] = [];
 
-const links = [
-  [{
-    label: `Yaziv`,
-    icon: 'i-heroicons-arrow-left',
-    badge: currentLang.value?.name,
-    // badge: lang.value,
-    to: '/'
-  }]
-]
+onMounted(() => {
+
+  links = [
+    [{
+      label: `Yaziv`,
+      icon: 'i-heroicons-arrow-left',
+      badge: currLang.value,
+      to: '/'
+    }]
+  ]
+})
+
+
 
 </script>
 
