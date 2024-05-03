@@ -13,6 +13,7 @@ const to = ref<Mapping>()
 const showPairs = ref(false);
 
 
+
 watch(lang, async (val) => {
   if (!val) return;
   converter.value = await $fetch<ConverterConfig>(
@@ -69,14 +70,14 @@ const links = [
   <UHorizontalNavigation :links="links" class="border-gray-200 dark:border-gray-800 "
     :ui="{ container: 'lg:ml-[17%]', base: 'gap-2 items-center justify-center', badge: { base: 'items-center' } }" />
   <div class="w-full  flex flex-col items-center  px-2  py-2 md:p-5">
-    <div v-if="converter" class="flex flex-col w-full lg:w-2/3  shadow-thirty max-w-5xl overflow-hidden  rounded-lg">
+    <div v-if="converter" class="flex flex-col w-full lg:w-2/3  shadow-thirty max-w-5xl overflow-clip  rounded-lg">
       <div class="flex justify-self-center   focus:bg-gray-100">
         <USelectMenu class="flex-1 ring-0" v-model="from" :options="converter?.mappings" option-attribute="name" :ui="{
 
           rounded: 'rounded-none', color: { white: { outline: 'focus:ring-0 shadow-none border-b outline-none ring-0 ring-shadow-none hover:bg-green-50 transition-all duration-150 text-center' } }, base: '!cursor-pointer !justify-center',
 
         }"
-          :ui-menu="{ rounded: 'rounded-none', option: { rounded: 'rounded-none', base: 'cursor-pointer', selected: 'font-bold', padding: 'p-2' }, ring: 'ring-0', padding: 'p-0', }"
+          :ui-menu="{ rounded: 'rounded-none', option: { rounded: 'rounded-none', base: 'cursor-pointer', selected: 'font-bold', padding: 'p-2' }, ring: 'ring-0', padding: 'p-0' }"
           :popper="{ offsetDistance: 0, arrow: false }" size="xl" trailing-icon="false" />
         <UButton icon="i-heroicons-arrows-right-left" variant="ghost" @click="reverse" size="lg" class="border-b"
           :ui="{ rounded: 'rounded-none' }" />
@@ -86,7 +87,7 @@ const links = [
           rounded: 'rounded-none', color: { white: { outline: 'focus:ring-0 shadow-none border-b outline-none ring-0 ring-shadow-none hover:bg-green-50 transition-all duration-150 text-center' } }, base: '!cursor-pointer !justify-center',
 
         }"
-          :ui-menu="{ rounded: 'rounded-none', option: { rounded: 'rounded-none', base: 'cursor-pointer', selected: 'font-bold', padding: 'p-2' }, ring: 'ring-0', padding: 'p-0', }"
+          :ui-menu="{ rounded: 'rounded-none', option: { rounded: 'rounded-none', base: 'cursor-pointer w-full', selected: 'font-bold', padding: 'p-2' }, ring: 'ring-0', padding: 'p-0', }"
           :popper="{ offsetDistance: 0, arrow: false }" size="xl" trailing-icon="false" />
 
       </div>
@@ -111,7 +112,7 @@ const links = [
           </template>
           <template #h-bar>
             <UButton class="flex-none" icon="i-heroicons-information-circle" variant="ghost" size="xl"
-              @click="showPairs = !showPairs" />
+              @click="showPairs = !showPairs" v-show="from && from?.pairs.length > 0" />
           </template>
         </WorkArea>
       </div>
