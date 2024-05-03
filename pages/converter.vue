@@ -58,6 +58,7 @@ const links = [
     label: `Yaziv`,
     icon: 'i-heroicons-arrow-left',
     badge: currentLang.value?.name,
+    // badge: lang.value,
     to: '/'
   }]
 ]
@@ -67,9 +68,8 @@ const links = [
 <template>
   <UHorizontalNavigation :links="links" class="border-gray-200 dark:border-gray-800 "
     :ui="{ container: 'lg:ml-[17%]', base: 'gap-2 items-center justify-center', badge: { base: 'items-center' } }" />
-  <div class="w-full flex flex-col items-center  px-2  py-2 md:p-5">
-    <div v-if="converter"
-      class="flex flex-col w-full lg:w-2/3 h-[70vh] md:h-80 shadow-thirty max-w-5xl overflow-hidden  rounded-lg">
+  <div class="w-full  flex flex-col items-center  px-2  py-2 md:p-5">
+    <div v-if="converter" class="flex flex-col w-full lg:w-2/3  shadow-thirty max-w-5xl overflow-hidden  rounded-lg">
       <div class="flex justify-self-center   focus:bg-gray-100">
         <USelectMenu class="flex-1 ring-0" v-model="from" :options="converter?.mappings" option-attribute="name" :ui="{
 
@@ -92,18 +92,20 @@ const links = [
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-1 h-full flex-grow">
         <WorkArea class="flex-1 p-2 h-full">
-          <UTextarea v-model="input" variant="none" :padded="false" size="xl" :placeholder="placeholders.from"
-            class="w-full h-full" :ui="{ base: 'h-full' }" />
+          <UTextarea v-model="input" autoresize variant="none" :rows="8" :padded="false" size="xl"
+            :placeholder="placeholders.from" class="w-full h-full" :ui="{ base: 'h- full' }" />
           <template #v-bar>
             <UButton class="flex-none" icon="i-heroicons-x-mark" variant="ghost" @click="clear" />
           </template>
           <template #h-bar>
-            <UButton class="flex-none" icon="i-heroicons-document-arrow-up" variant="ghost" @click="clear" size="xl" />
+            <UButton class="flex-none" icon="i-heroicons-document-arrow-up" variant="ghost"
+              @click=" processFile(from, to)" size="xl" />
           </template>
         </WorkArea>
         <WorkArea class="flex-1 p-2 bg-gray-100 ">
-          <UTextarea v-model="output" disabled variant="none" :padded="false" :rows="5" color="gray" size="xl"
-            :placeholder="placeholders.to" :ui="{ base: 'disabled:!cursor-text, h-full' }" class="w-full h-full" />
+          <UTextarea v-model="output" disabled autoresize variant="none" :padded="false" :rows="8" color="gray"
+            size="xl" :placeholder="placeholders.to" :ui="{ base: 'disabled:!cursor-text, h-full' }"
+            class="w-full h-full" />
           <template #v-bar>
             <UButton class="flex-none" icon="i-heroicons-clipboard-document" variant="ghost" @click="copyToClipboard" />
           </template>
