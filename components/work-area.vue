@@ -6,7 +6,7 @@
         <slot name="v-bar" />
       </div>
     </div>
-    <div class="flex flex-row gap-1">
+    <div class="flex justify-end flex-row gap-1">
       <slot name="h-bar" />
     </div>
   </div>

@@ -27,8 +27,6 @@ const showMerged = ref(true);
       </p>
     </div>
 
-    <UButton class="flex-none self-center mt-3" label="Show Merged" icon="i-heroicons-arrows-up-down" variant="ghost"
-      :ui="{ base: 'border' }" @click="showMerged = !showMerged" />
 
   </div>
 </template>
