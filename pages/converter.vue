@@ -2,6 +2,7 @@
 import useLang from '~/composables/lang';
 
 import { chainConvert } from '~/utils/converter';
+import { processFile } from '~/utils/file-manager';
 
 const { lang } = await useLang();
 const converter = ref<ConverterConfig>();
@@ -44,9 +45,6 @@ function reverse() {
   [from.value, to.value] = [to.value, from.value];
   input.value = output.value;
 }
-function clear() {
-  input.value = '';
-}
 </script>
 
 <template>
@@ -62,10 +60,11 @@ function clear() {
           <UTextarea v-model="input" autoresize variant="none" :padded="false" size="xl"
             :placeholder="placeholders.from" />
           <template #v-bar>
-            <UButton class="flex-none" icon="i-heroicons-x-mark" variant="ghost" @click="clear" />
+            <UButton class="flex-none" icon="i-heroicons-x-mark" variant="ghost" @click="input = ''" />
           </template>
           <template #h-bar>
-            <UButton class="flex-none" icon="i-heroicons-document-arrow-up" variant="ghost" @click="clear" />
+            <UButton class="flex-none" icon="i-heroicons-document-arrow-up" variant="ghost"
+              @click="processFile(from, to)" />
           </template>
         </WorkArea>
         <WorkArea>
