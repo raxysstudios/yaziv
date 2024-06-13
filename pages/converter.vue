@@ -51,9 +51,11 @@ function reverse() {
   <div class="w-full flex flex-col items-center">
     <AppHeader title="Converter" />
     <div v-if="converter" class="flex flex-col gap-1 w-2/3 items-stretch">
-      <div class="flex gap-5 top-bar">
+      <div class="flex top-bar">
         <USelectMenu class="flex-1" v-model="from" :options="converter?.mappings" option-attribute="name" />
-        <UButton icon="i-heroicons-arrows-right-left" color="gray" variant="solid" size="md" @click="reverse" />
+        <div>
+          <UButton icon="i-heroicons-arrows-right-left" color="gray" variant="solid" size="md" @click="reverse" />
+        </div>
         <USelectMenu class="flex-1" v-model="to" :options="converter?.mappings" option-attribute="name" />
       </div>
       <div class="flex gap-1">
@@ -87,11 +89,14 @@ function reverse() {
 
 <style>
 .top-bar {
-  position: relative;
 
-  :nth-child(2) {
-    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10;
-    @apply rounded-full;
+  > :nth-child(2) {
+    @apply relative;
+
+    > :only-child {
+      @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10;
+      @apply rounded-full;
+    }
   }
 }
 </style>
