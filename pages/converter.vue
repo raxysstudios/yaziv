@@ -48,34 +48,32 @@ function reverse() {
 </script>
 
 <template>
-  <div class="w-full flex justify-center p-1">
-    <div v-if="converter" class="flex flex-col gap-1 w-1/2">
-      <div class="flex justify-self-center gap-1">
+  <div class="w-full flex flex-col items-center p-1">
+    <div v-if="converter" class="flex flex-col gap-1 w-2/3 items-stretch">
+      <div class="flex gap-5 top-bar">
         <USelectMenu class="flex-1" v-model="from" :options="converter?.mappings" option-attribute="name" />
-        <UButton icon="i-heroicons-arrows-right-left" variant="ghost" @click="reverse" />
+        <UButton icon="i-heroicons-arrows-right-left" color="gray" variant="solid" size="md" @click="reverse" />
         <USelectMenu class="flex-1" v-model="to" :options="converter?.mappings" option-attribute="name" />
       </div>
-      <div class="flex flex-row gap-1">
-        <WorkArea>
-          <UTextarea v-model="input" autoresize variant="none" :padded="false" size="xl"
+      <div class="flex gap-1">
+        <WorkArea class="flex-1 p-2">
+          <UTextarea class="flex-1" v-model="input" autoresize variant="none" size="xl"
             :placeholder="placeholders.from" />
           <template #v-bar>
-            <UButton class="flex-none" icon="i-heroicons-x-mark" variant="ghost" @click="input = ''" />
+            <UButton icon="i-heroicons-x-mark" variant="ghost" @click="input = ''" />
           </template>
           <template #h-bar>
-            <UButton class="flex-none" icon="i-heroicons-document-arrow-up" variant="ghost"
-              @click="processFile(from, to)" />
+            <UButton icon="i-heroicons-document-arrow-up" variant="ghost" @click="processFile(from, to)" />
           </template>
         </WorkArea>
-        <WorkArea>
-          <UTextarea v-model="output" autoresize disabled variant="none" :padded="false" color="gray" size="xl"
-            :placeholder="placeholders.to" :ui="{ base: 'disabled:!cursor-text' }" />
+        <WorkArea class="flex-1">
+          <UTextarea class="flex-1" v-model="output" autoresize disabled color="gray" size="xl"
+            :placeholder="placeholders.to" />
           <template #v-bar>
-            <UButton class="flex-none" icon="i-heroicons-clipboard-document" variant="ghost" @click="copyToClipboard" />
+            <UButton icon="i-heroicons-clipboard-document" variant="ghost" @click="copyToClipboard" />
           </template>
           <template #h-bar>
-            <UButton class="flex-none" icon="i-heroicons-information-circle" variant="ghost"
-              @click="showPairs = !showPairs" />
+            <UButton icon="i-heroicons-information-circle" variant="ghost" @click="showPairs = !showPairs" />
           </template>
         </WorkArea>
       </div>
@@ -85,3 +83,14 @@ function reverse() {
     </div>
   </div>
 </template>
+
+<style>
+.top-bar {
+  position: relative;
+
+  :nth-child(2) {
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10;
+    @apply rounded-full;
+  }
+}
+</style>
