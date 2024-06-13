@@ -24,14 +24,9 @@ function pick(l: Lang) {
 </script>
 
 <template>
-  <div class="flex overflow-auto gap-1">
+  <div class="flex overflow-auto gap-1 hover:" >
     <UButton v-for="l in prefLangs" :key="l.id" :variant="l.id === lang ? 'solid' : 'soft'" color="gray"
       class="capitalize" @click="pick(l)">
-      <!-- <template #leading>
-        <UAvatar
-          :src="`https://firebasestorage.googleapis.com/v0/b/avzagapp.appspot.com/o/flags%2F${l.flag ?? l.name}.png?alt=media`"
-          size="3xs" imgClass="object-cover" />
-      </template> -->
       {{ l.name }}
     </UButton>
   </div>
