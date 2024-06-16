@@ -34,6 +34,10 @@ const allLangs = [
     id: "lez",
     name: "lezgi",
   },
+  {
+    id: "kat",
+    name: "georgian",
+  },
 ] as Lang[];
 
 export default function useLang() {

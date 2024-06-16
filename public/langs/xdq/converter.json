@@ -1,6 +1,10 @@
 {
     "iso": "xdq",
     "sample": "Цигле бил хьал ра нисал гьел биранда.",
+    "default": [
+        2,
+        1
+    ],
     "mappings": [
         {
             "name": "cyrillic (legacy)",
