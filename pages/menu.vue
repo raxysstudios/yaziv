@@ -6,14 +6,11 @@ const { allLangs } = await useLang();
 
 <template>
   <div class="flex flex-col">
-    <div class="flex justify-between items-center">
-      <p class="text-lg font-medium p-4">
-        Yaziv
-      </p>
-      <ULink to="https://github.com/raxysstudios/yaziv" class="p-4 flex items">
+    <AppHeader title="Yaziv" link="/" icon="i-heroicons-arrow-left">
+      <ULink to="https://github.com/raxysstudios/yaziv" class="flex items pop">
         <UIcon name="i-heroicons-code-bracket" />
       </ULink>
-    </div>
+    </AppHeader>
     <UDivider />
     <LangCard v-for="l in allLangs" :key="l.id" :lang="l" />
   </div>

@@ -4,7 +4,13 @@ import useLang from '~/composables/lang';
 import { chainConvert } from '~/utils/converter';
 import { processFile } from '~/utils/file-manager';
 
-const { lang } = await useLang();
+const { lang, allLangs } = await useLang();
+const title = computed(() => {
+  return allLangs
+    .find(l => l.id == lang.value)
+    ?.name ?? '<ERROR>';
+});
+
 const converter = ref<ConverterConfig>();
 const from = ref<Mapping>();
 const to = ref<Mapping>()
@@ -49,13 +55,13 @@ function reverse() {
 
 <template>
   <div class="w-full flex flex-col items-center">
-    <AppHeader title="Converter" />
+    <AppHeader link="/menu" icon="i-heroicons-home-solid" :title="title" />
     <UDivider />
-    <div v-if="converter" class="work-area flex flex-col gap-1 items-stretch">
+    <div v-if="converter" class="work-c flex flex-col gap-1 items-stretch">
       <div class="flex top-bar">
         <USelectMenu class="flex-1" v-model="from" :options="converter?.mappings" option-attribute="name" />
         <div>
-          <UButton icon="i-heroicons-arrows-right-left" color="gray" variant="solid" size="lg" @click="reverse" />
+          <UButton icon="i-heroicons-arrows-right-left" color="gray" variant="solid" size="lg" class="pop" @click="reverse" />
         </div>
         <USelectMenu class="flex-1" v-model="to" :options="converter?.mappings" option-attribute="name" />
       </div>
