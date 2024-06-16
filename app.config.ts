@@ -11,7 +11,7 @@ export default defineAppConfig({
     selectMenu: {
       default: { selectedIcon: "" },
       option: {
-        base: "justify-center font-medium capitalize",
+        base: "justify-center font-medium capitalize cursor-pointer",
       },
     },
   },

@@ -1,0 +1,27 @@
+<script setup lang="ts">
+import type { Lang } from "~/utils/types";
+
+const props = defineProps<{
+    lang: Lang
+}>();
+
+const flagUrl = computed(() => {
+    const base = 'https://firebasestorage.googleapis.com/v0/b/avzagapp.appspot.com/o/flags%2F';
+    const flag = props.lang.flag ?? props.lang.name.toLowerCase();
+    return `${base}${flag}.png?alt=media`;
+});
+
+</script>
+
+<template>
+    <NuxtLink to="/" class="w-full">
+        <div class="flex gap-4 items-center p-4 group hover:bg-slate-50 active:bg-slate-100">
+            <UAvatar class="ring-1 ring-slate-200" size="xs" img-class="object-cover" :src="flagUrl" :alt="lang.id" />
+            <p class="capitalize">
+                {{ lang.name }}
+            </p>
+            <UIcon class="text-sm opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100"
+                name="i-heroicons-arrow-right" />
+        </div>
+    </NuxtLink>
+</template>
