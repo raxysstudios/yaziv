@@ -63,7 +63,7 @@ function reverse() {
     <AppHeader link="/menu" icon="i-heroicons-bars-3" :title="title" />
     <UDivider />
     <div v-if="converter" class="work-c flex flex-col gap-2 items-stretch">
-      <div class="flex top-bar">
+      <div class="flex top-bar gap-1">
         <USelectMenu class="flex-1" v-model="from" :options="converter?.mappings" option-attribute="name" />
         <div>
           <UButton icon="i-heroicons-arrows-right-left" color="gray" variant="solid" size="lg" class="pop"
@@ -71,7 +71,7 @@ function reverse() {
         </div>
         <USelectMenu class="flex-1" v-model="to" :options="converter?.mappings" option-attribute="name" />
       </div>
-      <div class="flex gap-6">
+      <div class="flex gap-2">
         <WorkArea class="rring flex-1 p-2">
           <UTextarea class="flex-1" v-model="input" autoresize variant="none" size="xl" :padded="false"
             :placeholder="placeholders.from" />
