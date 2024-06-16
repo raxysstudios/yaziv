@@ -7,11 +7,16 @@ const props = defineProps<{
     to?: Mapping
 }>()
 
-const mergedPairs = computed(() =>
-    props.from
-        ? props.from.pairs.map(([a, b]) =>
-            [a, chainConvert(b, props.from, props.to)])
-        : []
+const mergedPairs = computed(() => {
+    let pairs = [] as [string, string][];
+    if (props.from) {
+        pairs = props.from.pairs.map(([a, b]) => [
+            a,
+            chainConvert(b, props.from, props.to)
+        ]);
+    }
+    return pairs.filter(([a, b]) => a !== b);
+}
 );
 </script>
 
