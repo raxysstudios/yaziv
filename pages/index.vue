@@ -4,12 +4,17 @@ import useLang from '~/composables/lang';
 import { chainConvert } from '~/utils/converter';
 import { processFile } from '~/utils/file-manager';
 
+definePageMeta({
+  middleware: ['lang',],
+});
+
 const { lang, allLangs } = await useLang();
 const title = computed(() => {
   return allLangs
     .find(l => l.id == lang.value)
     ?.name ?? '<ERROR>';
 });
+
 
 const converter = ref<ConverterConfig>();
 const from = ref<Mapping>();
@@ -54,18 +59,19 @@ function reverse() {
 </script>
 
 <template>
-  <div class="w-full flex flex-col items-center">
-    <AppHeader link="/menu" icon="i-heroicons-home-solid" :title="title" />
+  <div v-if="lang" class="w-full flex flex-col items-center">
+    <AppHeader link="/menu" icon="i-heroicons-bars-3" :title="title" />
     <UDivider />
-    <div v-if="converter" class="work-c flex flex-col gap-1 items-stretch">
+    <div v-if="converter" class="work-c flex flex-col gap-2 items-stretch">
       <div class="flex top-bar">
         <USelectMenu class="flex-1" v-model="from" :options="converter?.mappings" option-attribute="name" />
         <div>
-          <UButton icon="i-heroicons-arrows-right-left" color="gray" variant="solid" size="lg" class="pop" @click="reverse" />
+          <UButton icon="i-heroicons-arrows-right-left" color="gray" variant="solid" size="lg" class="pop"
+            @click="reverse" />
         </div>
         <USelectMenu class="flex-1" v-model="to" :options="converter?.mappings" option-attribute="name" />
       </div>
-      <div class="flex gap-1">
+      <div class="flex gap-2">
         <WorkArea class="flex-1 p-2">
           <UTextarea class="flex-1" v-model="input" autoresize variant="none" size="xl"
             :placeholder="placeholders.from" />

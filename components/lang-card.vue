@@ -14,7 +14,7 @@ const flagUrl = computed(() => {
 </script>
 
 <template>
-    <NuxtLink to="/" class="work-p group">
+    <NuxtLink :to="`/?lang=${lang.id}`" class="work-p group">
         <div class="work-c flex gap-4 items-center">
             <UAvatar class="ring-1 ring-slate-200" size="xs" img-class="object-cover" :src="flagUrl" :alt="lang.id" />
             <p class="capitalize">
