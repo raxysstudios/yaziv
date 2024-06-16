@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import useLang from '~/composables/lang';
 
-const { allLangs } = await useLang();
+const { allLangs } = useLang();
 </script>
 
 <template>

@@ -8,7 +8,7 @@ definePageMeta({
   middleware: ['lang',],
 });
 
-const { lang, allLangs } = await useLang();
+const { lang, allLangs } = useLang();
 const title = computed(() => {
   return allLangs
     .find(l => l.id == lang.value)

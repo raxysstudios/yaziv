@@ -17,9 +17,7 @@ const flagUrl = computed(() => {
     <NuxtLink :to="`/?lang=${lang.id}`" class="work-p group">
         <div class="work-c flex gap-4 items-center">
             <UAvatar class="ring-1 ring-slate-200" size="xs" img-class="object-cover" :src="flagUrl" :alt="lang.id" />
-            <p class="capitalize">
-                {{ lang.name }}
-            </p>
+            <p class="capitalize">{{ lang.name }}</p>
             <UIcon class="text-sm opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100"
                 name="i-heroicons-arrow-right" />
         </div>
