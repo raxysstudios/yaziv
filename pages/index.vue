@@ -15,7 +15,6 @@ const title = computed(() => {
     ?.name ?? '<ERROR>';
 });
 
-
 const converter = ref<ConverterConfig>();
 const from = ref<Mapping>();
 const to = ref<Mapping>()
@@ -53,8 +52,9 @@ function copyToClipboard() {
   navigator.clipboard.writeText(output.value);
 }
 function reverse() {
+  const text = output.value;
   [from.value, to.value] = [to.value, from.value];
-  input.value = output.value;
+  input.value = text;
 }
 </script>
 
@@ -83,8 +83,8 @@ function reverse() {
           </template>
         </WorkArea>
         <WorkArea class="rring bg-gray-50 flex-1 p-2">
-          <UTextarea class="flex-1" v-model="output" autoresize disabled color="gray" size="xl"
-            variant="none" :padded="false" :placeholder="placeholders.to" :ui="{ base: '!cursor-text' }" />
+          <UTextarea class="flex-1" v-model="output" autoresize disabled color="gray" size="xl" variant="none"
+            :padded="false" :placeholder="placeholders.to" :ui="{ base: '!cursor-text' }" />
           <template #v-bar>
             <UButton icon="i-heroicons-clipboard-document" variant="ghost" @click="copyToClipboard" />
           </template>
