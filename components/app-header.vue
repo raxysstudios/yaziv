@@ -5,17 +5,24 @@ defineProps({
     title: String,
 });
 
-const { lang } = await useLang();
+const { lang, allLangs } = await useLang();
+const title = computed(() => {
+    return allLangs
+        .find(l => l.id == lang.value)
+        ?.name;
+});
 </script>
 
 <template>
     <NuxtLink to="/" class="w-full flex justify-center hover:bg-slate-50 active:bg-slate-100">
-        <div class="py-2 flex items-center gap-2 text-lg w-2/3">
-            <UIcon class="text-sm" name="i-heroicons-arrow-left" />
+        <div class="work-area flex items-center gap-2 text-lg capitalize font-medium">
+            <!-- <UIcon class="text-sm" name="i-heroicons-arrow-left" />
             {{ title }}
             <UButton variant="solid" size="2xs" color="gray" class="capitalize">
                 {{ lang }}
-            </UButton>
+            </UButton> -->
+            <UIcon class="text" name="i-heroicons-home-solid" />
+            <span class="capitalize font-medium">{{ title }}</span>
         </div>
     </NuxtLink>
 </template>

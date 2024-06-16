@@ -50,11 +50,11 @@ function reverse() {
 <template>
   <div class="w-full flex flex-col items-center">
     <AppHeader title="Converter" />
-    <div v-if="converter" class="flex flex-col gap-1 w-2/3 items-stretch">
+    <div v-if="converter" class="work-area flex flex-col gap-1  items-stretch">
       <div class="flex top-bar">
         <USelectMenu class="flex-1" v-model="from" :options="converter?.mappings" option-attribute="name" />
         <div>
-          <UButton icon="i-heroicons-arrows-right-left" color="gray" variant="solid" size="md" @click="reverse" />
+          <UButton icon="i-heroicons-arrows-right-left" color="gray" variant="solid" size="lg" @click="reverse" />
         </div>
         <USelectMenu class="flex-1" v-model="to" :options="converter?.mappings" option-attribute="name" />
       </div>
