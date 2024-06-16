@@ -26,8 +26,12 @@ watch(lang, async (val) => {
     `/langs/${val}/converter.json`
   ).catch(() => undefined);
   if (converter.value) {
-    from.value = converter.value.mappings[0];
-    to.value = converter.value.mappings[1];
+    from.value = converter.value.mappings[
+      converter.value.default?.[0] ?? 0
+    ];
+    to.value = converter.value.mappings[
+      converter.value.default?.[1] ?? 1
+    ];
   }
 }, {
   immediate: true
