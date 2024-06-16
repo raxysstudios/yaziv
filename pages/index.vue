@@ -71,9 +71,9 @@ function reverse() {
         </div>
         <USelectMenu class="flex-1" v-model="to" :options="converter?.mappings" option-attribute="name" />
       </div>
-      <div class="flex gap-2">
-        <WorkArea class="flex-1 p-2">
-          <UTextarea class="flex-1" v-model="input" autoresize variant="none" size="xl"
+      <div class="flex gap-6">
+        <WorkArea class="rring flex-1 p-2">
+          <UTextarea class="flex-1" v-model="input" autoresize variant="none" size="xl" :padded="false"
             :placeholder="placeholders.from" />
           <template #v-bar>
             <UButton icon="i-heroicons-x-mark" variant="ghost" @click="input = ''" />
@@ -82,9 +82,9 @@ function reverse() {
             <UButton icon="i-heroicons-document-arrow-up" variant="ghost" @click="processFile(from, to)" />
           </template>
         </WorkArea>
-        <WorkArea class="flex-1">
+        <WorkArea class="rring bg-gray-50 flex-1 p-2">
           <UTextarea class="flex-1" v-model="output" autoresize disabled color="gray" size="xl"
-            :placeholder="placeholders.to" />
+            variant="none" :padded="false" :placeholder="placeholders.to" :ui="{ base: '!cursor-text' }" />
           <template #v-bar>
             <UButton icon="i-heroicons-clipboard-document" variant="ghost" @click="copyToClipboard" />
           </template>
@@ -101,6 +101,10 @@ function reverse() {
 </template>
 
 <style>
+.rring {
+  @apply ring-1 ring-inset ring-gray-300 rounded-md;
+}
+
 .top-bar {
 
   > :nth-child(2) {
