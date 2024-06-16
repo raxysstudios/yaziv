@@ -62,7 +62,7 @@ function reverse() {
   <div v-if="lang" class="w-full flex flex-col items-center">
     <AppHeader link="/menu" icon="i-heroicons-bars-3" :title="title" />
     <UDivider />
-    <div v-if="converter" class="work-c flex flex-col gap-2 items-stretch">
+    <div v-if="converter" class="work-c flex flex-col gap-2 my-2 items-stretch">
       <div class="flex top-bar gap-1">
         <USelectMenu class="flex-1" v-model="from" :options="converter?.mappings" option-attribute="name" />
         <div>
@@ -89,13 +89,14 @@ function reverse() {
             <UButton icon="i-heroicons-clipboard-document" variant="ghost" @click="copyToClipboard" />
           </template>
           <template #h-bar>
-            <UButton icon="i-heroicons-information-circle" variant="ghost" @click="showPairs = !showPairs" />
+            <UButton icon="i-heroicons-information-circle" :variant="showPairs ? 'solid' : 'ghost'"
+              @click="showPairs = !showPairs" />
           </template>
         </WorkArea>
       </div>
-      <UModal v-model="showPairs">
-        <PairsList :from="from" :to="to" />
-      </UModal>
+      <div class="flex flex-row justify-center my-2">
+        <PairsList v-if="showPairs" :from="from" :to="to" class="sm:w-2/3" />
+      </div>
     </div>
   </div>
 </template>
