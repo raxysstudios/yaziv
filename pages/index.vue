@@ -94,7 +94,7 @@ function reverse() {
         </div>
         <USelectMenu class="flex-1" v-model="to" :options="converter?.mappings" option-attribute="name" />
       </div>
-      <div class="flex gap-2">
+      <div class="flex flex-col gap-2 md:flex-row">
         <WorkArea class="flex-1">
           <UTextarea class="flex-1" v-model="input" autoresize variant="none" size="xl"
             :placeholder="placeholders.from" />
