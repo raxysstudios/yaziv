@@ -2,11 +2,15 @@
 import useLang from '~/composables/lang';
 
 const { allLangs } = useLang();
+const prevLang = ref();
+onBeforeMount(() => {
+  prevLang.value = localStorage.getItem('lang');
+})
 </script>
 
 <template>
   <div class="flex flex-col">
-    <AppHeader title="Yaziv" link="/" icon="i-heroicons-arrow-left">
+    <AppHeader :to="`/?lang=${prevLang}`" title="Yaziv" icon="i-heroicons-arrow-left">
       <ULink to="https://github.com/raxysstudios/yaziv" class="flex items pop">
         <UIcon name="i-heroicons-code-bracket" />
       </ULink>

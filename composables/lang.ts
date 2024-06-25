@@ -1,4 +1,5 @@
 import type { Lang } from "~/utils/types";
+import queryState from "./url-query";
 
 const allLangs = [
   {
@@ -42,6 +43,13 @@ const allLangs = [
 
 export default function useLang() {
   const lang = useState("lang", () => "");
+  watch(lang, (lang) => {
+    if (lang) {
+      localStorage.setItem('lang', lang);
+    }
+  })
+  queryState(lang, "lang", "");
+
   allLangs.sort((a, b) => a.name.localeCompare(b.name));
   return { lang, allLangs };
 }

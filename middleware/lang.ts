@@ -1,15 +1,13 @@
 import useLang from "~/composables/lang";
 
 export default defineNuxtRouteMiddleware((to) => {
-  if (import.meta.server) return;
+  if (import.meta.server || to.path == "/menu") {
+    return;
+  }
 
-  const { lang, allLangs } = useLang();
-  if (to.path == "/menu") return;
-  const q = to.query.lang;
-
-  if (allLangs.some((l) => l.id == q)) {
-    lang.value = q as string;
-  } else if (!lang.value) {
+  const { allLangs } = useLang();
+  const lang = to.query.lang;
+  if (!allLangs.some((l) => l.id == lang)) {
     return navigateTo("/menu");
   }
 });
