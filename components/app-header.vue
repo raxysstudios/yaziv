@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-    title: string,
+    title?: string,
     icon?: string,
     link?: string,
 }>();
@@ -10,7 +10,10 @@ defineProps<{
     <NuxtLink :to="link" class="work-p">
         <div class="work-c flex items-center gap-4 text-lg capitalize font-medium">
             <UIcon v-if="icon" :name="icon" />
-            <span class="capitalize font-medium">{{ title }}</span>
+            Yaziv
+            <UButton v-if="title" class="capitalize" color="gray" variant="solid" size="2xs">
+                {{ title }}
+            </UButton>
             <div class="flex-1" />
             <div @click="(e: any) => e.stopPropagation()">
                 <slot />
