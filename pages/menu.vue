@@ -15,7 +15,7 @@ onBeforeMount(() => {
 <template>
   <div class="flex flex-col">
     <AppHeader :to="`/?lang=${prevLang}`" icon="i-heroicons-arrow-left">
-      <ULink to="https://github.com/raxysstudios/yaziv" class="flex items pop">
+      <ULink href="https://github.com/raxysstudios/yaziv" class="flex items pop">
         <UIcon name="i-heroicons-code-bracket" />
       </ULink>
     </AppHeader>
