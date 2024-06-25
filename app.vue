@@ -1,9 +1,8 @@
 <script setup lang="ts">
 const router = useRouter();
-const route = useRoute();
 
-watch(() => route.fullPath, (fullPath) => {
-  localStorage.setItem('lastUrl', fullPath);
+watch(router.currentRoute, (route) => {
+  localStorage.setItem('lastUrl', route.fullPath);
 });
 onMounted(() => {
   const lastUrl = localStorage.getItem('lastUrl');
