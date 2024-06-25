@@ -4,7 +4,7 @@ const router = useRouter();
 watch(router.currentRoute, (route) => {
   localStorage.setItem('lastUrl', route.fullPath);
 });
-onMounted(() => {
+onBeforeMount(() => {
   const lastUrl = localStorage.getItem('lastUrl');
   if (lastUrl && router.currentRoute.value.fullPath == '/') {
     router.push(lastUrl);
