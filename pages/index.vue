@@ -26,9 +26,6 @@ watch(lang, async (lang) => {
   immediate: true
 });
 
-watchEffect(() => {
-  console.log(from.value, to.value);
-})
 const mappings = computed(() => {
   const all = converter.value?.mappings ?? [];
   return {
@@ -57,7 +54,6 @@ const MAX_INPUT = 2000;
 watch(input, (val) => {
   if (val.length > MAX_INPUT) {
     input.value = val.substring(0, MAX_INPUT);
-    console.log(input.value.length);
   }
 }, {
   flush: 'post'
