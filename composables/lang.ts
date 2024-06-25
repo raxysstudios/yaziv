@@ -42,13 +42,15 @@ const allLangs = [
 ] as Lang[];
 
 export default function useLang() {
-  const lang = useState("lang", () => "");
+  const lang = queryState(
+    useState("lang", () => ""),
+    "lang", ""
+  );
   watch(lang, (lang) => {
     if (lang) {
       localStorage.setItem('lang', lang);
     }
   })
-  queryState(lang, "lang", "");
 
   allLangs.sort((a, b) => a.name.localeCompare(b.name));
   return { lang, allLangs };

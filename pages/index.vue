@@ -48,7 +48,18 @@ const placeholders = computed(() => {
     to: chainConvert(sample, undefined, mappings.value.to)
   };
 });
-const input = ref('');
+
+const input = queryState(ref(''), 'text', '');
+const MAX_INPUT = 2000;
+watch(input, (val) => {
+  if (val.length > MAX_INPUT) {
+    input.value = val.substring(0, MAX_INPUT);
+    console.log(input.value.length);
+  }
+}, {
+  flush: 'post'
+})
+
 const output = computed(() => chainConvert(
   input.value,
   mappings.value.from,
@@ -87,6 +98,8 @@ function reverse() {
         <template #h-bar>
           <UButton icon="i-heroicons-document-arrow-up" variant="ghost"
             @click="processFile(mappings.from, mappings.to)" />
+          <div class="flex-1" />
+          <span class="text-xs opacity-50">{{ input.length }} / {{ MAX_INPUT }}</span>
         </template>
       </WorkArea>
       <WorkArea class="bg-gray-50 flex-1">

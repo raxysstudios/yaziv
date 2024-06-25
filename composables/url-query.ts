@@ -15,4 +15,5 @@ export default function queryState<T>(ref: Ref<T>, key: string, fallback: T) {
             query: { ...route.query, [key]: ref as any }
         });
     });
+    return ref;
 }
