@@ -6,15 +6,15 @@ definePageMeta({
 });
 
 const { allLangs } = useLang();
-const prevLang = ref();
+const backLink = ref();
 onBeforeMount(() => {
-  prevLang.value = localStorage.getItem('lang');
-})
+  backLink.value = localStorage.getItem('lastUrl');
+});
 </script>
 
 <template>
   <div class="flex flex-col">
-    <AppHeader :to="`/?lang=${prevLang}`" icon="i-heroicons-arrow-left">
+    <AppHeader :to="backLink" icon="i-heroicons-arrow-left">
       <ULink href="https://github.com/raxysstudios/yaziv" class="flex items pop">
         <UIcon name="i-heroicons-code-bracket" />
       </ULink>

@@ -1,11 +1,14 @@
 <script setup lang="ts">
 const router = useRouter();
+
 watch(router.currentRoute, (route) => {
-  localStorage.setItem('lastUrl', route.fullPath);
+  if (route.query['lang'] && route.path != '/menu') {
+    localStorage.setItem('lastUrl', route.fullPath);
+  }
 });
 
 onBeforeMount(() => {
-  if (router.currentRoute.value.fullPath == '/') {
+  if (!router.currentRoute.value.query['lang']) {
     router.replace(
       localStorage.getItem('lastUrl') ?? '/menu'
     );
