@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import useLang from '~/composables/lang';
+import queryState from '~/composables/url-query';
 
 import { chainConvert } from '~/utils/converter';
 import { processFile } from '~/utils/file-manager';
-
-definePageMeta({
-  middleware: ['lang']
-});
 
 const { lang, allLangs } = useLang();
 const title = computed(() => {
@@ -16,59 +13,60 @@ const title = computed(() => {
 });
 
 const converter = ref<ConverterConfig>();
-const from = ref<Mapping>();
-const to = ref<Mapping>()
-const showPairs = ref(false);
-
-const router = useRouter();
-watchEffect(() => {
-  const fromIndex = converter.value?.mappings.findIndex(
-    (m) => m.name == from.value?.name
-  ) ?? -1;
-  const toIndex = converter.value?.mappings.findIndex(
-    (m) => m.name == to.value?.name
-  ) ?? -1;
-  if (fromIndex < 0 || toIndex < 0) return;
-  router.push({
-    path: "/", query: {
-      lang: lang.value,
-      from: fromIndex,
-      to: toIndex,
-    }
-  });
-});
-const route = useRoute();
-watch(route, async (route) => {
+const from = ref(0);
+const to = ref(1);
+watch(lang, async (lang) => {
+  if (!lang) return;
   converter.value = await $fetch<ConverterConfig>(
-    `/langs/${lang.value}/converter.json`
-  ).catch(() => undefined);
+    `/langs/${lang}/converter.json`
+  ).then((c) => {
+    c.mappings.forEach((m, i) => {
+      (<any>m).i = i;
+    });
+    return c;
+  });
   if (!converter.value) return;
-
-  let fromIndex = route.query["from"] as unknown as number | undefined;
-  from.value = converter.value.mappings[
-    fromIndex === undefined ? converter.value.default?.[0] ?? 0 : fromIndex
-  ];
-  let toIndex = route.query["to"] as unknown as number | undefined;
-  to.value = converter.value.mappings[
-    toIndex === undefined ? converter.value.default?.[1] ?? 1 : toIndex
-  ];
+  queryState(from, 'from', converter.value.default?.[0] ?? 0);
+  queryState(to, 'to', converter.value.default?.[1] ?? 1);
 }, {
   immediate: true
 });
 
+const mappings = computed(() => {
+  const all = converter.value?.mappings ?? [];
+  return {
+    all,
+    from: all[from.value],
+    to: all[to.value]
+  };
+}
+);
+const showPairs = ref(false);
+
 const placeholders = computed(() => {
   const sample = chainConvert(
     converter.value?.sample ?? '',
-    converter.value?.mappings[0], undefined
+    mappings.value.all[converter.value?.default?.[0] ?? 0],
+    undefined
   );
   return {
-    from: chainConvert(sample, undefined, from.value),
-    to: chainConvert(sample, undefined, to.value)
+    from: chainConvert(
+      sample,
+      undefined,
+      mappings.value.from
+    ),
+    to: chainConvert(
+      sample,
+      undefined,
+      mappings.value.to
+    )
   };
 });
 const input = ref('');
 const output = computed(() => chainConvert(
-  input.value, from.value, to.value
+  input.value,
+  mappings.value.from,
+  mappings.value.to,
 ));
 
 function copyToClipboard() {
@@ -87,12 +85,14 @@ function reverse() {
     <UDivider />
     <div v-if="converter" class="work-c flex flex-col gap-2 my-2 items-stretch">
       <div class="flex top-bar gap-1">
-        <USelectMenu class="flex-1" v-model="from" :options="converter?.mappings" option-attribute="name" />
+        <USelectMenu class="flex-1" v-model="from" :options="converter?.mappings" option-attribute="name"
+          value-attribute="i" />
         <div>
           <UButton icon="i-heroicons-arrows-right-left" color="gray" variant="solid" size="lg" class="pop"
             @click="reverse" />
         </div>
-        <USelectMenu class="flex-1" v-model="to" :options="converter?.mappings" option-attribute="name" />
+        <USelectMenu class="flex-1" v-model="to" :options="converter?.mappings" option-attribute="name"
+          value-attribute="i" />
       </div>
       <div class="flex flex-col gap-2 md:flex-row">
         <WorkArea class="flex-1">
@@ -102,7 +102,8 @@ function reverse() {
             <UButton icon="i-heroicons-x-mark" variant="ghost" @click="input = ''" />
           </template>
           <template #h-bar>
-            <UButton icon="i-heroicons-document-arrow-up" variant="ghost" @click="processFile(from, to)" />
+            <UButton icon="i-heroicons-document-arrow-up" variant="ghost"
+              @click="processFile(mappings.from, mappings.to)" />
           </template>
         </WorkArea>
         <WorkArea class="bg-gray-50 flex-1">
@@ -118,7 +119,7 @@ function reverse() {
         </WorkArea>
       </div>
       <div class="flex flex-row justify-center my-2">
-        <PairsList v-if="showPairs" :from="from" :to="to" class="sm:w-2/3" />
+        <PairsList v-if="showPairs" :from="mappings.from" :to="mappings.to" class="sm:w-2/3" />
       </div>
     </div>
   </div>
