@@ -1,3 +1,16 @@
+<script setup lang="ts">
+const router = useRouter();
+const route = useRoute();
+
+watch(() => route.fullPath, (fullPath) => {
+  localStorage.setItem('lastUrl', fullPath);
+});
+onMounted(() => {
+  const lastUrl = localStorage.getItem('lastUrl');
+  if (lastUrl) router.push(lastUrl);
+});
+</script>
+
 <template>
   <div>
     <NuxtPwaManifest />

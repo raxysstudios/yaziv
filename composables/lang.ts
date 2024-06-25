@@ -42,9 +42,6 @@ const allLangs = [
 
 export default function useLang() {
   const lang = useState("lang", () => "");
-  watch(lang, (val) => {
-    localStorage.setItem("lang", val);
-  });
   allLangs.sort((a, b) => a.name.localeCompare(b.name));
   return { lang, allLangs };
 }

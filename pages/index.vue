@@ -5,7 +5,7 @@ import { chainConvert } from '~/utils/converter';
 import { processFile } from '~/utils/file-manager';
 
 definePageMeta({
-  middleware: ['lang',],
+  middleware: ['lang']
 });
 
 const { lang, allLangs } = useLang();
@@ -20,19 +20,38 @@ const from = ref<Mapping>();
 const to = ref<Mapping>()
 const showPairs = ref(false);
 
-watch(lang, async (val) => {
-  if (!val) return;
+const router = useRouter();
+watchEffect(() => {
+  const fromIndex = converter.value?.mappings.findIndex(
+    (m) => m.name == from.value?.name
+  ) ?? -1;
+  const toIndex = converter.value?.mappings.findIndex(
+    (m) => m.name == to.value?.name
+  ) ?? -1;
+  if (fromIndex < 0 || toIndex < 0) return;
+  router.push({
+    path: "/", query: {
+      lang: lang.value,
+      from: fromIndex,
+      to: toIndex,
+    }
+  });
+});
+const route = useRoute();
+watch(route, async (route) => {
   converter.value = await $fetch<ConverterConfig>(
-    `/langs/${val}/converter.json`
+    `/langs/${lang.value}/converter.json`
   ).catch(() => undefined);
-  if (converter.value) {
-    from.value = converter.value.mappings[
-      converter.value.default?.[0] ?? 0
-    ];
-    to.value = converter.value.mappings[
-      converter.value.default?.[1] ?? 1
-    ];
-  }
+  if (!converter.value) return;
+
+  let fromIndex = route.query["from"] as unknown as number | undefined;
+  from.value = converter.value.mappings[
+    fromIndex === undefined ? converter.value.default?.[0] ?? 0 : fromIndex
+  ];
+  let toIndex = route.query["to"] as unknown as number | undefined;
+  to.value = converter.value.mappings[
+    toIndex === undefined ? converter.value.default?.[1] ?? 1 : toIndex
+  ];
 }, {
   immediate: true
 });
