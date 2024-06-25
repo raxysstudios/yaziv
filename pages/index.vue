@@ -26,6 +26,9 @@ watch(lang, async (lang) => {
   immediate: true
 });
 
+watchEffect(() => {
+  console.log(from.value, to.value);
+})
 const mappings = computed(() => {
   const all = converter.value?.mappings ?? [];
   return {
@@ -70,9 +73,17 @@ function copyToClipboard() {
   navigator.clipboard.writeText(output.value);
 }
 function reverse() {
-  const text = output.value;
-  [from.value, to.value] = [to.value, from.value];
-  input.value = text;
+  const router = useRouter();
+  const route = router.currentRoute.value;
+  router.replace({
+    path: route.path,
+    query: {
+      ...route.query,
+      text: output.value,
+      to: from.value,
+      from: to.value
+    }
+  })
 }
 </script>
 
