@@ -5,9 +5,10 @@ watch(router.currentRoute, (route) => {
   localStorage.setItem('lastUrl', route.fullPath);
 });
 onBeforeMount(() => {
-  const lastUrl = localStorage.getItem('lastUrl');
-  if (lastUrl && router.currentRoute.value.fullPath == '/') {
-    router.push(lastUrl);
+  if (router.currentRoute.value.fullPath == '/') {
+    router.push(
+      localStorage.getItem('lastUrl') ?? '/menu'
+    );
   }
 });
 </script>
