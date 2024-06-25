@@ -6,7 +6,9 @@ watch(router.currentRoute, (route) => {
 });
 onMounted(() => {
   const lastUrl = localStorage.getItem('lastUrl');
-  if (lastUrl) router.push(lastUrl);
+  if (lastUrl && router.currentRoute.value.fullPath == '/') {
+    router.push(lastUrl);
+  }
 });
 </script>
 
