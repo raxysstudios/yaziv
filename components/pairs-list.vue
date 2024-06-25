@@ -9,11 +9,13 @@ const props = defineProps<{
 
 const mergedPairs = computed(() => {
     let pairs = [] as [string, string][];
-    if (props.from) {
+    if (props.from?.pairs.length) {
         pairs = props.from.pairs.map(([a, b]) => [
             a,
             chainConvert(b, props.from, props.to)
         ]);
+    } else if (props.to?.pairs?.length) {
+        pairs = props.to.pairs.map(([a, b]) => [b, a]);
     }
     return pairs.filter(([a, b]) => a !== b);
 }
