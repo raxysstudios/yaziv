@@ -1,39 +1,26 @@
 {
-	"name": "yaziv",
-	"version": "0.0.1",
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "eslint ."
-	},
-	"devDependencies": {
-		"@gradio/client": "^0.1.4",
-		"@iconify/svelte": "^2.2.1",
-		"@sveltejs/adapter-static": "^2.0.0",
-		"@sveltejs/kit": "^1.5.0",
-		"@typescript-eslint/eslint-plugin": "^5.27.0",
-		"@typescript-eslint/parser": "^5.27.0",
-		"autoprefixer": "^10.4.7",
-		"eslint": "^8.16.0",
-		"eslint-config-prettier": "^8.3.0",
-		"eslint-plugin-svelte3": "^4.0.0",
-		"postcss": "^8.4.14",
-		"prettier": "^2.6.2",
-		"prettier-plugin-svelte": "^2.7.0",
-		"svelte": "^3.54.0",
-		"svelte-check": "^3.0.1",
-		"svelte-preprocess": "^5.0.3",
-		"tailwindcss": "^3.1.6",
-		"tslib": "^2.4.1",
-		"typescript": "^5.0.0",
-		"vite": "^4.3.0",
-		"vite-plugin-pwa": "^0.14.7"
-	},
-	"type": "module",
-	"dependencies": {
-		"just-debounce-it": "^3.2.0"
-	}
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "@nuxt/ui": "^2.14.2",
+    "@vite-pwa/nuxt": "^0.8.0",
+    "nuxt": "^3.10.3",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@nuxt/eslint-config": "^0.2.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.23.0"
+  }
 }
