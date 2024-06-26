@@ -8,7 +8,8 @@ watch(router.currentRoute, (route) => {
 });
 
 onBeforeMount(() => {
-  if (!router.currentRoute.value.query['lang']) {
+  const route = router.currentRoute.value;
+  if (!route.query['lang'] && route.path != '/menu') {
     router.replace(
       localStorage.getItem('lastUrl') ?? '/menu'
     );
