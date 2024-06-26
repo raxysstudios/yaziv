@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import useLang from '~/composables/lang';
 
-definePageMeta({
-  layout: false,
-});
-
 const { allLangs } = useLang();
 const backLink = ref();
 onBeforeMount(() => {
@@ -15,7 +11,10 @@ onBeforeMount(() => {
 <template>
   <div class="flex flex-col">
     <AppHeader :to="backLink" icon="i-heroicons-arrow-left">
-      <ULink href="https://github.com/raxysstudios/yaziv" class="flex items pop">
+      <ULink to="/editor" class="flex pop">
+        <UIcon name="i-heroicons-pencil-square" />
+      </ULink>
+      <ULink href="https://github.com/raxysstudios/yaziv" class="flex pop">
         <UIcon name="i-heroicons-code-bracket" />
       </ULink>
     </AppHeader>

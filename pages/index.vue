@@ -5,6 +5,10 @@ import queryState from '~/composables/url-query';
 import { chainConvert } from '~/utils/converter';
 import { processFile } from '~/utils/file-manager';
 
+definePageMeta({
+  layout: 'app'
+})
+
 const { lang } = useLang();
 const converter = ref<ConverterConfig>();
 const from = ref(0);

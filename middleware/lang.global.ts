@@ -1,7 +1,7 @@
 import useLang from "~/composables/lang";
 
 export default defineNuxtRouteMiddleware((to) => {
-    if (import.meta.server || to.path == '/menu') {
+    if (import.meta.server || to.path != '/') {
         return;
     }
 
@@ -15,7 +15,7 @@ export default defineNuxtRouteMiddleware((to) => {
     } else {
         let next = '/menu';
         const last = localStorage.getItem('lastUrl');
-        if (last && to.fullPath != last ) {
+        if (last && to.fullPath != last) {
             next = last;
         }
         return navigateTo(next);

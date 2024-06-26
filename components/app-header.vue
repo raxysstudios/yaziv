@@ -15,7 +15,7 @@ defineProps<{
                 {{ title }}
             </UButton>
             <div class="flex-1" />
-            <div @click="(e: any) => e.stopPropagation()">
+            <div class="flex gap-4" @click="(e: any) => e.stopPropagation()">
                 <slot />
             </div>
         </div>
