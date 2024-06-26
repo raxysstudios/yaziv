@@ -25,6 +25,6 @@
 }
 
 .pop {
-  @apply p-1 hover:scale-110 active:scale-100;
+  @apply hover:scale-110 active:scale-100;
 }
 </style>
