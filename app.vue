@@ -1,22 +1,3 @@
-<script setup lang="ts">
-const router = useRouter();
-
-watch(router.currentRoute, (route) => {
-  if (route.query['lang'] && route.path != '/menu') {
-    localStorage.setItem('lastUrl', route.fullPath);
-  }
-});
-
-onBeforeMount(() => {
-  const route = router.currentRoute.value;
-  if (!route.query['lang'] && route.path != '/menu') {
-    router.replace(
-      localStorage.getItem('lastUrl') ?? '/menu'
-    );
-  }
-});
-</script>
-
 <template>
   <div>
     <NuxtPwaManifest />

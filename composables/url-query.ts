@@ -20,8 +20,6 @@ export default function queryState<T>(
             path: route.path,
             query: { ...route.query, [key]: ref as any }
         });
-    }, {
-        immediate: true,
     });
     return ref;
 }

@@ -46,12 +46,6 @@ export default function useLang() {
     useState("lang", () => ""),
     "lang", ""
   );
-  watch(lang, (lang) => {
-    if (lang) {
-      localStorage.setItem('lang', lang);
-    }
-  })
-
   allLangs.sort((a, b) => a.name.localeCompare(b.name));
   return { lang, allLangs };
 }
