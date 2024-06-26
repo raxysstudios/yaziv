@@ -1,7 +1,9 @@
 <template>
-    <div class="flex flex-col">
+    <div class="w-full flex flex-col items-center">
         <AppHeader to="/menu" title="[EDITOR]" icon="i-heroicons-arrow-left" />
         <UDivider />
-        Under construction
+        <div class="work-c flex flex-col gap-2 my-2 items-stretch">
+            Under construction
+        </div>
     </div>
 </template>
