@@ -18,6 +18,8 @@ onBeforeMount(() => {
         <UButton icon="i-heroicons-code-bracket" />
       </ULink>
     </template>
-    <LangCard v-for="l in allLangs" :key="l.id" :lang="l" />
+    <div class="grid grid-cols-4 gap-2">
+      <LangCard v-for="l in allLangs" :key="l.id" :lang="l" />
+    </div>
   </Scaffold>
 </template>

@@ -88,7 +88,7 @@ function reverse() {
 </script>
 
 <template>
-  <div v-if="converter" class="work-c flex flex-col gap-2 my-2 items-stretch">
+  <div v-if="converter" class="work-c flex flex-col gap-2 items-stretch">
     <div class="flex top-bar gap-1">
       <USelectMenu class="flex-1" v-model="from" :options="converter?.mappings" option-attribute="name"
         value-attribute="i" />
