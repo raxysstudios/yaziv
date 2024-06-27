@@ -24,9 +24,9 @@ const mergedPairs = computed(() => {
 
 <template>
     <div class="flex native justify-center flex-row flex-wrap gap-1 text-sm">
-        <div v-for="p in mergedPairs" class="border overflow-clip rounded-sm shadow-sm">
-            <span class="p-1">{{ p[0] }}</span>
-            <span class="p-1 bg-gray-100 border">{{ p[1] }}</span>
+        <div v-for="p in mergedPairs" class="flex border rounded-sm shadow-sm">
+            <span class="px-1">{{ p[0] }}</span>
+            <span class="px-1 bg-gray-100">{{ p[1] }}</span>
         </div>
     </div>
 </template>
