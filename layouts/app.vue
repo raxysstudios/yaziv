@@ -10,7 +10,7 @@ const title = computed(() => {
 </script>
 
 <template>
-    <AppHeader link="/menu" icon="i-heroicons-bars-3" :badge="title">
+    <Scaffold link="/menu" icon="i-heroicons-bars-3" :badge="title">
         <slot v-if="title" />
-    </AppHeader>
+    </Scaffold>
 </template>

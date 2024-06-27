@@ -9,7 +9,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <AppHeader :link="backLink">
+  <Scaffold :link="backLink">
     <template #actions>
       <ULink to="/editor" class="flex">
         <UButton icon="i-heroicons-pencil-square" />
@@ -19,5 +19,5 @@ onBeforeMount(() => {
       </ULink>
     </template>
     <LangCard v-for="l in allLangs" :key="l.id" :lang="l" />
-  </AppHeader>
+  </Scaffold>
 </template>
