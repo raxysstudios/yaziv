@@ -10,15 +10,14 @@ onBeforeMount(() => {
 
 <template>
   <div class="flex flex-col">
-    <AppHeader :to="backLink" icon="i-heroicons-arrow-left">
-      <ULink to="/editor" class="flex pop p-1">
-        <UIcon name="i-heroicons-pencil-square" />
+    <AppHeader :link="backLink">
+      <ULink to="/editor" class="flex">
+        <UButton icon="i-heroicons-pencil-square" />
       </ULink>
-      <ULink to="https://github.com/raxysstudios/yaziv" class="flex pop p-1">
-        <UIcon name="i-heroicons-code-bracket" />
+      <ULink to="https://github.com/raxysstudios/yaziv" class="flex">
+        <UButton icon="i-heroicons-code-bracket" />
       </ULink>
     </AppHeader>
-    <UDivider />
     <LangCard v-for="l in allLangs" :key="l.id" :lang="l" />
   </div>
 </template>

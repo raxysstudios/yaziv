@@ -17,14 +17,10 @@
 }
 
 .work-p {
-  @apply w-full flex justify-center hover:bg-slate-50 active:bg-slate-100;
+  @apply w-full flex justify-center;
 }
 
 .work-c {
   @apply py-2 px-4 w-full sm:w-5/6 lg:w-2/3;
-}
-
-.pop {
-  @apply hover:scale-110 active:scale-100;
 }
 </style>

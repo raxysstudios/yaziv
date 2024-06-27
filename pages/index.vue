@@ -93,7 +93,7 @@ function reverse() {
       <USelectMenu class="flex-1" v-model="from" :options="converter?.mappings" option-attribute="name"
         value-attribute="i" />
       <div>
-        <UButton icon="i-heroicons-arrows-right-left" color="gray" variant="solid" size="lg" class="pop"
+        <UButton icon="i-heroicons-arrows-right-left" variant="solid" size="lg" class="hover:scale-105 active:scale-100"
           @click="reverse" />
       </div>
       <USelectMenu class="flex-1" v-model="to" :options="converter?.mappings" option-attribute="name"
@@ -104,11 +104,10 @@ function reverse() {
         <UTextarea class="flex-1" v-model="input" autoresize variant="none" size="xl"
           :placeholder="placeholders.from" />
         <template #v-bar>
-          <UButton icon="i-heroicons-x-mark" variant="ghost" @click="input = ''" />
+          <UButton icon="i-heroicons-x-mark" @click="input = ''" />
         </template>
         <template #h-bar>
-          <UButton icon="i-heroicons-document-arrow-up" variant="ghost"
-            @click="processFile(mappings.from, mappings.to)" />
+          <UButton icon="i-heroicons-document-arrow-up" @click="processFile(mappings.from, mappings.to)" />
           <div class="flex-1" />
           <span class="text-xs opacity-50">{{ input.length }} / {{ MAX_INPUT }}</span>
         </template>
@@ -117,7 +116,7 @@ function reverse() {
         <UTextarea class="flex-1" v-model="output" autoresize disabled color="gray" size="xl" variant="none"
           :placeholder="placeholders.to" :ui="{ base: '!cursor-text' }" />
         <template #v-bar>
-          <UButton icon="i-heroicons-clipboard-document" variant="ghost" @click="copyToClipboard" />
+          <UButton icon="i-heroicons-clipboard-document" @click="copyToClipboard" />
         </template>
         <template #h-bar>
           <UButton icon="i-heroicons-information-circle" :variant="showPairs ? 'solid' : 'ghost'"

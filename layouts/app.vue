@@ -12,7 +12,6 @@ const title = computed(() => {
 <template>
     <div class="w-full flex flex-col items-center">
         <AppHeader link="/menu" icon="i-heroicons-bars-3" :badge="title" />
-        <UDivider />
         <slot v-if="title" />
     </div>
 </template>
