@@ -23,7 +23,7 @@ const mergedPairs = computed(() => {
 </script>
 
 <template>
-    <div class="flex justify-center flex-row flex-wrap gap-1 text-sm">
+    <div class="flex native justify-center flex-row flex-wrap gap-1 text-sm">
         <p v-for="p in mergedPairs" class="bg-slate-100 rounded-sm px-1">
             {{ p[0] }} <span class="opacity-50">{{ p[1] }}</span>
         </p>

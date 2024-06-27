@@ -101,7 +101,7 @@ function reverse() {
     </div>
     <div class="flex flex-col gap-2 md:flex-row">
       <WorkArea class="flex-1">
-        <UTextarea class="flex-1" v-model="input" autoresize variant="none" size="xl"
+        <UTextarea class="flex-1 native" v-model="input" autoresize variant="none" size="xl"
           :placeholder="placeholders.from" />
         <template #v-bar>
           <UButton icon="i-heroicons-x-mark" @click="input = ''" />
@@ -113,7 +113,7 @@ function reverse() {
         </template>
       </WorkArea>
       <WorkArea class="bg-gray-50 flex-1">
-        <UTextarea class="flex-1" v-model="output" autoresize disabled color="gray" size="xl" variant="none"
+        <UTextarea class="flex-1 native" v-model="output" autoresize disabled color="gray" size="xl" variant="none"
           :placeholder="placeholders.to" :ui="{ base: '!cursor-text' }" />
         <template #v-bar>
           <UButton icon="i-heroicons-clipboard-document" @click="copyToClipboard" />
