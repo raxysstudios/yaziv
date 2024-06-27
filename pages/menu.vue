@@ -9,15 +9,15 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="flex flex-col">
-    <AppHeader :link="backLink">
+  <AppHeader :link="backLink">
+    <template #actions>
       <ULink to="/editor" class="flex">
         <UButton icon="i-heroicons-pencil-square" />
       </ULink>
       <ULink to="https://github.com/raxysstudios/yaziv" class="flex">
         <UButton icon="i-heroicons-code-bracket" />
       </ULink>
-    </AppHeader>
+    </template>
     <LangCard v-for="l in allLangs" :key="l.id" :lang="l" />
-  </div>
+  </AppHeader>
 </template>

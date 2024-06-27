@@ -10,8 +10,7 @@ const title = computed(() => {
 </script>
 
 <template>
-    <div class="w-full flex flex-col items-center">
-        <AppHeader link="/menu" icon="i-heroicons-bars-3" :badge="title" />
+    <AppHeader link="/menu" icon="i-heroicons-bars-3" :badge="title">
         <slot v-if="title" />
-    </div>
+    </AppHeader>
 </template>

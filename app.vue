@@ -15,12 +15,4 @@
   font-family: "Fira Sans";
   @apply transition duration-150 ease-out;
 }
-
-.work-p {
-  @apply w-full flex justify-center;
-}
-
-.work-c {
-  @apply py-2 px-4 w-full sm:w-5/6 lg:w-2/3;
-}
 </style>
