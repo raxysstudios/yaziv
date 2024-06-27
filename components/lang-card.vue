@@ -14,19 +14,14 @@ const flagUrl = computed(() => {
 
 <template>
     <NuxtLink :to="`/?lang=${lang.id}`" class="group">
-        <div
-            class="rounded-md ring-1 ring-gray-200 group-hover:shadow">
-            <div class="flex p-3 gap-4 items-center">
-                <p class="capitalize">{{ lang.name }}</p>
-                <UIcon class="text-sm opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100"
-                    name="i-heroicons-arrow-right" />
-            </div>
-        </div>
-        <!-- <div class="work-c !py-3 flex gap-4 items-center">
-            <UAvatar :src="flagUrl" class="ring-1 ring-slate-200" size="xs" img-class="object-cover" :alt="lang.id" />
+
+        <div class="flex gap-3 p-4 items-center">
+            <UAvatar :src="flagUrl"
+                class="ring-1 ring-gray-300 group-hover:scale-110 group-hover:ring-offset-2 group-hover:ring group-active:scale-105"
+                img-class="object-cover" :alt="lang.id" />
             <p class="capitalize">{{ lang.name }}</p>
             <UIcon class="text-sm opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100"
                 name="i-heroicons-arrow-right" />
-        </div> -->
+        </div>
     </NuxtLink>
 </template>

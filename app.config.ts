@@ -14,7 +14,7 @@ export default defineAppConfig({
         }
       },
       icon: {
-        base: "group-hover:scale-105"
+        base: "group-hover:scale-105 group-active:scale-100"
       }
     },
     select: {
