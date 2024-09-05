@@ -474,6 +474,27 @@
             ]
         },
         {
+            "name": "latin min",
+            "pairs": [
+                [
+                    "sh",
+                    "ş"
+                ],
+                [
+                    "gh",
+                    "ğ"
+                ],
+                [
+                    "xh",
+                    "j"
+                ],
+                [
+                    "j",
+                    "ź"
+                ]
+            ]
+        },
+        {
             "name": "neo ajami",
             "rtl": true,
             "pairs": [
