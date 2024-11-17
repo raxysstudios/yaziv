@@ -457,27 +457,6 @@
             ]
         },
         {
-            "name": "experimental latin",
-            "pairs": [
-                [
-                    "w",
-                    "ğ"
-                ],
-                [
-                    "þ",
-                    "j"
-                ],
-                [
-                    "j",
-                    "ź"
-                ],
-                [
-                    "ş",
-                    "ś"
-                ]
-            ]
-        },
-        {
             "name": "neo ajami",
             "rtl": true,
             "pairs": [
