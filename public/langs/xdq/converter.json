@@ -457,6 +457,23 @@
             ]
         },
         {
+            "name": "latin exp",
+            "pairs": [
+                [
+                    "w",
+                    "ğ"
+                ],
+                [
+                    "f",
+                    "j"
+                ],
+                [
+                    "j",
+                    "ć"
+                ]
+            ]
+        },
+        {
             "name": "neo ajami",
             "rtl": true,
             "pairs": [
