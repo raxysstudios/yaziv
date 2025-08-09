@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@nuxt/ui": "^2.14.2",
-    "@vite-pwa/nuxt": "^0.8.0",
     "nuxt": "^3.10.3",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"

@@ -18,6 +18,7 @@ onBeforeMount(() => {
         <UButton icon="i-heroicons-code-bracket" />
       </ULink>
     </template>
+    Script converter for the languages of the Caucasus. 
     <div class="grid grid-cols-1">
       <LangCard v-for="l in allLangs" :key="l.id" :lang="l" />
     </div>
