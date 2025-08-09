@@ -54,7 +54,7 @@ const placeholders = computed(() => {
 });
 
 const input = queryState(ref(''), 'text', '');
-const MAX_INPUT = 2000;
+const MAX_INPUT = 120;
 watch(input, (val) => {
   if (val.length > MAX_INPUT) {
     input.value = val.substring(0, MAX_INPUT);
@@ -104,19 +104,21 @@ function reverse() {
         <UTextarea class="flex-1 native" v-model="input" autoresize variant="none" size="xl"
           :placeholder="placeholders.from" :dir="mappings.from.rtl ? 'rtl' : 'auto'" />
         <template #v-bar>
-          <UButton icon="i-heroicons-x-mark" @click="input = ''" />
+          <UButton v-if="input.length" icon="i-heroicons-x-mark" @click="input = ''" />
         </template>
         <template #h-bar>
           <UButton icon="i-heroicons-document-arrow-up" @click="processFile(mappings.from, mappings.to)" />
           <div class="flex-1" />
-          <span class="text-xs opacity-50">{{ input.length }} / {{ MAX_INPUT }}</span>
+          <span v-if="MAX_INPUT - input.length < 100" class="text-xs opacity-50">
+            {{ input.length }} / {{ MAX_INPUT }}
+          </span>
         </template>
       </WorkArea>
       <WorkArea class="bg-gray-50 flex-1">
         <UTextarea class=" flex-1 native" v-model="output" autoresize disabled color="gray" size="xl" variant="none"
           :placeholder="placeholders.to" :ui="{ base: '!cursor-text' }" :dir="mappings.to.rtl ? 'rtl' : 'auto'" />
         <template #v-bar>
-          <UButton icon="i-heroicons-clipboard-document" @click="copyToClipboard" />
+          <UButton v-if="input.length" icon="i-heroicons-clipboard-document" @click="copyToClipboard" />
         </template>
         <template #h-bar>
           <UButton icon="i-heroicons-information-circle" :variant="showPairs ? 'solid' : 'ghost'"
