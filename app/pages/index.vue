@@ -54,7 +54,7 @@ const placeholders = computed(() => {
 });
 
 const input = queryState(ref(''), 'text', '');
-const MAX_INPUT = 120;
+const MAX_INPUT = 2000;
 watch(input, (val) => {
   if (val.length > MAX_INPUT) {
     input.value = val.substring(0, MAX_INPUT);
