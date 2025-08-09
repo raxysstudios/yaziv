@@ -11,14 +11,13 @@ onBeforeMount(() => {
 <template>
   <Scaffold :link="backLink">
     <template #actions>
-      <!-- <ULink to="/editor" class="flex">
-        <UButton icon="i-heroicons-pencil-square" />
-      </ULink> -->
+      <ULink to="/editor" class="flex">
+        <UButton icon="i-heroicons-pencil-square"></UButton>
+      </ULink>
       <ULink to="https://github.com/raxysstudios/yaziv" class="flex">
-        <UButton icon="i-heroicons-code-bracket" />
+        <UButton icon="i-heroicons-code-bracket"></UButton>
       </ULink>
     </template>
-    Script converter for the languages of the Caucasus. 
     <div class="grid grid-cols-1">
       <LangCard v-for="l in allLangs" :key="l.id" :lang="l" />
     </div>
