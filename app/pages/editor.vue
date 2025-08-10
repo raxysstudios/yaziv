@@ -81,10 +81,11 @@ function pairsToJson() {
     <Scaffold link="/menu" badge="[editor]">
         <div class="flex flex-col gap-6 md:flex-row">
             <div class="flex-1 flex flex-col gap-1">
-                <label class="font-medium text-sm">Conversion pairs</label>
-                <UTextarea v-model="pairsInput" class="native" :placeholder="placeholders[0]" :rows="10" />
+                <label class="text-sm">Conversion pairs</label>
+                <UTextarea v-model="pairsInput" :placeholder="placeholders[0]" :rows="10" class="native"
+                    :ui="{ base: 'font-[Noto_Sans_Mono]!' }" />
                 <div class="flex items-center gap-1">
-                    <UButton @click="reverse" icon="i-heroicons-arrows-right-left" />
+                    <UButton @click="reverse" icon="i-material-symbols-swap-horiz" />
                     <div class="flex-1" />
                     <UButton size="sm" @click="pairsFromJson">From
                         JSON
@@ -92,15 +93,17 @@ function pairsToJson() {
                     <UButton size="sm" @click="pairsToJson">To
                         JSON
                     </UButton>
-                    <ULink to="https://github.com/raxysstudios/yaziv/tree/main/public/langs">
-                        <UButton icon="i-heroicons-arrow-top-right-on-square" />
+                    <ULink
+                        to="https://github.com/raxysstudios/yaziv/blob/6e739e7f83f7328c0b9cf089a59e28cff3e1a20e/public/langs/xdq/converter.json#L390-L511"
+                        target="_blank">
+                        <UButton icon="i-material-symbols-open-in-new" />
                     </ULink>
                 </div>
             </div>
             <div class="flex-1 flex flex-col gap-1">
-                <label class="font-medium text-sm">Input text</label>
+                <label class="text-sm">Input text</label>
                 <UTextarea v-model="input" class="native" :maxlength="MAX_INPUT" :placeholder="placeholders[1]" />
-                <label class="font-medium text-sm">Output</label>
+                <label class="text-sm">Output</label>
                 <UTextarea :value="output" :placeholder="placeholders[2]" class="native" variant="subtle" readonly />
             </div>
         </div>

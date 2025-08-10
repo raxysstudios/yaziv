@@ -4,8 +4,10 @@
 .native,
 .native * {
     font-family: "Noto Sans", "Noto Sans Arabic", "Noto Sans Georgian", sans-serif;
+    @apply font-medium;
 }
 
 * {
-    font-family: "Finlandica";
+    font-family: "Roboto Slab";
+    @apply font-medium;
 }

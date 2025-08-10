@@ -16,13 +16,13 @@ const flagUrl = computed(() => {
     <NuxtLink :to="`/?lang=${lang.id}`" class="group">
         <div class="flex p-2 gap-2 overflow-clip items-center">
             <img :src="flagUrl" :alt="lang.id"
-                class="transition mr-2 object-cover size-7 rounded-sm group-hover:scale-110 group-active:scale-105 border border-neutral-200">
+                class="transition mr-2 object-cover size-7 rounded-[var(--ui-radius)] group-hover:scale-110 group-active:scale-105 border border-neutral-200">
             <p class="capitalize">{{ lang.name }}</p>
             <UBadge size="sm" variant="soft">
                 {{ lang.id }}
             </UBadge>
-            <UIcon class="transition ml-2 text-sm opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100"
-                name="i-heroicons-arrow-right" />
+            <UIcon class="transition ml-2 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100"
+                name="i-material-symbols-arrow-right-alt" />
         </div>
     </NuxtLink>
 </template>

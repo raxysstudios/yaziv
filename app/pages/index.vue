@@ -99,8 +99,8 @@ function reverse() {
           side: 'bottom'
         }" />
       <div>
-        <UButton icon="i-heroicons-arrows-right-left" variant="subtle" size="lg"
-          class="transition p-2.5 hover:scale-105 active:scale-100" @click="reverse" />
+        <UButton icon="i-material-symbols-swap-horiz" variant="subtle"
+          class="transition hover:scale-105 active:scale-100 rounded-full" size="xl" @click="reverse" />
       </div>
       <USelect class="flex-1" v-model="to" :items="converter?.mappings" option-attribute="name" value-key="i" :content="{
         align: 'center',
@@ -112,10 +112,10 @@ function reverse() {
         <UTextarea class="flex-1 native" v-model="input" autoresize variant="none" size="xl"
           :placeholder="placeholders.from" :dir="mappings.from.rtl ? 'rtl' : 'auto'" />
         <template #v-bar>
-          <UButton v-if="input.length" icon="i-heroicons-x-mark" @click="input = ''" />
+          <UButton v-if="input.length" icon="i-material-symbols-close" @click="input = ''" />
         </template>
         <template #h-bar>
-          <UButton icon="i-heroicons-document-arrow-up" @click="processFile(mappings.from, mappings.to)" />
+          <UButton icon="i-material-symbols-upload-file-outline" @click="processFile(mappings.from, mappings.to)" />
           <div class="flex-1" />
           <span v-if="MAX_INPUT - input.length < 100" class="text-xs opacity-50">
             {{ input.length }} / {{ MAX_INPUT }}
@@ -126,10 +126,10 @@ function reverse() {
         <UTextarea class="flex-1 native" v-model="output" autoresize readonly size="xl" variant="none"
           :placeholder="placeholders.to" :dir="mappings.to.rtl ? 'rtl' : 'auto'" />
         <template #v-bar>
-          <UButton v-if="input.length" icon="i-heroicons-clipboard-document" @click="copyToClipboard" />
+          <UButton v-if="input.length" icon="i-material-symbols-content-copy-outline" @click="copyToClipboard" />
         </template>
         <template #h-bar>
-          <UButton icon="i-heroicons-information-circle" :variant="showPairs ? 'subtle' : 'ghost'"
+          <UButton icon="i-material-symbols-info-outline" :variant="showPairs ? 'subtle' : 'ghost'"
             @click="showPairs = !showPairs" />
         </template>
       </WorkArea>
@@ -148,7 +148,6 @@ function reverse() {
 
     > :only-child {
       @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10;
-      @apply rounded-full;
     }
   }
 }
