@@ -12,13 +12,17 @@ onBeforeMount(() => {
   <Scaffold :link="backLink">
     <template #actions>
       <ULink to="/editor" class="flex">
-        <UButton icon="i-material-symbols-edit-square-outline"></UButton>
+        <UTooltip :delay-duration="0" text="Open editor">
+          <UButton icon="i-material-symbols-edit-square-outline" />
+        </UTooltip>
       </ULink>
       <ULink to="https://github.com/raxysstudios/yaziv" class="flex">
-        <UButton icon="i-material-symbols-code"></UButton>
+        <UTooltip :delay-duration="0" text="View on GitHub">
+          <UButton icon="i-material-symbols-code" />
+        </UTooltip>
       </ULink>
     </template>
-    <div class="grid grid-cols-1">
+    <div class="grid grid-cols-1 gap-1">
       <LangCard v-for="l in allLangs" :key="l.id" :lang="l" />
     </div>
   </Scaffold>

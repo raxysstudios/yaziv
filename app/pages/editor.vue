@@ -78,13 +78,13 @@ function pairsToJson() {
 </script>
 
 <template>
-    <Scaffold link="/menu" badge="[editor]">
+    <Scaffold link="/menu" title="Yaziv" badge="[editor]">
         <div class="flex flex-col gap-6 md:flex-row">
             <div class="flex-1 flex flex-col gap-1">
                 <label class="text-sm">Conversion pairs</label>
                 <UTextarea v-model="pairsInput" :placeholder="placeholders[0]" :rows="10" class="native"
                     :ui="{ base: 'font-[Noto_Sans_Mono]!' }" />
-                <div class="flex items-center gap-1">
+                <div class="flex gap-1">
                     <UButton @click="reverse" icon="i-material-symbols-swap-horiz" />
                     <div class="flex-1" />
                     <UButton size="sm" @click="pairsFromJson">From
@@ -96,7 +96,9 @@ function pairsToJson() {
                     <ULink
                         to="https://github.com/raxysstudios/yaziv/blob/6e739e7f83f7328c0b9cf089a59e28cff3e1a20e/public/langs/xdq/converter.json#L390-L511"
                         target="_blank">
-                        <UButton icon="i-material-symbols-open-in-new" />
+                        <UTooltip :delay-duration="0" text="View example">
+                            <UButton icon="i-material-symbols-open-in-new" />
+                        </UTooltip>
                     </ULink>
                 </div>
             </div>

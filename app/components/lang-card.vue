@@ -14,14 +14,14 @@ const flagUrl = computed(() => {
 
 <template>
     <NuxtLink :to="`/?lang=${lang.id}`" class="group">
-        <div class="flex p-2 gap-2 overflow-clip items-center">
+        <div class="flex py-1 gap-2 overflow-clip items-center">
             <img :src="flagUrl" :alt="lang.id"
-                class="transition mr-2 object-cover size-7 rounded-[var(--ui-radius)] group-hover:scale-110 group-active:scale-105 border border-neutral-200">
+                class="transition size-8 rounded-[var(--ui-radius)] object-cover border border-neutral-200 overflow-clip group-hover:scale-105 group-active:scale-100">
             <p class="capitalize">{{ lang.name }}</p>
             <UBadge size="sm" variant="soft">
                 {{ lang.id }}
             </UBadge>
-            <UIcon class="transition ml-2 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100"
+            <UIcon class="transition opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100"
                 name="i-material-symbols-arrow-right-alt" />
         </div>
     </NuxtLink>

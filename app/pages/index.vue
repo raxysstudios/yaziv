@@ -115,7 +115,9 @@ function reverse() {
           <UButton v-if="input.length" icon="i-material-symbols-close" @click="input = ''" />
         </template>
         <template #h-bar>
-          <UButton icon="i-material-symbols-upload-file-outline" @click="processFile(mappings.from, mappings.to)" />
+          <UTooltip :delay-duration="0" text="Convert .txt file">
+            <UButton icon="i-material-symbols-upload-file-outline" @click="processFile(mappings.from, mappings.to)" />
+          </UTooltip>
           <div class="flex-1" />
           <span v-if="MAX_INPUT - input.length < 100" class="text-xs opacity-50">
             {{ input.length }} / {{ MAX_INPUT }}
@@ -129,8 +131,10 @@ function reverse() {
           <UButton v-if="input.length" icon="i-material-symbols-content-copy-outline" @click="copyToClipboard" />
         </template>
         <template #h-bar>
-          <UButton icon="i-material-symbols-info-outline" :variant="showPairs ? 'subtle' : 'ghost'"
-            @click="showPairs = !showPairs" />
+          <UTooltip :delay-duration="0" text="Show pairs">
+            <UButton icon="i-material-symbols-info-outline" :variant="showPairs ? 'subtle' : 'ghost'"
+              @click="showPairs = !showPairs" />
+          </UTooltip>
         </template>
       </WorkArea>
     </div>
