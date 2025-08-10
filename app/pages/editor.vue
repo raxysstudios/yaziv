@@ -23,6 +23,12 @@ const pairs = computed(() => {
     return pairs;
 });
 
+function reverse() {
+    const currOutput = output.value;
+    pairsInput.value = pairs.value.map(([from, to]) => `${to}.${from}`).join('\n');
+    input.value = currOutput;
+}
+
 const input = ref('');
 const MAX_INPUT = 1000;
 watch(input, (val) => {
@@ -65,9 +71,10 @@ function pairsToJson() {
         <div class="flex flex-col gap-6 md:flex-row">
             <div class="flex-1 flex flex-col gap-1">
                 <label class="font-medium text-sm">Conversion pairs</label>
-                <UTextarea v-model="pairsInput" class="native" highlight="false" autoresize
-                    :placeholder="'чь.ćh\nя.æ\n...'" />
+                <UTextarea v-model="pairsInput" class="native" :placeholder="'чь.ćh\nя.æ\n...'" :rows="10" />
                 <div class="flex gap-1">
+                    <UButton @click="reverse" icon="i-heroicons-arrows-right-left">Reverse</UButton>
+                    <div class="flex-1" />
                     <UButton @click="pairsFromJson" icon="i-heroicons-bars-3-bottom-left">From
                         JSON</UButton>
                     <UButton @click="pairsToJson" icon="i-heroicons-code-bracket-square">To
@@ -78,7 +85,7 @@ function pairsToJson() {
                 <label class="font-medium text-sm">Input text</label>
                 <UTextarea v-model="input" class="native" :maxlength="MAX_INPUT" placeholder="Enter text..." />
                 <label class="font-medium text-sm">Output</label>
-                <UTextarea :value="output" class="native" color="gray" readonly />
+                <UTextarea :value="output" class="native" variant="subtle" readonly />
             </div>
         </div>
     </Scaffold>
