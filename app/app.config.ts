@@ -16,13 +16,17 @@ export default defineAppConfig({
         {
           variant: "ghost",
           class: "hover:bg-neutral-100 active:bg-neutral-200",
+        },
+        {
+          variant: "subtle",
+          class: "hover:bg-accented!",
         }
       ],
     },
     select: {
       slots: {
         base: [
-          "justify-center font-medium capitalize cursor-pointer!",
+          "justify-center font-medium capitalize cursor-pointer! pe-0!",
           "hover:bg-neutral-100 active:bg-neutral-200"
         ],
         trailing: 'hidden',
