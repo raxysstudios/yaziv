@@ -14,10 +14,21 @@ watch(pairsInput, (val) => {
     flush: 'post'
 });
 
+const placeholders = [
+    'т t\nчь ćh\nя æ\n я  йа\n...',
+    'ят чья',
+    'yat ćhæ',
+]
 const pairs = computed(() => {
     const pairs = pairsInput.value
         .split('\n')
-        .map(line => line.trim().split('.') as [string, string])
+        .map(line => {
+            const match = line.trimEnd().match(/^(\s*\S+)\s(\s*\S+)$/);
+            if (match) {
+                return [match[1], match[2]] as [string, string];
+            }
+            return ['', ''] as [string, string];
+        })
         .filter(([from, to]) => from && to);
 
     return pairs;
@@ -25,7 +36,7 @@ const pairs = computed(() => {
 
 function reverse() {
     const currOutput = output.value;
-    pairsInput.value = pairs.value.map(([from, to]) => `${to}.${from}`).join('\n');
+    pairsInput.value = pairs.value.map(([from, to]) => `${to} ${from}`).join('\n');
     input.value = currOutput;
 }
 
@@ -51,7 +62,7 @@ function pairsFromJson() {
     try {
         const arr = JSON.parse(json);
         if (Array.isArray(arr) && arr.every(p => Array.isArray(p) && p.length === 2)) {
-            pairsInput.value = arr.map(([a, b]) => `${a}.${b}`).join('\n');
+            pairsInput.value = arr.map(([a, b]) => `${a} ${b}`).join('\n');
         } else {
             alert('Invalid JSON format.');
         }
@@ -71,7 +82,7 @@ function pairsToJson() {
         <div class="flex flex-col gap-6 md:flex-row">
             <div class="flex-1 flex flex-col gap-1">
                 <label class="font-medium text-sm">Conversion pairs</label>
-                <UTextarea v-model="pairsInput" class="native" :placeholder="'чь.ćh\nя.æ\n...'" :rows="10" />
+                <UTextarea v-model="pairsInput" class="native" :placeholder="placeholders[0]" :rows="10" />
                 <div class="flex gap-1">
                     <UButton @click="reverse" icon="i-heroicons-arrows-right-left" />
                     <div class="flex-1" />
@@ -88,9 +99,9 @@ function pairsToJson() {
             </div>
             <div class="flex-1 flex flex-col gap-1">
                 <label class="font-medium text-sm">Input text</label>
-                <UTextarea v-model="input" class="native" :maxlength="MAX_INPUT" placeholder="Enter text..." />
+                <UTextarea v-model="input" class="native" :maxlength="MAX_INPUT" :placeholder="placeholders[1]" />
                 <label class="font-medium text-sm">Output</label>
-                <UTextarea :value="output" class="native" variant="subtle" readonly />
+                <UTextarea :value="output" :placeholder="placeholders[2]" class="native" variant="subtle" readonly />
             </div>
         </div>
     </Scaffold>
