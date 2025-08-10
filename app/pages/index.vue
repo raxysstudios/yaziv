@@ -15,18 +15,20 @@ const from = ref(0);
 const to = ref(1);
 watch(lang, async (lang) => {
   if (!lang) return;
-  converter.value = await $fetch<ConverterConfig>(
-    `/langs/${lang}/converter.json`
-  ).then((c) => {
-    c.mappings.forEach((m, i) => {
-      (<any>m).i = i;
-      (<any>m).label = m.name;
+  try {
+    converter.value = await $fetch<ConverterConfig>(
+      `/langs/${lang}/converter.json`
+    ).then((c) => {
+      c.mappings.forEach((m, i) => {
+        (<any>m).i = i;
+        (<any>m).label = m.name;
+      });
+      return c;
     });
-    return c;
-  });
-  if (!converter.value) return;
-  queryState(from, 'from', converter.value.default?.[0] ?? 0);
-  queryState(to, 'to', converter.value.default?.[1] ?? 1);
+    if (!converter.value) return;
+    queryState(from, 'from', converter.value.default?.[0] ?? 0);
+    queryState(to, 'to', converter.value.default?.[1] ?? 1);
+  } catch (e) { }
 }, {
   immediate: true
 });
