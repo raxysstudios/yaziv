@@ -102,9 +102,11 @@ function pairsToJson() {
             </div>
             <div class="flex-1 flex flex-col gap-1">
                 <label class="text-sm">Input text</label>
-                <UTextarea v-model="input" class="native" :maxlength="MAX_INPUT" :placeholder="placeholders[1]" />
+                <UTextarea v-model="input" class="native" :maxlength="MAX_INPUT"
+                    :placeholder="pairsInput ? '' : placeholders[1]" />
                 <label class="text-sm">Output</label>
-                <UTextarea :value="output" :placeholder="placeholders[2]" class="native" variant="subtle" readonly />
+                <UTextarea :value="output" :placeholder="pairsInput ? '' : placeholders[2]" class="native"
+                    variant="subtle" readonly />
             </div>
         </div>
     </Scaffold>
