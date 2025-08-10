@@ -1,2 +1,12 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+
+.native,
+.native * {
+    font-family: "Noto Sans", "Noto Sans Arabic", "Noto Sans Georgian", sans-serif;
+}
+
+* {
+    font-family: "Finlandica";
+    @apply transition duration-150 ease-out;
+}
