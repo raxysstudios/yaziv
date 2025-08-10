@@ -115,8 +115,8 @@ function reverse() {
         </template>
       </WorkArea>
       <WorkArea class="bg-gray-50 flex-1">
-        <UTextarea class=" flex-1 native" v-model="output" autoresize disabled color="gray" size="xl" variant="none"
-          :placeholder="placeholders.to" :ui="{ base: '!cursor-text' }" :dir="mappings.to.rtl ? 'rtl' : 'auto'" />
+        <UTextarea class="flex-1 native" v-model="output" autoresize readonly size="xl" variant="none"
+          :placeholder="placeholders.to" :dir="mappings.to.rtl ? 'rtl' : 'auto'" />
         <template #v-bar>
           <UButton v-if="input.length" icon="i-heroicons-clipboard-document" @click="copyToClipboard" />
         </template>
