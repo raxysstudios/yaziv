@@ -12,8 +12,9 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@nuxt/ui": "^2.14.2",
+    "@nuxt/ui": "^3.3.0",
     "nuxt": "^4.0.3",
+    "tailwindcss": "^4.1.11",
     "vue": "^3.4.21"
   },
   "devDependencies": {

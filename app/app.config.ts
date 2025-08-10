@@ -1,7 +1,9 @@
 export default defineAppConfig({
   ui: {
-    primary: "slate",
-    gray: "slate",
+    colors: {
+      primary: "slate",
+      neutral: "slate",
+    },
     button: {
       base: "group",
       default: {
@@ -18,7 +20,7 @@ export default defineAppConfig({
       }
     },
     select: {
-      base: "justify-center font-medium capitalize !cursor-pointer",
+      base: "justify-center font-medium capitalize cursor-pointer!",
       default: { trailingIcon: "" },
     },
     selectMenu: {
