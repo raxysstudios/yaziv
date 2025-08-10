@@ -78,7 +78,7 @@ function pairsToJson() {
 </script>
 
 <template>
-    <Scaffold link="/menu" title="Yaziv" badge="[editor]">
+    <Scaffold link="/menu" badge="[editor]">
         <div class="flex flex-col gap-6 md:flex-row">
             <div class="flex-1 flex flex-col gap-1">
                 <label class="text-sm">Conversion pairs</label>
