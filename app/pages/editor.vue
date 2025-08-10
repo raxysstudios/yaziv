@@ -73,12 +73,17 @@ function pairsToJson() {
                 <label class="font-medium text-sm">Conversion pairs</label>
                 <UTextarea v-model="pairsInput" class="native" :placeholder="'чь.ćh\nя.æ\n...'" :rows="10" />
                 <div class="flex gap-1">
-                    <UButton @click="reverse" icon="i-heroicons-arrows-right-left">Reverse</UButton>
+                    <UButton @click="reverse" icon="i-heroicons-arrows-right-left" />
                     <div class="flex-1" />
-                    <UButton @click="pairsFromJson" icon="i-heroicons-bars-3-bottom-left">From
-                        JSON</UButton>
-                    <UButton @click="pairsToJson" icon="i-heroicons-code-bracket-square">To
-                        JSON</UButton>
+                    <UButton size="sm" @click="pairsFromJson">From
+                        JSON
+                    </UButton>
+                    <UButton size="sm" @click="pairsToJson">To
+                        JSON
+                    </UButton>
+                    <ULink to="https://github.com/raxysstudios/yaziv/tree/main/public/langs">
+                        <UButton icon="i-heroicons-arrow-top-right-on-square" />
+                    </ULink>
                 </div>
             </div>
             <div class="flex-1 flex flex-col gap-1">
