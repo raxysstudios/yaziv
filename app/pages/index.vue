@@ -91,7 +91,8 @@ function reverse() {
 </script>
 
 <template>
-  <div v-if="converter" class="work-c flex flex-col gap-2 items-stretch">
+  <AppHeader link="/menu" icon="i-material-symbols-menu" :badge="lang.name" />
+  <AppSegment v-if="converter">
     <div class="flex top-bar gap-1">
       <USelect class="flex-1" v-model="from" :items="converter?.mappings" option-attribute="name" value-key="i"
         :content="{
@@ -108,7 +109,7 @@ function reverse() {
       }" />
     </div>
     <div class="flex flex-col gap-2 md:flex-row">
-      <WorkArea class="flex-1">
+      <TextToolbarArea class="flex-1">
         <UTextarea class="flex-1 native" v-model="input" autoresize variant="none" size="xl"
           :placeholder="placeholders.from" :dir="mappings.from.rtl ? 'rtl' : 'auto'" />
         <template #v-bar>
@@ -123,8 +124,8 @@ function reverse() {
             {{ input.length }} / {{ MAX_INPUT }}
           </span>
         </template>
-      </WorkArea>
-      <WorkArea class="bg-gray-50 flex-1">
+      </TextToolbarArea>
+      <TextToolbarArea class="bg-gray-50 flex-1">
         <UTextarea class="flex-1 native" v-model="output" autoresize readonly size="xl" variant="none"
           :placeholder="placeholders.to" :dir="mappings.to.rtl ? 'rtl' : 'auto'" />
         <template #v-bar>
@@ -136,12 +137,12 @@ function reverse() {
               @click="showPairs = !showPairs" />
           </UTooltip>
         </template>
-      </WorkArea>
+      </TextToolbarArea>
     </div>
     <div class="flex flex-row justify-center my-2">
       <PairsList v-if="showPairs" :from="mappings.from" :to="mappings.to" class="sm:w-2/3" />
     </div>
-  </div>
+  </AppSegment>
 </template>
 
 <style>

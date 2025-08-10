@@ -78,7 +78,8 @@ function pairsToJson() {
 </script>
 
 <template>
-    <Scaffold link="/menu" badge="[editor]">
+    <AppHeader link="/menu" badge="[editor]" />
+    <AppSegment>
         <div class="flex flex-col gap-6 md:flex-row">
             <div class="flex-1 flex flex-col gap-1">
                 <label class="text-sm">Conversion pairs</label>
@@ -111,5 +112,5 @@ function pairsToJson() {
                     variant="subtle" readonly />
             </div>
         </div>
-    </Scaffold>
+    </AppSegment>
 </template>
