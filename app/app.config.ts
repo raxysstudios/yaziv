@@ -5,8 +5,7 @@ export default defineAppConfig({
     },
     button: {
       slots: {
-        base: "group cursor-pointer",
-        leadingIcon: "transition group-hover:scale-105 group-active:scale-100",
+        base: "cursor-pointer transition",
       },
       defaultVariants: {
         color: "neutral",
@@ -15,7 +14,7 @@ export default defineAppConfig({
       compoundVariants: [
         {
           variant: "ghost",
-          class: "hover:bg-neutral-100 active:bg-neutral-50",
+          class: "hover:bg-neutral-100 active:bg-neutral-200",
         }
       ],
     },
@@ -23,7 +22,7 @@ export default defineAppConfig({
       slots: {
         base: [
           "justify-center font-medium capitalize cursor-pointer!",
-          "hover:bg-neutral-100 active:bg-neutral-50"
+          "hover:bg-neutral-100 active:bg-neutral-200"
         ],
         trailing: 'hidden',
         item: "justify-center font-medium capitalize cursor-pointer!",
