@@ -13,4 +13,17 @@ export default defineNuxtConfig({
     },
     serverBundle: 'local',
   },
+  app: {
+    head: {
+      title: 'Yaziv',
+      htmlAttrs: {
+        lang: 'en',
+      }, meta: [
+        {
+          name: 'description',
+          content: 'Script converter for the languages of the Caucasus.'
+        }
+      ],
+    }
+  }
 });

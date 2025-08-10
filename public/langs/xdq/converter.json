@@ -7,11 +7,11 @@
     ],
     "mappings": [
         {
-            "name": "cyrillic",
+            "name": "Cyrillic",
             "pairs": []
         },
         {
-            "name": "soviet cyrillic",
+            "name": "Soviet Cyrillic",
             "pairs": [
                 [
                     " гӏя",

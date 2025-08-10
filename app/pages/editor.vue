@@ -75,6 +75,11 @@ function pairsToJson() {
     const json = JSON.stringify(pairs.value);
     prompt('JSON array of the pairs:', json);
 }
+
+useSeoMeta({
+    title: `Yaziv Editor`,
+    description: `Test your own text conversion mappings.`,
+})
 </script>
 
 <template>
