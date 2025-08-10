@@ -20,6 +20,7 @@ watch(lang, async (lang) => {
   ).then((c) => {
     c.mappings.forEach((m, i) => {
       (<any>m).i = i;
+      (<any>m).label = m.name;
     });
     return c;
   });
@@ -90,14 +91,19 @@ function reverse() {
 <template>
   <div v-if="converter" class="work-c flex flex-col gap-2 items-stretch">
     <div class="flex top-bar gap-1">
-      <USelectMenu class="flex-1" v-model="from" :options="converter?.mappings" option-attribute="name"
-        value-attribute="i" />
+      <USelect class="flex-1" v-model="from" :items="converter?.mappings" option-attribute="name" value-key="i"
+        :content="{
+          align: 'center',
+          side: 'bottom'
+        }" />
       <div>
-        <UButton icon="i-heroicons-arrows-right-left" variant="solid" size="lg" class="hover:scale-105 active:scale-100"
-          @click="reverse" />
+        <UButton icon="i-heroicons-arrows-right-left" variant="subtle" size="lg"
+          class="transition p-2.5 hover:scale-105 active:scale-100" @click="reverse" />
       </div>
-      <USelectMenu class="flex-1" v-model="to" :options="converter?.mappings" option-attribute="name"
-        value-attribute="i" />
+      <USelect class="flex-1" v-model="to" :items="converter?.mappings" option-attribute="name" value-key="i" :content="{
+        align: 'center',
+        side: 'bottom'
+      }" />
     </div>
     <div class="flex flex-col gap-2 md:flex-row">
       <WorkArea class="flex-1">
@@ -121,7 +127,7 @@ function reverse() {
           <UButton v-if="input.length" icon="i-heroicons-clipboard-document" @click="copyToClipboard" />
         </template>
         <template #h-bar>
-          <UButton icon="i-heroicons-information-circle" :variant="showPairs ? 'solid' : 'ghost'"
+          <UButton icon="i-heroicons-information-circle" :variant="showPairs ? 'subtle' : 'ghost'"
             @click="showPairs = !showPairs" />
         </template>
       </WorkArea>
