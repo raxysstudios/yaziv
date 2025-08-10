@@ -3,6 +3,7 @@ import useLang from '~/composables/lang';
 import queryState from '~/composables/url-query';
 
 import { chainConvert } from '~/utils/converter';
+import { capitalize } from '~/utils/capitalize';
 import { processFile } from '~/utils/file-manager';
 
 definePageMeta({
