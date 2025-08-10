@@ -1,22 +1,36 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
 import { convert } from '~/utils/converter';
-import queryState from '~/composables/url-query';
 
-const pairsInput = queryState(ref(''), 'pairs', '');
+onMounted(() => {
+    pairsInput.value = localStorage.getItem('editor-pairs') || '';
+    input.value = localStorage.getItem('editor-input') || '';
+});
+
+const pairsInput = ref('');
+watch(pairsInput, (val) => {
+    localStorage.setItem('editor-pairs', val);
+}, {
+    flush: 'post'
+});
+
 const pairs = computed(() => {
-    return pairsInput.value
+    const pairs = pairsInput.value
         .split('\n')
         .map(line => line.trim().split('.') as [string, string])
         .filter(([from, to]) => from && to);
+
+    return pairs;
 });
 
-const input = queryState(ref(''), 'text', '');
+const input = ref('');
 watch(input, (val) => {
     const MAX_INPUT = 1000;
     if (val.length > MAX_INPUT) {
         input.value = val.substring(0, MAX_INPUT);
     }
+
+    localStorage.setItem('editor-input', input.value);
 }, {
     flush: 'post'
 });
@@ -42,30 +56,29 @@ function pairsFromJson() {
 
 function pairsToJson() {
     const json = JSON.stringify(pairs.value);
-    prompt('JSON array of pairs:', json);
+    prompt('JSON array of the pairs:', json);
 }
 </script>
 
 <template>
-    <Scaffold link="/menu" badge="[EDITOR]" icon="i-heroicons-bars-3">
-        <div class="columns-2">
-            <div>
-                <label class="font-bold">Conversion pairs:</label>
-                <div class="flex gap-2 mb-2">
-                    <button type="button" class="px-2 py-1 border rounded bg-gray-100 hover:bg-gray-200"
-                        @click="pairsFromJson">From JSON</button>
-                    <button type="button" class="px-2 py-1 border rounded bg-gray-100 hover:bg-gray-200"
-                        @click="pairsToJson">To JSON</button>
-                </div>
-                <textarea v-model="pairsInput" rows="6" class="w-full border rounded p-2 font-mono"
+    <Scaffold link="/menu" badge="[editor]">
+        <div class="flex flex-col gap-6 md:flex-row">
+            <div class="flex-1 flex flex-col gap-1">
+                <label class="font-medium text-sm">Conversion pairs</label>
+                <UTextarea v-model="pairsInput" class="native" highlight="false" autoresize
                     :placeholder="'чь.ćh\nя.æ\n...'" />
+                <div class="flex gap-1">
+                    <UButton @click="pairsFromJson" icon="i-heroicons-bars-3-bottom-left">From
+                        JSON</UButton>
+                    <UButton @click="pairsToJson" icon="i-heroicons-code-bracket-square">To
+                        JSON</UButton>
+                </div>
             </div>
-            <div>
-                <label class="font-bold">Input text:</label>
-                <textarea v-model="input" :maxlength="MAX_INPUT" class="w-full border rounded p-2"
-                    placeholder="Enter text..." />
-                <label class="font-bold">Output:</label>
-                <textarea :value="output" class="w-full border rounded p-2 bg-gray-100" rows="3" readonly />
+            <div class="flex-1 flex flex-col gap-1">
+                <label class="font-medium text-sm">Input text</label>
+                <UTextarea v-model="input" class="native" :maxlength="MAX_INPUT" placeholder="Enter text..." />
+                <label class="font-medium text-sm">Output</label>
+                <UTextarea :value="output" class="native" color="gray" readonly />
             </div>
         </div>
     </Scaffold>
