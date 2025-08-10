@@ -83,7 +83,7 @@ function pairsToJson() {
             <div class="flex-1 flex flex-col gap-1">
                 <label class="font-medium text-sm">Conversion pairs</label>
                 <UTextarea v-model="pairsInput" class="native" :placeholder="placeholders[0]" :rows="10" />
-                <div class="flex gap-1">
+                <div class="flex items-center gap-1">
                     <UButton @click="reverse" icon="i-heroicons-arrows-right-left" />
                     <div class="flex-1" />
                     <UButton size="sm" @click="pairsFromJson">From
