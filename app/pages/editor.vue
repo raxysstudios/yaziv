@@ -24,8 +24,8 @@ const pairs = computed(() => {
 });
 
 const input = ref('');
+const MAX_INPUT = 1000;
 watch(input, (val) => {
-    const MAX_INPUT = 1000;
     if (val.length > MAX_INPUT) {
         input.value = val.substring(0, MAX_INPUT);
     }
