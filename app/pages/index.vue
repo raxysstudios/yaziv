@@ -9,7 +9,13 @@ definePageMeta({
   layout: 'app'
 })
 
-const { lang } = useLang();
+const { lang, allLangs } = useLang();
+const langName = computed(() => {
+  return allLangs
+    .find(l => l.id == lang.value)
+    ?.name;
+});
+
 const converter = ref<ConverterConfig>();
 const from = ref(0);
 const to = ref(1);
@@ -91,7 +97,7 @@ function reverse() {
 </script>
 
 <template>
-  <AppHeader link="/menu" icon="i-material-symbols-menu" :badge="lang.name" />
+  <AppHeader link="/menu" icon="i-material-symbols-menu" :badge="langName" />
   <AppSegment v-if="converter">
     <div class="flex top-bar gap-1">
       <USelect class="flex-1" v-model="from" :items="converter?.mappings" option-attribute="name" value-key="i"
