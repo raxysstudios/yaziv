@@ -7,4 +7,10 @@ export default defineNuxtConfig({
   },
   css: ['~/assets/css/main.css'],
   compatibilityDate: '2025-08-10',
+  icon: {
+    clientBundle: {
+      scan: true,
+    },
+    serverBundle: 'local',
+  },
 });
