@@ -13,7 +13,7 @@ defineProps<{
                 <NuxtLink :to="link">
                     <UButton :icon="icon ?? 'i-heroicons-arrow-left'" class="text-lg capitalize font-medium gap-2">
                         Yaziv
-                        <UBadge v-if="badge" class="capitalize" color="gray" variant="solid">
+                        <UBadge v-if="badge" class="capitalize" variant="soft">
                             {{ badge }}
                         </UBadge>
                     </UButton>

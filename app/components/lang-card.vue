@@ -16,9 +16,9 @@ const flagUrl = computed(() => {
     <NuxtLink :to="`/?lang=${lang.id}`" class="group">
         <div class="flex p-2 gap-2 overflow-clip items-center">
             <img :src="flagUrl" :alt="lang.id"
-                class="mr-2 object-cover size-7 rounded-full group-hover:scale-110 group-active:scale-100 border">
+                class="mr-2 object-cover size-7 rounded-sm group-hover:scale-110 group-active:scale-100 border border-neutral-200">
             <p class="capitalize">{{ lang.name }}</p>
-            <UBadge size="xs" color="gray" variant="solid">
+            <UBadge size="sm" variant="soft">
                 {{ lang.id }}
             </UBadge>
             <UIcon class="ml-2 text-sm opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100"
