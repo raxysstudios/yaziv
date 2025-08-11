@@ -1,0 +1,31 @@
+{
+    "home": {
+        "seo": {
+            "title": "Yaziv",
+            "description": "Text converter for the languages of the Caucasus."
+        },
+        "github": "View on GitHub",
+        "editor": "Open editor"
+    },
+    "lang": {
+        "seo": {
+            "title": "Yaziv ∙ {lang}",
+            "description": "Convert between ${lang} ${scripts} alphabets, transcriptions, scripts."
+        },
+        "file": "Convert .txt file",
+        "pairs": "Show conversion pairs"
+    },
+    "editor": {
+        "seo": {
+            "title": "Yaziv Editor",
+            "description": "Test your own text conversion mappings."
+        },
+        "badge": "[editor]",
+        "pairs": "Conversion pairs",
+        "example": "View example",
+        "from_json": "From JSON",
+        "to_json": "To JSON",
+        "input": "Input text",
+        "output": "Result"
+    }
+}

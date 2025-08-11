@@ -9,9 +9,9 @@ defineProps<{
 <template>
     <AppSegment class="shadow">
         <div class="flex flex-row items-center gap-2">
-            <NuxtLink v-if="link" :to="link">
+            <NuxtLinkLocale v-if="link" :to="link">
                 <UButton :icon="icon ?? 'i-material-symbols-arrow-back'" />
-            </NuxtLink>
+            </NuxtLinkLocale>
             <p class="text-lg capitalize font-medium ">Yaziv</p>
             <UBadge v-if="badge" variant="soft">
                 {{ badge }}

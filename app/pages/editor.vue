@@ -77,42 +77,42 @@ function pairsToJson() {
 }
 
 useSeoMeta({
-    title: `Yaziv Editor`,
-    description: `Test your own text conversion mappings.`,
-})
+    title: $t('editor.seo.title'),
+    description: $t('editor.seo.description'),
+});
 </script>
 
 <template>
-    <AppHeader link="/home" badge="[editor]" />
+    <AppHeader link="/home" :badge="$t('editor.badge')" />
     <AppSegment>
         <div class="flex flex-col gap-6 md:flex-row">
             <div class="flex-1 flex flex-col gap-1">
-                <label class="text-sm">Conversion pairs</label>
+                <label class="text-sm">{{ $t('editor.pairs') }}</label>
                 <UTextarea v-model="pairsInput" :placeholder="placeholders[0]" :rows="10" class="native"
                     :ui="{ base: 'font-[Noto_Sans_Mono]!' }" />
                 <div class="flex gap-1">
                     <UButton @click="reverse" icon="i-material-symbols-swap-horiz" />
                     <div class="flex-1" />
-                    <UButton size="sm" @click="pairsFromJson">From
-                        JSON
+                    <UButton size="sm" @click="pairsFromJson">
+                        {{ $t('editor.from_json') }}
                     </UButton>
-                    <UButton size="sm" @click="pairsToJson">To
-                        JSON
+                    <UButton size="sm" @click="pairsToJson">
+                        {{ $t('editor.to_json') }}
                     </UButton>
-                    <ULink
+                    <NuxtLink
                         to="https://github.com/raxysstudios/yaziv/blob/6e739e7f83f7328c0b9cf089a59e28cff3e1a20e/public/langs/xdq/converter.json#L15C22-L204C14"
                         target="_blank">
-                        <UTooltip :delay-duration="0" text="View example">
+                        <UTooltip :delay-duration="0" :text="$t('editor.example')">
                             <UButton icon="i-material-symbols-open-in-new" />
                         </UTooltip>
-                    </ULink>
+                    </NuxtLink>
                 </div>
             </div>
             <div class="flex-1 flex flex-col gap-1">
-                <label class="text-sm">Input text</label>
+                <label class="text-sm">{{ $t('editor.input') }}</label>
                 <UTextarea v-model="input" class="native" :maxlength="MAX_INPUT"
                     :placeholder="pairsInput ? '' : placeholders[1]" />
-                <label class="text-sm">Output</label>
+                <label class="text-sm">{{ $t('editor.output') }}</label>
                 <UTextarea :value="output" :placeholder="pairsInput ? '' : placeholders[2]" class="native"
                     variant="subtle" readonly />
             </div>

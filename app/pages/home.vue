@@ -6,22 +6,33 @@ const backLink = ref();
 onBeforeMount(() => {
   backLink.value = localStorage.getItem('lastUrl');
 });
+
+const { locales, setLocale } = useI18n()
+
+useSeoMeta({
+  title: $t('home.seo.title'),
+  description: $t('home.seo.description'),
+});
 </script>
 
 <template>
   <AppHeader :link="backLink">
-    <ULink to="/editor">
-      <UTooltip :delay-duration="0" text="Open editor">
+    <NuxtLinkLocale to="/editor">
+      <UTooltip :delay-duration="0" :text="$t('home.editor')">
         <UButton icon="i-material-symbols-edit-square-outline" />
       </UTooltip>
-    </ULink>
-    <ULink to="https://github.com/raxysstudios/yaziv" target="_blank">
-      <UTooltip :delay-duration="0" text="View on GitHub">
+    </NuxtLinkLocale>
+    <NuxtLinkLocale to="https://github.com/raxysstudios/yaziv" target="_blank">
+      <UTooltip :delay-duration="0" :text="$t('home.github')">
         <UButton icon="i-material-symbols-code" />
       </UTooltip>
-    </ULink>
+    </NuxtLinkLocale>
+    <USeparator orientation="vertical" class="h-4" />
+    <UButton v-for="l in locales" @click="setLocale(l.code)">
+      {{ l.short_name }}
+    </UButton>
   </AppHeader>
-  <NuxtLink v-for="l in allLangs" :key="l.id" :to="`/${l.id}`">
+  <NuxtLinkLocale v-for="l in allLangs" :key="l.id" :to="`/${l.id}`">
     <LanguageSegment :lang="l" />
-  </NuxtLink>
+  </NuxtLinkLocale>
 </template>

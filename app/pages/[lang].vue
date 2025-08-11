@@ -18,10 +18,14 @@ onMounted(async () => {
     return;
   }
 
-  const scripts = converter.value?.mappings.map(m => m.name).join(', ');
   useSeoMeta({
-    title: `Yaziv ∙ ${langName}`,
-    description: `Convert between ${langName} ${scripts} alphabets, transcriptions, scripts.`,
+    title: $t('file_upload', {
+      lang: langName
+    }),
+    description: $t('file_upload', {
+      lang: langName,
+      scripts: converter.value?.mappings.map(m => m.name).join(', '),
+    }),
   })
 
   watch(() => route.fullPath, () => {
@@ -130,7 +134,7 @@ function reverse() {
           <UButton v-if="input.length" icon="i-material-symbols-close" @click="input = ''" />
         </template>
         <template #h-bar>
-          <UTooltip :delay-duration="0" text="Convert .txt file">
+          <UTooltip :delay-duration="0" :text="$t('lang.file')">
             <UButton icon="i-material-symbols-upload-file-outline" @click="processFile(mappings.from, mappings.to)" />
           </UTooltip>
           <div class="flex-1" />
@@ -146,7 +150,7 @@ function reverse() {
           <UButton v-if="input.length" icon="i-material-symbols-content-copy-outline" @click="copyToClipboard" />
         </template>
         <template #h-bar>
-          <UTooltip :delay-duration="0" text="Show pairs">
+          <UTooltip :delay-duration="0" :text="$t('lang.pairs')">
             <UButton icon="i-material-symbols-info-outline" :variant="showPairs ? 'subtle' : 'ghost'"
               @click="showPairs = !showPairs" />
           </UTooltip>

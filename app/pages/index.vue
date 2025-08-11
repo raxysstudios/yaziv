@@ -2,6 +2,11 @@
 definePageMeta({
   middleware: 'redirect-root'
 });
+
+useSeoMeta({
+  title: $t('home.seo.title'),
+  description: $t('home.seo.description'),
+});
 </script>
 
 <template>
