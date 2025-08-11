@@ -98,7 +98,7 @@ function reverse() {
 
 const seoDescription = computed(() => {
   const scripts = converter.value?.mappings.map(m => m.name).join(', ');
-  return `Convert between ${capitalize(langName.value)} ${scripts} scripts.`;
+  return `Convert between ${capitalize(langName.value)} ${scripts} alphabets, transcriptions, scripts.`;
 });
 useSeoMeta({
   title: `Yaziv ∙ ${capitalize(langName.value)}`,

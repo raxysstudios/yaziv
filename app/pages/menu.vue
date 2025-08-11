@@ -9,7 +9,7 @@ onBeforeMount(() => {
 
 useSeoMeta({
   title: `Yaziv`,
-  description: `Script converter for the languages of the Caucasus.`,
+  description: `Text converter for the languages of the Caucasus.`,
 })
 </script>
 

@@ -18,10 +18,11 @@ export default defineNuxtConfig({
       title: 'Yaziv',
       htmlAttrs: {
         lang: 'en',
-      }, meta: [
+      },
+      meta: [
         {
           name: 'description',
-          content: 'Script converter for the languages of the Caucasus.'
+          content: 'Text converter for the languages of the Caucasus.'
         }
       ],
     }
