@@ -1,30 +1,29 @@
 import type { Lang } from "~/utils/types";
-import queryState from "./url-query";
 
 const allLangs = [
   {
     id: "abq",
-    name: "abaza",
+    name: "Abaza",
   },
   {
     id: "abk",
-    name: "abkhaz",
+    name: "Abkhaz",
   },
   {
     id: "agx",
-    name: "aghul",
+    name: "Aghul",
   },
   {
     id: "xdq",
-    name: "kaitag",
+    name: "Kaitag",
   },
   {
     id: "kum",
-    name: "kumyk",
+    name: "Kumyk",
   },
   {
     id: "tkr",
-    name: "tsakhur",
+    name: "Tsakhur",
   },
   {
     id: "oss",
@@ -33,19 +32,23 @@ const allLangs = [
   },
   {
     id: "lez",
-    name: "lezgi",
+    name: "Lezgi",
   },
   {
     id: "kat",
-    name: "georgian",
+    name: "Georgian",
   },
 ] as Lang[];
+allLangs.sort((a, b) => a.name.localeCompare(b.name));
 
 export default function useLang() {
-  const lang = queryState(
-    useState("lang", () => ""),
-    "lang", ""
-  );
-  allLangs.sort((a, b) => a.name.localeCompare(b.name));
-  return { lang, allLangs };
+  const route = useRoute();
+
+  const langParam = route.params.lang;
+  const langName = allLangs.find((l) => l.id === langParam)?.name;
+
+  if (langName) {
+    return { langParam, langName, allLangs };
+  }
+  return { allLangs };
 }

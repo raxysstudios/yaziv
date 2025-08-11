@@ -13,16 +13,14 @@ const flagUrl = computed(() => {
 </script>
 
 <template>
-    <NuxtLink :to="`/?lang=${lang.id}`">
-        <AppSegment class="transition group hover:bg-neutral-100 active:bg-neutral-200">
-            <div class="flex gap-2 items-center">
-                <img :src="flagUrl" :alt="lang.id"
-                    class="transition size-8 rounded-[var(--ui-radius)] object-cover border border-neutral-200 group-hover:scale-105 group-active:scale-100">
-                <p class="capitalize">{{ lang.name }}</p>
-                <UBadge size="sm" variant="soft">
-                    {{ lang.id }}
-                </UBadge>
-            </div>
-        </AppSegment>
-    </NuxtLink>
+    <AppSegment class="transition group hover:bg-neutral-100 active:bg-neutral-200">
+        <div class="flex gap-2 items-center">
+            <img :src="flagUrl" :alt="lang.id"
+                class="transition size-8 rounded-md object-cover border border-neutral-200 group-hover:scale-105 group-active:scale-100">
+            <p class="capitalize">{{ lang.name }}</p>
+            <UBadge size="sm" variant="soft">
+                {{ lang.id }}
+            </UBadge>
+        </div>
+    </AppSegment>
 </template>

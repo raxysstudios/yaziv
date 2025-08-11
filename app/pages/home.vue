@@ -6,11 +6,6 @@ const backLink = ref();
 onBeforeMount(() => {
   backLink.value = localStorage.getItem('lastUrl');
 });
-
-useSeoMeta({
-  title: `Yaziv`,
-  description: `Text converter for the languages of the Caucasus.`,
-})
 </script>
 
 <template>
@@ -26,5 +21,7 @@ useSeoMeta({
       </UTooltip>
     </ULink>
   </AppHeader>
-  <LanguageSegment v-for="l in allLangs" :key="l.id" :lang="l" />
+  <NuxtLink v-for="l in allLangs" :key="l.id" :to="`/${l.id}`">
+    <LanguageSegment :lang="l" />
+  </NuxtLink>
 </template>

@@ -83,7 +83,7 @@ useSeoMeta({
 </script>
 
 <template>
-    <AppHeader link="/menu" badge="[editor]" />
+    <AppHeader link="/home" badge="[editor]" />
     <AppSegment>
         <div class="flex flex-col gap-6 md:flex-row">
             <div class="flex-1 flex flex-col gap-1">
