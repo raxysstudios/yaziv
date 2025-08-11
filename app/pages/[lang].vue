@@ -21,11 +21,11 @@ onMounted(async () => {
 
   useSeoMeta({
     title: t('lang.seo.title', {
-      lang: langName
+      lang: tDict(langName, locale)
     }),
     description: t('lang.seo.description', {
-      lang: langName,
-      scripts: converter.value?.mappings.map(m => m.name).join(', '),
+      lang: tDict(langName, locale),
+      scripts: converter.value?.mappings.map(m => tDict(m.name, locale)).join(', '),
     }),
   });
 
