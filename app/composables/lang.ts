@@ -27,7 +27,7 @@ const allLangs = [
   },
   {
     id: "oss",
-    name: { en: "Ossetian", ru: "Осетинскй" },
+    name: { en: "Ossetian", ru: "Осетинский" },
     flag: "iron",
   },
   {

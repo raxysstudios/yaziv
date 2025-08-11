@@ -1,9 +1,5 @@
 {
   "iso": "agx",
-  "voice": {
-    "tts": true,
-    "asr": true
-  },
   "mappings": [
     {
       "name": "Cyrillic",

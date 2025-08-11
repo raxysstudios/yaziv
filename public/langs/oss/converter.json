@@ -1,13 +1,12 @@
 {
   "iso": "oss",
   "sample": "Цӕй ма, лӕппутӕ, бавналӕм,\nНӕ тыхтӕ иумӕ бавзарӕм!",
-  "voice": {
-    "tts": true,
-    "asr": true
-  },
   "mappings": [
     {
-      "name": "cyrillic",
+      "name": {
+        "en": "Cyrillic",
+        "ru": "Кириллица"
+      },
       "pairs": [
         [
           "хъ",
@@ -228,11 +227,17 @@
       ]
     },
     {
-      "name": "latin",
+      "name": {
+        "en": "Latin",
+        "ru": "Латиница"
+      },
       "pairs": []
     },
     {
-      "name": "georgian",
+      "name": {
+        "en": "Georgian",
+        "ru": "Грузинский"
+      },
       "pairs": [
         [
           "ა",
@@ -385,7 +390,10 @@
       ]
     },
     {
-      "name": "soviet latin",
+      "name": {
+        "en": "Soviet Latin",
+        "ru": "Советская латиница"
+      },
       "pairs": [
         [
           "ph",
@@ -430,7 +438,10 @@
       ]
     },
     {
-      "name": "english transcription",
+      "name": {
+        "en": "English transcription",
+        "ru": "Английская транскрипция"
+      },
       "pairs": [
         [
           "a",
@@ -479,7 +490,10 @@
       ]
     },
     {
-      "name": "IPA",
+      "name": {
+        "en": "IPA",
+        "ru": "МФА"
+      },
       "constraint": "to",
       "lowercase": true,
       "pairs": [
