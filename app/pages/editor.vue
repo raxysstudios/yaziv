@@ -76,9 +76,10 @@ function pairsToJson() {
     prompt('JSON array of the pairs:', json);
 }
 
+const { t } = useI18n();
 useSeoMeta({
-    title: $t('editor.seo.title'),
-    description: $t('editor.seo.description'),
+    title: t('editor.seo.title'),
+    description: t('editor.seo.description'),
 });
 </script>
 

@@ -7,11 +7,11 @@ onBeforeMount(() => {
   backLink.value = localStorage.getItem('lastUrl');
 });
 
-const { locales, setLocale } = useI18n()
+const { locales, setLocale, t } = useI18n();
 
 useSeoMeta({
-  title: $t('home.seo.title'),
-  description: $t('home.seo.description'),
+  title: t('home.seo.title'),
+  description: t('home.seo.description'),
 });
 </script>
 

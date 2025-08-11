@@ -8,6 +8,7 @@ import type { ConverterConfig } from '~/utils/types';
 
 const { langParam, langName } = useLang();
 const route = useRoute();
+const { t } = useI18n();
 
 onMounted(async () => {
   if (langName) {
@@ -19,10 +20,10 @@ onMounted(async () => {
   }
 
   useSeoMeta({
-    title: $t('lang.title', {
+    title: t('lang.seo.title', {
       lang: langName
     }),
-    description: $t('lang.description', {
+    description: t('lang.seo.description', {
       lang: langName,
       scripts: converter.value?.mappings.map(m => m.name).join(', '),
     }),

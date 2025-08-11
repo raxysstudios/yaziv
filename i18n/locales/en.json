@@ -10,7 +10,7 @@
     "lang": {
         "seo": {
             "title": "Yaziv ∙ {lang}",
-            "description": "Convert between ${lang} ${scripts} alphabets, transcriptions, scripts."
+            "description": "Convert between {lang} {scripts} alphabets, transcriptions, scripts."
         },
         "file": "Convert .txt file",
         "pairs": "Show conversion pairs"
