@@ -14,28 +14,26 @@ onMounted(async () => {
     await initConverter();
   }
   if (!converter.value) {
-    const lastUrl = localStorage.getItem('lastUrl');
-    navigateTo(lastUrl === route.fullPath ? '/home' : lastUrl);
     return;
   }
-  localStorage.setItem('lastUrl', route.fullPath)
 
   const scripts = converter.value?.mappings.map(m => m.name).join(', ');
   useSeoMeta({
     title: `Yaziv ∙ ${langName}`,
     description: `Convert between ${langName} ${scripts} alphabets, transcriptions, scripts.`,
   })
+
+  watch(() => route.fullPath, () => {
+    localStorage.setItem('lastUrl', route.fullPath);
+  }, {
+    immediate: true,
+  });
 });
 
-watch(() => route.fullPath, () => {
-  localStorage.setItem('lastUrl', route.fullPath);
-}, {
-  flush: 'post'
-});
 
 const converter = ref<ConverterConfig>();
-const from = ref(0);
-const to = ref(1);
+const from = queryState(ref(0), 'from');
+const to = queryState(ref(1), 'to');
 async function initConverter() {
   converter.value = await $fetch<ConverterConfig>(
     `/langs/${langParam}/converter.json`
@@ -47,8 +45,6 @@ async function initConverter() {
     return c;
   });
   if (!converter.value) return;
-  queryState(from, 'from', converter.value.default?.[0] ?? 0);
-  queryState(to, 'to', converter.value.default?.[1] ?? 1);
 }
 
 const mappings = computed(() => {
@@ -74,7 +70,7 @@ const placeholders = computed(() => {
   };
 });
 
-const input = queryState(ref(''), 'text', '');
+const input = queryState(ref(''), 'text');
 const MAX_INPUT = 2000;
 watch(input, (val) => {
   if (val.length > MAX_INPUT) {

@@ -1,8 +1,8 @@
 export default function queryState<T>(
     ref: Ref<T>,
     key: string,
-    fallback: T
 ) {
+    const fallback = ref.value;
     const router = useRouter();
     watch(router.currentRoute, (route) => {
         const value = route.query[key] as T ?? fallback;
