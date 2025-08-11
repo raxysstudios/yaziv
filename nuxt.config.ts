@@ -46,12 +46,12 @@ export default defineNuxtConfig({
     locales: [
       {
         code: 'en',
-        name: 'English',
+        name: 'Eng',
         file: 'en.json'
       },
       {
         code: 'ru',
-        name: 'Русский',
+        name: 'Рус',
         file: 'ru.json'
       }
     ]

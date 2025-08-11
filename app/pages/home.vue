@@ -7,7 +7,7 @@ onBeforeMount(() => {
   backLink.value = localStorage.getItem('lastUrl');
 });
 
-const { locales, setLocale, t } = useI18n();
+const { t } = useI18n();
 
 useSeoMeta({
   title: t('home.seo.title'),
@@ -28,18 +28,7 @@ useSeoMeta({
       </UTooltip>
     </NuxtLinkLocale>
     <USeparator orientation="vertical" class="h-4" />
-    <UPopover mode="hover">
-      <div class="flex items-center p-1.5">
-        <UIcon name="i-material-symbols-translate" class="size-5" />
-      </div>
-      <template #content>
-        <div class="flex flex-col p-1">
-          <UButton v-for="l in locales" @click="setLocale(l.code)">
-            {{ l.name }}
-          </UButton>
-        </div>
-      </template>
-    </UPopover>
+    <LocaleSwitch />
   </AppHeader>
   <NuxtLinkLocale v-for="l in allLangs" :key="l.id" :to="`/${l.id}`">
     <LanguageSegment :lang="l" />
