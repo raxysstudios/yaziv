@@ -2,10 +2,14 @@
 import useLang from '~/composables/lang';
 
 const { allLangs } = useLang();
+const backLink = ref();
+onBeforeMount(() => {
+  backLink.value = localStorage.getItem('lastUrl');
+});
 </script>
 
 <template>
-  <AppHeader link="/">
+  <AppHeader :link="backLink">
     <ULink to="/editor">
       <UTooltip :delay-duration="0" text="Open editor">
         <UButton icon="i-material-symbols-edit-square-outline" />
