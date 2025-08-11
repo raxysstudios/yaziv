@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Mapping } from '~/utils/types';
+import type { Mapping, Pairs } from '~/utils/types';
 import { chainConvert } from '~/utils/converter';
 
 const props = defineProps<{
@@ -8,7 +8,7 @@ const props = defineProps<{
 }>()
 
 const mergedPairs = computed(() => {
-    let pairs = [] as [string, string][];
+    let pairs = [] as Pairs;
     if (props.from?.pairs.length) {
         pairs = props.from.pairs.map(([a, b]) => [
             a,
