@@ -33,7 +33,7 @@ useSeoMeta({
         <UIcon name="i-material-symbols-translate" class="size-5" />
       </div>
       <template #content>
-        <div class="flex flex-col p-1.5">
+        <div class="flex flex-col p-1">
           <UButton v-for="l in locales" @click="setLocale(l.code)">
             {{ l.name }}
           </UButton>

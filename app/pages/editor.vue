@@ -87,11 +87,12 @@ useSeoMeta({
     <AppHeader link="/home" :badge="$t('editor.badge')" />
     <AppSegment>
         <div class="flex flex-col gap-6 md:flex-row">
-            <div class="flex-1 flex flex-col gap-1">
-                <label class="text-sm">{{ $t('editor.pairs') }}</label>
-                <UTextarea v-model="pairsInput" :placeholder="placeholders[0]" :rows="10" class="native"
-                    :ui="{ base: 'font-[Noto_Sans_Mono]!' }" />
-                <div class="flex gap-1">
+            <div class="flex-1 flex flex-col gap-2">
+                <Labeled :label="$t('editor.pairs_label')">
+                    <UTextarea v-model="pairsInput" :placeholder="placeholders[0]" :rows="12" class="native"
+                        :ui="{ base: 'font-[Noto_Sans_Mono]!' }" />
+                </Labeled>
+                <div class="flex gap-2">
                     <UButton @click="reverse" icon="i-material-symbols-swap-horiz" />
                     <div class="flex-1" />
                     <UButton size="sm" @click="pairsFromJson">
@@ -109,13 +110,15 @@ useSeoMeta({
                     </NuxtLink>
                 </div>
             </div>
-            <div class="flex-1 flex flex-col gap-1">
-                <label class="text-sm">{{ $t('editor.input') }}</label>
-                <UTextarea v-model="input" class="native" :maxlength="MAX_INPUT"
-                    :placeholder="pairsInput ? '' : placeholders[1]" />
-                <label class="text-sm">{{ $t('editor.output') }}</label>
-                <UTextarea :value="output" :placeholder="pairsInput ? '' : placeholders[2]" class="native"
-                    variant="subtle" readonly />
+            <div class="flex-1 flex flex-col gap-2">
+                <Labeled :label="$t('editor.input')">
+                    <UTextarea v-model="input" class="native" :maxlength="MAX_INPUT"
+                        :placeholder="pairsInput ? '' : placeholders[1]" :rows="6" />
+                </Labeled>
+                <Labeled :label="$t('editor.output')">
+                    <UTextarea :value="output" :placeholder="pairsInput ? '' : placeholders[2]" class="native"
+                        variant="subtle" readonly :rows="6" />
+                </Labeled>
             </div>
         </div>
     </AppSegment>

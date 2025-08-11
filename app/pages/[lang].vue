@@ -113,7 +113,7 @@ function reverse() {
 <template>
   <AppHeader link="/home" icon="i-material-symbols-menu" :badge="tName(langName, locale)" />
   <AppSegment v-if="converter">
-    <div class="flex top-bar gap-1">
+    <div class="flex top-bar gap-2">
       <USelect class="flex-1" v-model="from" :items="converter?.mappings" option-attribute="name" value-key="i"
         :content="{
           align: 'center',
