@@ -1,4 +1,4 @@
-export function tName(
+export function tDict(
     value: string | Record<string, string> | undefined,
     locale: Ref<string> | string,
 ) {

@@ -15,11 +15,11 @@ const flagUrl = computed(() => {
 </script>
 
 <template>
-    <AppSegment class="transition group hover:bg-neutral-100 active:bg-neutral-200">
+    <AppSegment class="transition hover:bg-neutral-100 active:bg-neutral-200">
         <div class="flex gap-2 items-center">
             <img :src="flagUrl" :alt="lang.id"
-                class="transition size-8 rounded-md object-cover border border-neutral-200 group-hover:scale-105 group-active:scale-100">
-            <p class="capitalize">{{ tName(lang.name, locale) }}</p>
+                class="transition size-8 rounded-md object-cover border border-neutral-200">
+            <p class="capitalize">{{ tDict(lang.name, locale) }}</p>
             <UBadge size="sm" variant="soft">
                 {{ lang.id }}
             </UBadge>

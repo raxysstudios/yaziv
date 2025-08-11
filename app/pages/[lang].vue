@@ -45,7 +45,7 @@ async function initConverter() {
   ).then((c) => {
     c.mappings.forEach((m, i) => {
       (<any>m).i = i;
-      (<any>m).label = tName(m.name, locale);
+      (<any>m).label = tDict(m.name, locale);
     });
     return c;
   });
@@ -111,7 +111,7 @@ function reverse() {
 </script>
 
 <template>
-  <AppHeader link="/home" icon="i-material-symbols-menu" :badge="tName(langName, locale)" />
+  <AppHeader link="/home" icon="i-material-symbols-menu" :badge="tDict(langName, locale)" />
   <AppSegment v-if="converter">
     <div class="flex top-bar gap-2">
       <USelect class="flex-1" v-model="from" :items="converter?.mappings" option-attribute="name" value-key="i"
