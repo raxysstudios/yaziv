@@ -14,6 +14,7 @@ onMounted(async () => {
     await initConverter();
   }
   if (!converter.value) {
+    navigateTo('/home');
     return;
   }
 
@@ -29,7 +30,6 @@ onMounted(async () => {
     immediate: true,
   });
 });
-
 
 const converter = ref<ConverterConfig>();
 const from = queryState(ref(0), 'from');
