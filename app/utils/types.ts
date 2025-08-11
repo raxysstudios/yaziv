@@ -1,6 +1,6 @@
 export type Lang = {
   id: string;
-  name: string;
+  name: Record<string, string>;
   flag?: string;
 };
 

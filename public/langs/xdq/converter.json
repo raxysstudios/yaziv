@@ -7,11 +7,17 @@
     ],
     "mappings": [
         {
-            "name": "Cyrillic",
+            "name": {
+                "en": "Cyrillic",
+                "ru": "Кириллица"
+            },
             "pairs": []
         },
         {
-            "name": "Soviet Cyrillic",
+            "name": {
+                "en": "Soviet Cyrillic",
+                "ru": "Советская кириллица"
+            },
             "pairs": [
                 [
                     " гӏя",
@@ -204,7 +210,10 @@
             ]
         },
         {
-            "name": "Phonemic /IPA/",
+            "name": {
+                "en": "Phonemic /IPA/",
+                "ru": "Фонемная /МФА/"
+            },
             "lowercase": true,
             "pairs": [
                 [
@@ -385,8 +394,11 @@
                 ]
             ]
         },
-                {
-            "name": "Latin",
+        {
+            "name": {
+                "en": "Latin",
+                "ru": "Латиница"
+            },
             "pairs": [
                 [
                     "a",

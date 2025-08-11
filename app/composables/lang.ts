@@ -3,43 +3,43 @@ import type { Lang } from "~/utils/types";
 const allLangs = [
   {
     id: "abq",
-    name: "Abaza",
+    name: { en: "Abaza", ru: "Абазинский" },
   },
   {
     id: "abk",
-    name: "Abkhaz",
+    name: { en: "Abkhaz", ru: "Абхазский" },
   },
   {
     id: "agx",
-    name: "Aghul",
+    name: { en: "Aghul", ru: "Агульский", },
   },
   {
     id: "xdq",
-    name: "Kaitag",
+    name: { en: "Kaitag", ru: "Кайтагский" },
   },
   {
     id: "kum",
-    name: "Kumyk",
+    name: { en: "Kumyk", ru: "Кумыкский" },
   },
   {
     id: "tkr",
-    name: "Tsakhur",
+    name: { en: "Tsakhur", ru: "Цахурский" },
   },
   {
     id: "oss",
-    name: "ossetian",
+    name: { en: "Ossetian", ru: "Осетинскй" },
     flag: "iron",
   },
   {
     id: "lez",
-    name: "Lezgi",
+    name: { en: "Lezgi", ru: "Лезгинский" },
   },
   {
     id: "kat",
-    name: "Georgian",
+    name: { en: "Georgian", ru: "Грузинский" },
   },
 ] as Lang[];
-allLangs.sort((a, b) => a.name.localeCompare(b.name));
+allLangs.sort((a, b) => a.name.en!.localeCompare(b.name.en!));
 
 export default function useLang() {
   const route = useRoute();

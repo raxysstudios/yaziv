@@ -5,9 +5,11 @@ const props = defineProps<{
     lang: Lang
 }>();
 
+const { locale } = useI18n();
+
 const flagUrl = computed(() => {
     const base = 'https://firebasestorage.googleapis.com/v0/b/avzagapp.appspot.com/o/flags%2F';
-    const flag = props.lang.flag ?? props.lang.name.toLowerCase();
+    const flag = props.lang.flag ?? props.lang.name.en!.toLowerCase();
     return `${base}${flag}.png?alt=media`;
 });
 </script>
@@ -17,7 +19,7 @@ const flagUrl = computed(() => {
         <div class="flex gap-2 items-center">
             <img :src="flagUrl" :alt="lang.id"
                 class="transition size-8 rounded-md object-cover border border-neutral-200 group-hover:scale-105 group-active:scale-100">
-            <p class="capitalize">{{ lang.name }}</p>
+            <p class="capitalize">{{ tName(lang.name, locale) }}</p>
             <UBadge size="sm" variant="soft">
                 {{ lang.id }}
             </UBadge>
