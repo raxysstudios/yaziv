@@ -28,9 +28,18 @@ useSeoMeta({
       </UTooltip>
     </NuxtLinkLocale>
     <USeparator orientation="vertical" class="h-4" />
-    <UButton v-for="l in locales" @click="setLocale(l.code)">
-      {{ l.short_name }}
-    </UButton>
+    <UPopover mode="hover">
+      <div class="flex items-center p-1.5">
+        <UIcon name="i-material-symbols-translate" class="size-5" />
+      </div>
+      <template #content>
+        <div class="flex flex-col p-1.5">
+          <UButton v-for="l in locales" @click="setLocale(l.code)">
+            {{ l.name }}
+          </UButton>
+        </div>
+      </template>
+    </UPopover>
   </AppHeader>
   <NuxtLinkLocale v-for="l in allLangs" :key="l.id" :to="`/${l.id}`">
     <LanguageSegment :lang="l" />

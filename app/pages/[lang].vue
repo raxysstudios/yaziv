@@ -19,14 +19,14 @@ onMounted(async () => {
   }
 
   useSeoMeta({
-    title: $t('file_upload', {
+    title: $t('lang.title', {
       lang: langName
     }),
-    description: $t('file_upload', {
+    description: $t('lang.description', {
       lang: langName,
       scripts: converter.value?.mappings.map(m => m.name).join(', '),
     }),
-  })
+  });
 
   watch(() => route.fullPath, () => {
     localStorage.setItem('lastUrl', route.fullPath);
