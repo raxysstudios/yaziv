@@ -11,7 +11,7 @@ const nextLocale = computed(() => {
 </script>
 
 <template>
-    <UButton v-if="nextLocale" icon="i-material-symbols-translate" @click="setLocale(nextLocale.code)">
+    <UButton v-if="nextLocale" @click="setLocale(nextLocale.code)">
         {{ nextLocale.name }}
     </UButton>
 </template>
