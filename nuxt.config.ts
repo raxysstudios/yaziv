@@ -19,6 +19,20 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en',
       },
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/png',
+          href: '/favicon.png',
+          media: '(prefers-color-scheme: light)'
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          href: '/favicon-dark.png',
+          media: '(prefers-color-scheme: dark)'
+        }
+      ],
       meta: [
         {
           name: 'description',
