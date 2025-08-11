@@ -113,7 +113,7 @@ function reverse() {
 <template>
   <AppHeader link="/home" icon="i-material-symbols-menu" :badge="tDict(langName, locale)" />
   <AppSegment v-if="converter">
-    <div class="flex top-bar gap-2">
+    <div class="flex top-bar gap-3">
       <USelect class="flex-1" v-model="from" :items="converter?.mappings" option-attribute="name" value-key="i"
         :content="{
           align: 'center',
@@ -121,7 +121,7 @@ function reverse() {
         }" />
       <div>
         <UButton icon="i-material-symbols-swap-horiz" variant="subtle"
-          class="transition hover:scale-105 active:scale-100 rounded-full" size="xl" @click="reverse" />
+          class="transition hover:scale-105 active:scale-100 rounded-full" size="lg" @click="reverse" />
       </div>
       <USelect class="flex-1" v-model="to" :items="converter?.mappings" option-attribute="name" value-key="i" :content="{
         align: 'center',

@@ -26,7 +26,7 @@ export default defineAppConfig({
     select: {
       slots: {
         base: [
-          "justify-center font-medium capitalize cursor-pointer! pe-0!",
+          "justify-center font-medium capitalize cursor-pointer! pe-2.5!",
           "hover:bg-neutral-100 active:bg-neutral-200"
         ],
         trailing: 'hidden',
