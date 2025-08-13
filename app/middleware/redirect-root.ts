@@ -5,5 +5,4 @@ export default defineNuxtRouteMiddleware((to) => {
     if (lastUrl && lastUrl !== '/') {
         return navigateTo(lastUrl);
     }
-    return navigateTo('/home');
 });
