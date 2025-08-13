@@ -18,6 +18,8 @@ defineProps<{
             </UBadge>
             <div class="flex-1" />
             <slot />
+            <USeparator v-if="$slots.default" orientation="vertical" size="sm" class="h-4" />
+            <LocaleSwitch />
         </div>
     </AppSegment>
     <USeparator class="w-full" />

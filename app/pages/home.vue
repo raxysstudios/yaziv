@@ -27,8 +27,6 @@ useSeoMeta({
         <UButton icon="i-material-symbols-code" />
       </UTooltip>
     </NuxtLinkLocale>
-    <USeparator orientation="vertical" class="h-4" />
-    <LocaleSwitch />
   </AppHeader>
   <NuxtLinkLocale v-for="l in allLangs" :key="l.id" :to="`/${l.id}`">
     <LanguageSegment :lang="l" />
