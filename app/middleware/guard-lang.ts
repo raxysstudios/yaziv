@@ -3,6 +3,8 @@ export default defineNuxtRouteMiddleware((to) => {
     const langName = allLangs.find((l) => l.id === lang)?.name;
 
     if (!langName) {
-        return navigateTo('/home');
+        throw createError({
+            statusCode: 404,
+        });
     }
 });
