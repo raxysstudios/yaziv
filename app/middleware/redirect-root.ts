@@ -1,7 +1,7 @@
 export default defineNuxtRouteMiddleware((to) => {
     if (!import.meta.client) return;
 
-    const lastUrl = localStorage.getItem('lastUrl');
+    let lastUrl = localStorage.getItem('lastUrl');
     if (lastUrl && lastUrl !== '/') {
         // Temporary fix to migrate from old saves
         if (lastUrl.endsWith('/')) {
