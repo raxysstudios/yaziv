@@ -13,6 +13,11 @@ export default defineNuxtConfig({
     },
     serverBundle: 'local',
   },
+  router: {
+    options: {
+      strict: true
+    }
+  },
   app: {
     head: {
       title: 'Yaziv',
