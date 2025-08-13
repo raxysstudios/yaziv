@@ -1,56 +1,46 @@
 <script setup lang="ts">
-import useLang from '~/composables/lang';
+import { getLangById } from '~/composables/lang';
 import queryState from '~/composables/url-query';
 
 import { chainConvert } from '~/utils/converter';
 import { processFile } from '~/utils/file-manager';
 import type { ConverterConfig } from '~/utils/types';
 
-const { langParam, langName } = useLang();
-const route = useRoute();
-const { t, locale } = useI18n();
+definePageMeta({
+  middleware: 'guard-lang'
+});
 
-onMounted(async () => {
-  if (langName) {
-    await initConverter();
-  }
-  if (!converter.value) {
-    navigateTo('/home');
-    return;
-  }
-
-  useSeoMeta({
-    title: t('lang.seo.title', {
-      lang: tDict(langName, locale)
-    }),
-    description: t('lang.seo.description', {
-      lang: tDict(langName, locale),
-      scripts: converter.value?.mappings.map(m => tDict(m.name, locale)).join(', '),
-    }),
-  });
-
-  watch(() => route.fullPath, () => {
-    localStorage.setItem('lastUrl', route.fullPath);
-  }, {
-    immediate: true,
-  });
+const router = useRouter();
+const langId = computed(() => {
+  return router.currentRoute.value.params.lang as string;
 });
 
 const converter = ref<ConverterConfig>();
+onMounted(async () => {
+  console.log('HEYYY');
+  converter.value = await $fetch<ConverterConfig>(
+    `/langs/${langId.value}/converter.json`
+  );
+  converter.value.mappings.forEach((m, i) => {
+    (<any>m).i = i;
+    (<any>m).label = tDict(m.name, locale);
+  });
+})
+
+
 const from = queryState(ref(0), 'from');
 const to = queryState(ref(1), 'to');
-async function initConverter() {
-  converter.value = await $fetch<ConverterConfig>(
-    `/langs/${langParam}/converter.json`
-  ).then((c) => {
-    c.mappings.forEach((m, i) => {
-      (<any>m).i = i;
-      (<any>m).label = tDict(m.name, locale);
-    });
-    return c;
-  });
-  if (!converter.value) return;
-}
+watch([from, to], ([from, to]) => {
+  const route = router.currentRoute.value;
+  const url = router.resolve({
+    path: route.path,
+    query: { from, to },
+  }).fullPath;
+
+  useCookie('lastUrl').value = url;
+}, {
+  immediate: true
+});
 
 const mappings = computed(() => {
   const all = converter.value?.mappings ?? [];
@@ -108,10 +98,26 @@ function reverse() {
     }
   })
 }
+
+const { t, locale } = useI18n();
+const langName = computed(() => {
+  const lang = getLangById(langId.value);
+  return tDict(lang?.name, locale.value);
+});
+useSeoMeta({
+  title: t('lang.seo.title', {
+    lang: langName.value,
+  }),
+  description: t('lang.seo.description', {
+    lang: langName.value,
+    scripts: converter.value?.mappings
+      .map(m => tDict(m.name, locale.value)).join(', '),
+  }),
+});
 </script>
 
 <template>
-  <AppHeader link="/home" icon="i-material-symbols-menu" :badge="tDict(langName, locale)" />
+  <AppHeader link="/home" icon="i-material-symbols-menu" :badge="langName" />
   <AppSegment v-if="converter">
     <div class="flex top-bar gap-3">
       <USelect class="flex-1" v-model="from" :items="converter?.mappings" option-attribute="name" value-key="i"

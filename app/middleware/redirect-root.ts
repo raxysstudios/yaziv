@@ -1,8 +1,6 @@
-export default defineNuxtRouteMiddleware((to) => {
-    if (!import.meta.client) return;
-
-    const lastUrl = localStorage.getItem('lastUrl');
-    if (lastUrl && lastUrl !== '/') {
+export default defineNuxtRouteMiddleware(() => {
+    const lastUrl = useCookie('lastUrl').value;
+    if (lastUrl && lastUrl != '/') {
         return navigateTo(lastUrl);
     }
 });

@@ -1,6 +1,6 @@
 import type { Lang } from "~/utils/types";
 
-const allLangs = [
+export const allLangs = [
   {
     id: "abq",
     name: { en: "Abaza", ru: "Абазинский" },
@@ -41,14 +41,6 @@ const allLangs = [
 ] as Lang[];
 allLangs.sort((a, b) => a.name.en!.localeCompare(b.name.en!));
 
-export default function useLang() {
-  const route = useRoute();
-
-  const langParam = route.params.lang;
-  const langName = allLangs.find((l) => l.id === langParam)?.name;
-
-  if (langName) {
-    return { langParam, langName, allLangs };
-  }
-  return { allLangs };
+export function getLangById(iso: string) {
+  return allLangs.find((l) => l.id === iso);
 }
