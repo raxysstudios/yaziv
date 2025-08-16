@@ -17,12 +17,19 @@ const langId = computed(() => {
   return router.currentRoute.value.params.lang as string;
 });
 
-const converter = ref<ConverterConfig>();
-converter.value = await import(`~/data/langs/${langId.value}/converter.json`);
-converter.value?.mappings.forEach((m, i) => {
-  (<any>m).i = i;
-  (<any>m).label = tDict(m.name, locale);
-});
+const { data: converter } = await useAsyncData(
+  `lang-${langId.value}`,
+  async () => {
+    const data: ConverterConfig = await import(
+      `~/data/langs/${langId.value}/converter.json`
+    );
+    data.mappings.forEach((m, i) => {
+      (<any>m).i = i;
+      (<any>m).label = tDict(m.name, locale);
+    });
+    return data;
+  }
+);
 
 const from = queryState(ref(0), 'from');
 const to = queryState(ref(1), 'to');
