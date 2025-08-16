@@ -121,15 +121,16 @@ useSeoMeta({
 <template>
   <AppHeader link="/home" icon="i-material-symbols-menu" :badge="langName" />
   <AppSegment v-if="converter">
-    <div class="flex top-bar gap-3">
+    <div class="flex gap-3">
       <USelect class="flex-1" v-model="from" :items="converter?.mappings" option-attribute="name" value-key="i"
         :content="{
           align: 'center',
           side: 'bottom'
         }" />
-      <div>
+      <div class="relative">
         <UButton icon="i-material-symbols-swap-horiz" variant="subtle"
-          class="transition hover:scale-105 active:scale-100 rounded-full" size="lg" @click="reverse" />
+          class=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 hover:scale-105 active:scale-100 rounded-full"
+          size="lg" @click="reverse" />
       </div>
       <USelect class="flex-1" v-model="to" :items="converter?.mappings" option-attribute="name" value-key="i" :content="{
         align: 'center',
@@ -172,16 +173,3 @@ useSeoMeta({
     </div>
   </AppSegment>
 </template>
-
-<style>
-.top-bar {
-
-  > :nth-child(2) {
-    @apply relative;
-
-    > :only-child {
-      @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10;
-    }
-  }
-}
-</style>
