@@ -1,4 +1,4 @@
-import { getLangById } from '~/data/langs';
+import { getLangById } from '~/utils/langs';
 
 export default defineNuxtRouteMiddleware((to) => {
     const langId = to.params.lang as string;

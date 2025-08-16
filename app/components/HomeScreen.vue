@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { langs } from '~/data/langs';
+import { langs } from '~/utils/langs';
 
 const lastUrl = useCookie('lastUrl');
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getLangById } from '~/data/langs';
+import { getLangById } from '~/utils/langs';
 import queryState from '~/utils/url-query';
 
 import { chainConvert } from '~/utils/converter';
