@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { allLangs } from '~/composables/lang';
+import { langs } from '~/data/langs';
 
 const lastUrl = useCookie('lastUrl');
 
@@ -18,7 +18,7 @@ useSeoMeta({
             </UTooltip>
         </NuxtLinkLocale>
     </AppHeader>
-    <NuxtLinkLocale v-for="l in allLangs" :key="l.id" :to="`/${l.id}`">
+    <NuxtLinkLocale v-for="l in langs" :key="l.id" :to="`/${l.id}`">
         <LanguageSegment :lang="l" />
     </NuxtLinkLocale>
     <AppSegment>

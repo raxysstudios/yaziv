@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { getLangById } from '~/composables/lang';
-import queryState from '~/composables/url-query';
+import { getLangById } from '~/data/langs';
+import queryState from '~/utils/url-query';
 
 import { chainConvert } from '~/utils/converter';
 import { processFile } from '~/utils/file-manager';
@@ -10,23 +10,19 @@ definePageMeta({
   middleware: 'guard-lang'
 });
 
+const { t, locale } = useI18n();
+
 const router = useRouter();
 const langId = computed(() => {
   return router.currentRoute.value.params.lang as string;
 });
 
 const converter = ref<ConverterConfig>();
-onMounted(async () => {
-  console.log('HEYYY');
-  converter.value = await $fetch<ConverterConfig>(
-    `/langs/${langId.value}/converter.json`
-  );
-  converter.value.mappings.forEach((m, i) => {
-    (<any>m).i = i;
-    (<any>m).label = tDict(m.name, locale);
-  });
-})
-
+converter.value = await import(`~/data/langs/${langId.value}/converter.json`);
+converter.value?.mappings.forEach((m, i) => {
+  (<any>m).i = i;
+  (<any>m).label = tDict(m.name, locale);
+});
 
 const from = queryState(ref(0), 'from');
 const to = queryState(ref(1), 'to');
@@ -99,7 +95,6 @@ function reverse() {
   })
 }
 
-const { t, locale } = useI18n();
 const langName = computed(() => {
   const lang = getLangById(langId.value);
   return tDict(lang?.name, locale.value);
