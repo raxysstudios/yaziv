@@ -1,4 +1,4 @@
-import type { Pairs } from "./types";
+import type { Pairs, Mapping } from "./types";
 
 export function convert(text: string, pairs: Pairs) {
   text = " " + text.replace(/\n/g, "\n ").trim();

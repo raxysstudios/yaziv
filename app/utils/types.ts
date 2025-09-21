@@ -7,16 +7,17 @@ export type Lang = {
 export type Pairs = [string, string][];
 
 export type Mapping = {
-  name: string;
+  id: string;
+  name: Record<string, string>;
   constraint?: "to" | "from";
   rtl?: boolean;
   lowercase?: boolean;
   pairs: Pairs;
 };
 
-export type ConverterConfig = {
+export type LanguageConfig = {
   iso: string;
   sample?: string;
-  default?: [number, number];
-  mappings: Mapping[];
+  default?: [string, string];
+  mappings: string[];
 };

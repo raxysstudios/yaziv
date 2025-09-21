@@ -1,3 +1,6 @@
+import type { Mapping } from "./types";
+import { chainConvert } from "./converter";
+
 let a: HTMLAnchorElement;
 export function downloadFile(content: string, filename: string) {
   a ??= document.createElement("a");
