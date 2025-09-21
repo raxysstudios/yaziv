@@ -18,8 +18,8 @@ const {
   getMappingById
 } = await useLangConverter(langId.value);
 
-const from = queryState(ref(langConfig.value!.defaultPair[0]), 'from');
-const to = queryState(ref(langConfig.value!.defaultPair[1]), 'to');
+const from = queryState(ref(langConfig.value?.defaultPair[0] || ''), 'from');
+const to = queryState(ref(langConfig.value?.defaultPair[1] || ''), 'to');
 
 watch([from, to], ([from, to]) => {
   const route = router.currentRoute.value;
@@ -48,7 +48,7 @@ const output = computed(() => chainConvert(
 ));
 
 const placeholders = computed(() => {
-  const defaultFromMapping = getMappingById(langConfig.value!.defaultPair[0]);
+  const defaultFromMapping = getMappingById(langConfig.value?.defaultPair[0] || '');
 const sample = langConfig.value?.sample ?? '';
   const convertedSample = chainConvert(sample, defaultFromMapping, undefined);
 

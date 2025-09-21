@@ -3,7 +3,7 @@
   "sample": "Цигле бил ҳарра ниҳол ьел биранда.",
   "defaultPair": [
     "cyr",
-    "sov"
+    "cyr_soviet"
   ],
   "mappings": [
     "cyr",
