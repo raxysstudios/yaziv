@@ -1,7 +1,7 @@
 {
   "iso": "xdq",
   "sample": "Цигле бил ҳарра ниҳол ьел биранда.",
-  "default": [
+  "defaultPair": [
     "cyr",
     "sov"
   ],

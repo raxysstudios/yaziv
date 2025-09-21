@@ -1,7 +1,7 @@
 {
   "iso": "abq",
   "sample": "Бызшва йъау зымгӏва удырында — зквла йгьынкъвугум.",
-  "default": [
+  "defaultPair": [
     "cyr",
     "lat_chirikba"
   ],

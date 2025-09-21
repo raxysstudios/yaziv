@@ -1,7 +1,7 @@
 {
   "iso": "kat",
   "sample": "ⴈⴗⴍ ⴃⴀ ⴀⴐⴀ ⴈⴗⴍ ⴐⴀ, ⴖⴅⴇⴈⴑ ⴓⴉⴄⴇⴄⴑⴈ ⴐⴀ ⴈⴕⴌⴄⴁⴍⴃⴀ",
-  "default": [
+  "defaultPair": [
     "transcription__national_",
     "nuskhuri"
   ],

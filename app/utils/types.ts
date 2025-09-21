@@ -18,6 +18,6 @@ export type Mapping = {
 export type LanguageConfig = {
   iso: string;
   sample?: string;
-  default?: [string, string];
+  defaultPair: [string, string];
   mappings: string[];
 };

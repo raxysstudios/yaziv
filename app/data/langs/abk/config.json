@@ -1,7 +1,7 @@
 {
   "iso": "abk",
   "sample": "Дасу идгьыл иара изын и-Аԥсынроуп!",
-  "default": [
+  "defaultPair": [
     "cyr",
     "lat_chirikba"
   ],
