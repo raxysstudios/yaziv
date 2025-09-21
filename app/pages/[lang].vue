@@ -16,7 +16,7 @@ const {
   langConfig,
   mappings,
   getMappingById
-} = await useLangConverter(langId.value);
+} = useLangConverter(langId);
 
 const from = queryState(ref(langConfig.value?.defaultPair[0] || ''), 'from');
 const to = queryState(ref(langConfig.value?.defaultPair[1] || ''), 'to');

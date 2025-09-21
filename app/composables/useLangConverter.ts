@@ -1,26 +1,21 @@
 import type { LanguageConfig, Mapping } from '~/utils/types';
 
-export async function useLangConverter(langId: string) {
-  const { locale } = useI18n();
-
-  // Load both config and mappings in a single useAsyncData call
-  const { data } = await useAsyncData(
-    `lang-data-${langId}`,
+export function useLangConverter(langId: Ref<string>) {
+  const { data } = useAsyncData(
+    `lang-data-${langId.value}`,
     async () => {
-      // Load config first
-      const langConfig = await import(`~/data/langs/${langId}/config.json`) as LanguageConfig;
+      const langConfig = await import(`~/data/langs/${langId.value}/config.json`) as LanguageConfig;
 
-      // Then load mappings based on config
       const mappings: Mapping[] = [];
       for (const mappingId of langConfig.mappings) {
-        let mapping = await import(`~/data/langs/${langId}/mappings/${mappingId}.json`);
-        mapping.label = tDict(mapping.name, locale);
+        const mapping = await import(`~/data/langs/${langId.value}/mappings/${mappingId}.json`);
         mappings.push(mapping);
       }
 
       return { langConfig, mappings };
-    }
-  );
+    }, {
+    watch: [langId]
+  });
 
   const langConfig = computed(() => data.value?.langConfig);
   const mappings = computed(() => data.value?.mappings);
