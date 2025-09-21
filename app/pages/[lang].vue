@@ -89,7 +89,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <AppHeader link="/home" icon="i-material-symbols-menu" :badge="langName" />
+  <AppHeader link="/home" icon="i-material-symbols-menu-rounded" :badge="langName" />
   <AppSegment v-if="langConfig && mappings">
     <ConverterControls v-model:from="from" v-model:to="to" :mappings="mappings" @reverse="reverse" />
 

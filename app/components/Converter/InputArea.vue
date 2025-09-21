@@ -41,12 +41,12 @@ function handleFileUpload() {
       :dir="mapping?.rtl ? 'rtl' : 'auto'" />
 
     <template #v-bar>
-      <UButton v-if="inputModel.length" icon="i-material-symbols-close" @click="clearInput" />
+      <UButton v-if="inputModel.length" icon="i-material-symbols-close-rounded" @click="clearInput" />
     </template>
 
     <template #h-bar>
       <UTooltip :delay-duration="0" :text="t('lang.file')">
-        <UButton icon="i-material-symbols-upload-file-outline" @click="handleFileUpload" />
+        <UButton icon="i-material-symbols-upload-file-rounded" @click="handleFileUpload" />
       </UTooltip>
 
       <div class="flex-1" />
