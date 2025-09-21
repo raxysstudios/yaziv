@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { getLangById } from '~/utils/langs';
 import queryState from '~/utils/url-query';
+import type { LanguageConfig, Mapping } from '~/utils/types';
 
 import { chainConvert } from '~/utils/converter';
 import { processFile } from '~/utils/file-manager';
-import type { ConverterConfig } from '~/utils/types';
 
 definePageMeta({
   middleware: 'guard-lang'
@@ -12,27 +12,58 @@ definePageMeta({
 
 const { t, locale } = useI18n();
 
+// === DATA LOADING ===
 const router = useRouter();
-const langId = computed(() => {
-  return router.currentRoute.value.params.lang as string;
-});
+const langId = computed(() => router.currentRoute.value.params.lang as string);
 
-const { data: converter } = await useAsyncData(
-  `lang-${langId.value}`,
+// Load language configuration
+const { data: langConfig } = await useAsyncData(
+  `lang-config-${langId.value}`,
+  () => import(`~/data/langs/${langId.value}/config.json`) as Promise<LanguageConfig>
+);
+
+// Load mappings with localized labels
+const { data: mappings } = await useAsyncData(
+  `lang-mappings-${langId.value}`,
   async () => {
-    const data: ConverterConfig = await import(
-      `~/data/langs/${langId.value}/converter.json`
-    );
-    data.mappings.forEach((m, i) => {
-      (<any>m).i = i;
-      (<any>m).label = tDict(m.name, locale);
-    });
-    return data;
+    if (!langConfig.value) return [];
+
+    const mappings: Mapping[] = [];
+    for (const mappingId of langConfig.value.mappings) {
+      let mapping = await import(`~/data/langs/${langId.value}/mappings/${mappingId}.json`);
+
+      (<any>mapping).label = tDict(mapping.name, locale);
+      mappings.push(mapping);
+    }
+    return mappings;
   }
 );
 
-const from = queryState(ref(0), 'from');
-const to = queryState(ref(1), 'to');
+// === MAPPING SELECTION ===
+const getMappingById = (id: string) => {
+  return mappings.value?.find(m => m.id === id) || mappings.value?.[0];
+};
+
+const getDefaultFromId = () => {
+  const defaultIds = langConfig.value?.default;
+  return defaultIds?.[0] || mappings.value?.[0]?.id || '';
+};
+
+const getDefaultToId = () => {
+  const defaultIds = langConfig.value?.default;
+  return defaultIds?.[1] || mappings.value?.[1]?.id || mappings.value?.[0]?.id || '';
+};
+
+const from = queryState(ref(getDefaultFromId()), 'from');
+const to = queryState(ref(getDefaultToId()), 'to');
+
+// Update defaults when data loads
+watch([langConfig, mappings], () => {
+  if (!from.value) from.value = getDefaultFromId();
+  if (!to.value) to.value = getDefaultToId();
+}, { immediate: true });
+
+// === URL STATE MANAGEMENT ===
 watch([from, to], ([from, to]) => {
   const route = router.currentRoute.value;
   const url = router.resolve({
@@ -45,26 +76,28 @@ watch([from, to], ([from, to]) => {
   immediate: true
 });
 
-const mappings = computed(() => {
-  const all = converter.value?.mappings ?? [];
+// === COMPUTED VALUES ===
+const selectedMappings = computed(() => {
+  const all = mappings.value ?? [];
   return {
     all,
-    from: all[from.value],
-    to: all[to.value]
+    from: getMappingById(from.value),
+    to: getMappingById(to.value)
   };
-}
-);
+});
+
 const showPairs = ref(false);
 
 const placeholders = computed(() => {
+  const defaultFromMapping = getMappingById(getDefaultFromId());
   const sample = chainConvert(
-    converter.value?.sample ?? '',
-    mappings.value.all[converter.value?.default?.[0] ?? 0],
+    langConfig.value?.sample ?? '',
+    defaultFromMapping,
     undefined
   );
   return {
-    from: chainConvert(sample, undefined, mappings.value.from),
-    to: chainConvert(sample, undefined, mappings.value.to)
+    from: chainConvert(sample, undefined, selectedMappings.value.from),
+    to: chainConvert(sample, undefined, selectedMappings.value.to)
   };
 });
 
@@ -80,10 +113,11 @@ watch(input, (val) => {
 
 const output = computed(() => chainConvert(
   input.value,
-  mappings.value.from,
-  mappings.value.to,
+  selectedMappings.value.from,
+  selectedMappings.value.to,
 ));
 
+// === ACTIONS ===
 function copyToClipboard() {
   navigator.clipboard.writeText(output.value);
 }
@@ -102,27 +136,29 @@ function reverse() {
   })
 }
 
+// === SEO ===
 const langName = computed(() => {
   const lang = getLangById(langId.value);
   return tDict(lang?.name, locale.value);
 });
+
 useSeoMeta({
   title: t('lang.seo.title', {
     lang: langName.value,
   }),
   description: t('lang.seo.description', {
     lang: langName.value,
-    scripts: converter.value?.mappings
-      .map(m => tDict(m.name, locale.value)).join(', '),
+    scripts: mappings.value
+      ?.map(m => tDict(m.name, locale.value)).join(', ') || '',
   }),
 });
 </script>
 
 <template>
   <AppHeader link="/home" icon="i-material-symbols-menu" :badge="langName" />
-  <AppSegment v-if="converter">
+  <AppSegment v-if="langConfig && mappings">
     <div class="flex gap-3">
-      <USelect class="flex-1" v-model="from" :items="converter?.mappings" option-attribute="name" value-key="i"
+      <USelect class="flex-1" v-model="from" :items="mappings" option-attribute="label" value-key="id"
         :content="{
           align: 'center',
           side: 'bottom'
@@ -132,7 +168,7 @@ useSeoMeta({
           class=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 hover:scale-105 active:scale-100 rounded-full"
           size="lg" @click="reverse" />
       </div>
-      <USelect class="flex-1" v-model="to" :items="converter?.mappings" option-attribute="name" value-key="i" :content="{
+      <USelect class="flex-1" v-model="to" :items="mappings" option-attribute="label" value-key="id" :content="{
         align: 'center',
         side: 'bottom'
       }" />
@@ -140,13 +176,13 @@ useSeoMeta({
     <div class="flex flex-col gap-2 md:flex-row">
       <TextToolbarArea class="flex-1">
         <UTextarea class="flex-1 native" v-model="input" autoresize variant="none" size="xl"
-          :placeholder="placeholders.from" :dir="mappings.from?.rtl ? 'rtl' : 'auto'" />
+          :placeholder="placeholders.from" :dir="selectedMappings.from?.rtl ? 'rtl' : 'auto'" />
         <template #v-bar>
           <UButton v-if="input.length" icon="i-material-symbols-close" @click="input = ''" />
         </template>
         <template #h-bar>
           <UTooltip :delay-duration="0" :text="$t('lang.file')">
-            <UButton icon="i-material-symbols-upload-file-outline" @click="processFile(mappings.from, mappings.to)" />
+            <UButton icon="i-material-symbols-upload-file-outline" @click="processFile(selectedMappings.from, selectedMappings.to)" />
           </UTooltip>
           <div class="flex-1" />
           <span v-if="MAX_INPUT - input.length < 100" class="text-xs opacity-50">
@@ -156,7 +192,7 @@ useSeoMeta({
       </TextToolbarArea>
       <TextToolbarArea class="bg-gray-50 flex-1">
         <UTextarea class="flex-1 native" v-model="output" autoresize readonly size="xl" variant="none"
-          :placeholder="placeholders.to" :dir="mappings.to?.rtl ? 'rtl' : 'auto'" />
+          :placeholder="placeholders.to" :dir="selectedMappings.to?.rtl ? 'rtl' : 'auto'" />
         <template #v-bar>
           <UButton v-if="input.length" icon="i-material-symbols-content-copy-outline" @click="copyToClipboard" />
         </template>
@@ -169,7 +205,7 @@ useSeoMeta({
       </TextToolbarArea>
     </div>
     <div class="flex flex-row justify-center my-2">
-      <PairsList v-if="showPairs" :from="mappings.from" :to="mappings.to" class="sm:w-2/3" />
+      <PairsList v-if="showPairs" :from="selectedMappings.from" :to="selectedMappings.to" class="sm:w-2/3" />
     </div>
   </AppSegment>
 </template>
