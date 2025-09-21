@@ -102,7 +102,7 @@ useSeoMeta({
                         {{ $t('editor.to_json') }}
                     </UButton>
                     <NuxtLink
-                        to="https://github.com/raxysstudios/yaziv/blob/6e739e7f83f7328c0b9cf089a59e28cff3e1a20e/public/langs/xdq/converter.json#L15C22-L204C14"
+                        to="https://github.com/raxysstudios/yaziv/blob/49fdc2d6eb505c2ae83827455fc2270b528f29d8/app/data/langs/xdq/mappings/ipa.json#L8C12-L185C4"
                         target="_blank">
                         <UTooltip :delay-duration="0" :text="$t('editor.example')">
                             <UButton icon="i-material-symbols-open-in-new-rounded" />
