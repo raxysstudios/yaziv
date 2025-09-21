@@ -87,10 +87,11 @@ export function useTextConverter(langId: Ref<string>) {
   }
 
   function reverse() {
-    const temp = state.inputMappingId;
+    const tempOutput = output.value;
+    const tempInputId = state.inputMappingId;
     state.inputMappingId = state.outputMappingId;
-    state.outputMappingId = temp;
-    state.input = output.value;
+    state.outputMappingId = tempInputId;
+    state.input = tempOutput;
   };
 
   function convert(text: string) {
