@@ -1,75 +1,233 @@
-# Nuxt 3 Minimal Starter
+# Yaziv - Script Conversion Tool
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A web application for converting text between different writing systems and transliteration schemes. Built with Nuxt 3 and optimized for Caucasian and regional languages.
 
-## Setup
+## 🌍 Supported Languages
 
-Make sure to install the dependencies:
+Currently supports **9 languages** with multiple writing systems:
+- **Abaza** (abq) - Cyrillic, Latin (Chirikba), IPA, Transliteration
+- **Abkhaz** (abk) - Cyrillic, Latin, IPA, Transliteration
+- **Aghul** (agx) - Cyrillic, Latin
+- **Georgian** (kat) - Georgian scripts, Transcription, IPA
+- **Kumyk** (kum) - Cyrillic, Latin, Ajam (Arabic)
+- **Kaitag** (xdq) - Cyrillic, Latin, IPA
+- **Lezgi** (lez) - Cyrillic, Latin variants
+- **Ossetian** (oss) - Cyrillic, Latin, Georgian, IPA
+- **Tsakhur** (tkr) - Cyrillic, Latin
+
+## 🤝 Contributing New Languages
+
+We welcome contributions of new languages and writing systems! Here's how to add support for a new language:
+
+### 1. Language Structure
+
+Each language needs two files in `/app/data/langs/[language-id]/`:
+
+```
+app/data/langs/
+├── [lang-id]/
+│   ├── config.json          # Language configuration
+│   └── mappings/
+│       ├── script1.json     # Writing system 1
+│       ├── script2.json     # Writing system 2
+│       └── ...
+└── langs.json               # Language registry
+```
+
+### 2. Language Configuration (`config.json`)
+
+```json
+{
+  "iso": "xyz",                           // ISO 639-3 language code
+  "sample": "Sample text in the language",
+  "defaultPair": ["script1", "script2"],   // Default conversion pair
+  "mappings": [                           // Available writing systems
+    "script1",
+    "script2",
+    "ipa"
+  ]
+}
+```
+
+### 3. Mapping Files (`mappings/[script].json`)
+
+Each mapping file defines a writing system:
+
+```json
+{
+  "id": "latin",
+  "name": {
+    "en": "Latin",
+    "ru": "Латиница"
+  },
+  "constraint": "from",       // Optional: "from", "to", or omit
+  "rtl": false,               // Optional: right-to-left direction
+  "lowercase": false,         // Optional: apply lowercase before conversion
+  "pairs": [
+    ["ä", "а"],               // [from, to] character mappings
+    ["ch", "ч"],              // Longer patterns first (digraphs)
+    ["c", "ц"],               // Then shorter patterns
+    ["a", "а"]
+  ]
+}
+```
+
+### 4. Character Mapping Rules
+
+**Critical:** Order matters! Arrange pairs by length (longest first):
+
+```json
+"pairs": [
+  // ✅ Correct order (longest first)
+  ["sch", "щ"],     // 3 characters
+  ["ch", "ч"],      // 2 characters
+  ["sh", "ш"],      // 2 characters
+  ["s", "с"],       // 1 character
+  ["c", "ц"],       // 1 character
+
+  // ❌ Wrong order (would break conversion)
+  ["c", "ц"],       // This would match before "ch"
+  ["ch", "ч"]       // This would never match
+]
+```
+
+### 5. Add to Language Registry
+
+Add your language to `/app/data/langs.json`:
+
+```json
+[
+  {
+    "id": "xyz",
+    "name": {
+      "en": "Language Name",
+      "ru": "Название языка"
+    },
+    "flag": "optional-flag-code"  // Optional flag identifier
+  }
+]
+```
+
+### 6. Naming Conventions
+
+Use descriptive IDs for writing systems:
+- `cyr` - Cyrillic
+- `lat` - Latin
+- `lat_[variant]` - Latin variants (e.g., `lat_chirikba`)
+- `ipa` - International Phonetic Alphabet
+- `translit_[standard]` - Transliteration schemes
+- `[script_name]` - Native scripts (e.g., `georgian`)
+
+### 7. Testing Your Contribution
+
+1. Add sample conversions to verify correctness
+2. Test edge cases (capitalization, punctuation)
+3. Ensure bidirectional conversion works
+4. Check that longer patterns take precedence
+
+### 8. Pull Request Guidelines
+
+When submitting:
+1. Include language metadata and sample text
+2. Reference linguistic sources for mappings
+3. Test conversion accuracy
+4. Follow existing file structure
+
+## 🚀 Development Setup
+
+Built with Nuxt 4.
 
 ```bash
-# npm
+# Install dependencies
 npm install
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
+# Start development server
 npm run dev
 
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
+# Build for production
 npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+## 📝 Mapping Examples
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+### Simple Character Mapping
+```json
+{
+  "id": "cyrillic",
+  "name": { "en": "Cyrillic", "ru": "Кириллица" },
+  "pairs": [
+    ["а", "a"], ["б", "b"], ["в", "v"]
+  ]
+}
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+### Complex Digraphs
+```json
+{
+  "id": "latin",
+  "name": { "en": "Latin", "ru": "Латиница" },
+  "pairs": [
+    ["кьво", "q'w"],    // Complex sequences first
+    ["къ'", "q'"],      // Then shorter variants
+    ["къ", "q"],        // Single characters last
+    ["к", "k"]
+  ]
+}
+```
+
+### Directional Constraints
+```json
+{
+  "id": "ipa",
+  "name": { "en": "IPA", "ru": "МФА" },
+  "constraint": "to",   // Only usable as conversion target
+  "pairs": [
+    ["ə", "а"], ["ʃ", "ш"]
+  ]
+}
+```
+
+### Conversion Logic
+
+The system uses a **hub-and-spoke model** for script conversion:
+
+1. **Central Script**: One writing system (chosen by language maintainer) serves as the intermediate "hub"
+2. **All mappings** link to this central script, not to each other
+3. **Any-to-any conversion**: Text goes `Source → Central → Target`
+
+**Example**: For Abaza language
+- **Central script**: Cyrillic (`cyr`)
+- **Other scripts**: `lat_chirikba`, `ipa`, `translit_wiki` all map to/from Cyrillic
+- **Conversion path**: `Latin → Cyrillic → IPA`
+
+### Choosing a Central Script
+
+When adding a language, choose the central script carefully:
+- ✅ **Most complete**: Can represent all sounds/distinctions in the language
+- ✅ **Unambiguous**: One-to-one character relationships when possible
+- ✅ **Well-established**: Widely used or standardized
+- ✅ **No information loss**: Other scripts can be derived from it accurately
+
+**Common choices:**
+- **Cyrillic** for Caucasian languages (most phonologically complete)
+- **Native script** for languages with traditional writing systems
+- **IPA** for purely phonetic applications
+
+## 🧪 Testing Your Mappings
+
+Before submitting, test your character mappings using our **Conversion Editor**:
+👉 **[Test at yaziv.raxys.app/editor](https://yaziv.raxys.app/editor)**
+
+The editor allows you to:
+- Paste your character pairs directly
+- Test conversion in both directions
+- Import/export JSON mapping data
+- Verify complex patterns work correctly
+
+## 📜 License
+
+MIT License - feel free to use and modify!
+
+---
+
+**Need help?** Open an issue or check existing language files for examples!
