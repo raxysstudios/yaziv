@@ -19,7 +19,7 @@ useSeoMeta({
         </NuxtLinkLocale>
     </AppHeader>
     <NuxtLinkLocale v-for="l in langs" :key="l.id" :to="`/${l.id}`">
-        <LanguageSegment :lang="l" />
+        <HomeLanguageSegment :lang="l" />
     </NuxtLinkLocale>
     <AppFooter />
 </template>

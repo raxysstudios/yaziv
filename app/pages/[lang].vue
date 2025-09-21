@@ -66,7 +66,7 @@ useSeoMeta({
     </div>
 
     <div class="flex flex-row justify-center my-2">
-      <PairsList v-if="showPairs && converter.inputMapping.value && converter.outputMapping.value"
+      <ConverterPairsList v-if="showPairs && converter.inputMapping.value && converter.outputMapping.value"
         :from="converter.inputMapping.value" :to="converter.outputMapping.value" :convert="converter.convert"
         class="sm:w-2/3" />
     </div>

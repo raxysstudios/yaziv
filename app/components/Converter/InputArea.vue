@@ -29,7 +29,7 @@ function clearInput() {
 </script>
 
 <template>
-  <TextToolbarArea class="flex-1">
+  <TextToolbars class="flex-1">
     <UTextarea v-model="inputModel" class="flex-1 native" autoresize variant="none" size="xl" :placeholder="placeholder"
       :dir="mapping?.rtl ? 'rtl' : 'auto'" />
 
@@ -46,5 +46,5 @@ function clearInput() {
         {{ inputModel.length }} / {{ maxLength }}
       </span>
     </template>
-  </TextToolbarArea>
+  </TextToolbars>
 </template>
