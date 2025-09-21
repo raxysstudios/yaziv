@@ -13,13 +13,13 @@ const router = useRouter();
 const langId = computed(() => router.currentRoute.value.params.lang as string);
 
 const {
-  langConfig,
+  config,
   mappings,
   getMappingById
 } = useLangConverter(langId);
 
-const from = queryState(ref(langConfig.value?.defaultPair[0] || ''), 'from');
-const to = queryState(ref(langConfig.value?.defaultPair[1] || ''), 'to');
+const from = queryState(ref(config.value?.defaultPair[0] || ''), 'from');
+const to = queryState(ref(config.value?.defaultPair[1] || ''), 'to');
 
 watch([from, to], ([from, to]) => {
   const route = router.currentRoute.value;
@@ -48,8 +48,8 @@ const output = computed(() => chainConvert(
 ));
 
 const placeholders = computed(() => {
-  const defaultFromMapping = getMappingById(langConfig.value?.defaultPair[0] || '');
-  const sample = langConfig.value?.sample ?? '';
+  const defaultFromMapping = getMappingById(config.value?.defaultPair[0] || '');
+  const sample = config.value?.sample ?? '';
   const convertedSample = chainConvert(sample, defaultFromMapping, undefined);
 
   return {
@@ -90,7 +90,7 @@ useSeoMeta({
 
 <template>
   <AppHeader link="/home" icon="i-material-symbols-menu-rounded" :badge="langName" />
-  <AppSegment v-if="langConfig && mappings">
+  <AppSegment v-if="config && mappings">
     <ConverterControls v-model:from="from" v-model:to="to" :mappings="mappings" @reverse="reverse" />
 
     <div class="flex flex-col gap-2 md:flex-row">
