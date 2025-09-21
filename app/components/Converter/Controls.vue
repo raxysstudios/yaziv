@@ -9,16 +9,22 @@ defineEmits<{
   (e: 'reverse'): void;
 }>();
 
+const { locale } = useI18n();
+
 const fromModel = defineModel<string>('from', { required: true });
 const toModel = defineModel<string>('to', { required: true });
 </script>
 
 <template>
   <div class="flex gap-3">
-    <USelect v-model="fromModel" class="flex-1" :items="mappings" option-attribute="label" value-key="id" :content="{
+    <USelect v-model="fromModel" class="flex-1" :items="mappings" value-key="id" :content="{
       align: 'center',
       side: 'bottom'
-    }" />
+    }">
+      <template #item-label="{ item }">
+        {{ tDict(item.name, locale) }}
+      </template>
+    </USelect>
 
     <div class="relative">
       <UButton icon="i-material-symbols-swap-horiz-rounded" variant="subtle"
@@ -26,9 +32,13 @@ const toModel = defineModel<string>('to', { required: true });
         size="lg" @click="$emit('reverse')" />
     </div>
 
-    <USelect v-model="toModel" class="flex-1" :items="mappings" option-attribute="label" value-key="id" :content="{
+    <USelect v-model="toModel" class="flex-1" :items="mappings" value-key="id" :content="{
       align: 'center',
       side: 'bottom'
-    }" />
+    }">
+      <template #item-label="{ item }">
+        {{ tDict(item.name, locale) }}
+      </template>
+    </USelect>
   </div>
 </template>
