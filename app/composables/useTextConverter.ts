@@ -36,37 +36,38 @@ export function useTextConverter(langId: Ref<string>) {
     watch: [langId]
   });
 
-  const state = reactive({
-    input: '',
-    inputMappingId: '',
-    outputMappingId: ''
-  });
+  const config = computed(() => converterData.value?.config);
+  const mappings = computed(() => converterData.value?.mappings);
+  function mappingById(id: string) {
+    return mappings.value?.find(m => m.id === id);
+  }
 
-  watch(converterData, (data) => {
-    if (!data) return;
-    state.inputMappingId = data.config.defaultPair[0];
-    state.outputMappingId = data.config.defaultPair[1];
+  const input = ref('');
+  const output = computed(() =>
+    convert(input.value)
+  );
+  const inputMappingId = ref('');
+  const inputMapping = computed(() =>
+    mappingById(inputMappingId.value)
+  );
+  const outputMappingId = ref('');
+  const outputMapping = computed(() =>
+    mappingById(outputMappingId.value)
+  );
+
+  watch(config, (configData) => {
+    if (!configData) return;
+    inputMappingId.value = configData.defaultPair[0];
+    outputMappingId.value = configData.defaultPair[1];
   }, {
     immediate: true
   });
 
-  const inputMapping = computed(() =>
-    mappingById(state.inputMappingId)
-  );
-
-  const outputMapping = computed(() =>
-    mappingById(state.outputMappingId)
-  );
-
-  const output = computed(() =>
-    convert(state.input)
-  );
-
   const inputSample = computed(() => {
     const defaultFromMapping = mappingById(
-      converterData.value?.config.defaultPair[0] || ''
+      config.value?.defaultPair[0] || ''
     );
-    const sample = converterData.value?.config.sample ?? '';
+    const sample = config.value?.sample ?? '';
     const convertedSample = chainConvert(sample, defaultFromMapping, undefined);
 
     return chainConvert(convertedSample, undefined, inputMapping.value);
@@ -74,24 +75,20 @@ export function useTextConverter(langId: Ref<string>) {
 
   const outputSample = computed(() => {
     const defaultFromMapping = mappingById(
-      converterData.value?.config.defaultPair[0] || ''
+      config.value?.defaultPair[0] || ''
     );
-    const sample = converterData.value?.config.sample ?? '';
+    const sample = config.value?.sample ?? '';
     const convertedSample = chainConvert(sample, defaultFromMapping, undefined);
 
     return chainConvert(convertedSample, undefined, outputMapping.value);
   });
 
-  function mappingById(id: string) {
-    return converterData.value?.mappings.find(m => m.id === id);
-  }
-
   function reverse() {
     const tempOutput = output.value;
-    const tempInputId = state.inputMappingId;
-    state.inputMappingId = state.outputMappingId;
-    state.outputMappingId = tempInputId;
-    state.input = tempOutput;
+    const tempInputId = inputMappingId.value;
+    inputMappingId.value = outputMappingId.value;
+    outputMappingId.value = tempInputId;
+    input.value = tempOutput;
   };
 
   function convert(text: string) {
@@ -99,9 +96,12 @@ export function useTextConverter(langId: Ref<string>) {
   }
 
   return {
-    config: computed(() => converterData.value?.config),
-    mappings: computed(() => converterData.value?.mappings),
-    state,
+    config,
+    mappings,
+
+    input,
+    inputMappingId,
+    outputMappingId,
 
     mappingById,
     inputMapping,

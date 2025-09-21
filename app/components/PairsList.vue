@@ -2,19 +2,19 @@
 import type { Mapping, Pairs } from '~/utils/types';
 
 const props = defineProps<{
-    from?: Mapping
-    to?: Mapping
-    convert?: (text: string) => string
+    from: Mapping
+    to: Mapping
+    convert: (text: string) => string
 }>()
 
 const mergedPairs = computed(() => {
     let pairs = [] as Pairs;
-    if (props.from?.pairs.length) {
+    if (props.from.pairs.length) {
         pairs = props.from.pairs.map(([a, b]) => [
             a,
-            props.convert ? props.convert(b) : b
+            props.convert(b)
         ]);
-    } else if (props.to?.pairs?.length) {
+    } else if (props.to.pairs.length) {
         pairs = props.to.pairs.map(([a, b]) => [b, a]);
     }
     return pairs.filter(([a, b]) => a !== b);

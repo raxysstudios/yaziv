@@ -23,7 +23,9 @@ const showPairs = ref(false);
 function handleFileUpload() {
   uploadFile((content, name) => {
     const output = converter.convert(content);
-    const mappingName = tDict(converter.outputMapping.value?.name, locale);
+    const mappingName = tDict(
+      converter.outputMapping.value?.name, locale.value
+    );
     downloadFile(output, `${name} — ${mappingName}`);
   });
 }
@@ -43,11 +45,11 @@ useSeoMeta({
 <template>
   <AppHeader link="/home" icon="i-material-symbols-menu-rounded" :badge="langName" />
   <AppSegment v-if="converter.config">
-    <ConverterControls v-model:from="converter.state.inputMappingId" v-model:to="converter.state.outputMappingId"
+    <ConverterControls v-model:from="converter.inputMappingId.value" v-model:to="converter.outputMappingId.value"
       :mappings="converter.mappings.value" :reverse="converter.reverse" />
 
     <div class="flex flex-col gap-2 md:flex-row">
-      <ConverterInputArea v-model="converter.state.input" :placeholder="converter.inputSample.value"
+      <ConverterInputArea v-model="converter.input.value" :placeholder="converter.inputSample.value"
         :mapping="converter.inputMapping.value">
         <UTooltip :delay-duration="0" :text="t('lang.file')">
           <UButton icon="i-material-symbols-upload-file-rounded" @click="handleFileUpload" />
@@ -64,8 +66,9 @@ useSeoMeta({
     </div>
 
     <div class="flex flex-row justify-center my-2">
-      <PairsList v-if="showPairs" :from="converter.inputMapping.value" :to="converter.outputMapping.value"
-        :convert="converter.convert" class="sm:w-2/3" />
+      <PairsList v-if="showPairs && converter.inputMapping.value && converter.outputMapping.value"
+        :from="converter.inputMapping.value" :to="converter.outputMapping.value" :convert="converter.convert"
+        class="sm:w-2/3" />
     </div>
   </AppSegment>
 </template>
