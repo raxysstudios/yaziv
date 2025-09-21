@@ -1,8 +1,8 @@
 export default defineAppConfig({
   ui: {
     colors: {
-      primary: "gray",
-      neutral: "gray",
+      primary: "zinc",
+      neutral: "zinc",
     },
     button: {
       slots: {
@@ -15,7 +15,7 @@ export default defineAppConfig({
       compoundVariants: [
         {
           variant: "ghost",
-          class: "hover:bg-neutral-100 active:bg-neutral-200",
+          class: "hover:bg-neutral-100 active:bg-neutral-200 dark:hover:bg-neutral-800 dark:active:bg-neutral-700",
         },
         {
           variant: "subtle",
@@ -27,7 +27,7 @@ export default defineAppConfig({
       slots: {
         base: [
           "justify-center font-medium capitalize cursor-pointer! pe-2.5!",
-          "hover:bg-neutral-100 active:bg-neutral-200"
+          "hover:bg-neutral-100 active:bg-neutral-200 dark:hover:bg-neutral-800 dark:active:bg-neutral-700"
         ],
         trailing: 'hidden',
         item: "justify-center font-medium capitalize cursor-pointer!",

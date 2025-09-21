@@ -28,7 +28,7 @@ function togglePairs() {
 </script>
 
 <template>
-  <TextToolbarArea class="bg-gray-50 flex-1">
+  <TextToolbarArea class="bg-neutral-100 dark:bg-neutral-800 flex-1">
     <UTextarea :model-value="value" class="flex-1 native" autoresize readonly size="xl" variant="none"
       :placeholder="placeholder" :dir="mapping?.rtl ? 'rtl' : 'auto'" />
 

@@ -11,7 +11,14 @@ export default defineNuxtConfig({
   },
   modules: ["@nuxt/ui", '@nuxt/fonts', '@nuxt/icon', '@nuxtjs/i18n'],
   colorMode: {
-    preference: 'light'
+    preference: 'system',
+    fallback: 'light',
+    hid: 'nuxt-color-mode-script',
+    globalName: '__NUXT_COLOR_MODE__',
+    componentName: 'ColorScheme',
+    classPrefix: '',
+    classSuffix: '',
+    storageKey: 'nuxt-color-mode'
   },
   css: ['~/assets/css/main.css'],
   compatibilityDate: '2025-08-10',
