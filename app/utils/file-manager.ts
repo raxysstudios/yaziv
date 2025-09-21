@@ -1,5 +1,5 @@
 import type { Mapping } from "./types";
-import { chainConvert } from "./converter";
+import { chainConvert } from "~/composables/useTextConverter";
 
 let a: HTMLAnchorElement;
 export function downloadFile(content: string, filename: string) {

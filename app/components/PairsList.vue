@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Mapping, Pairs } from '~/utils/types';
-import { chainConvert } from '~/utils/converter';
+import { chainConvert } from '~/composables/useTextConverter';
 
 const props = defineProps<{
     from?: Mapping

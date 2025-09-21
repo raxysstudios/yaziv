@@ -1,4 +1,4 @@
-import type { Pairs, Mapping } from "./types";
+import type { Pairs } from "./types";
 
 export function convert(input: string, pairs: Pairs) {
   input = " " + input.replace(/\n/g, "\n ").trim();
@@ -33,16 +33,6 @@ export function convert(input: string, pairs: Pairs) {
   }
 
   return output.join('').replace(/\n /g, "\n").trim();
-}
-
-export function chainConvert(text: string, from?: Mapping, to?: Mapping) {
-  if (to?.lowercase) text = text.toLowerCase();
-  if (from) text = convert(text, from.pairs);
-  if (to) {
-    const pairs = to.pairs.map((p) => p.slice().reverse()) as Pairs;
-    text = convert(text, pairs);
-  }
-  return text;
 }
 
 function capitalize(text: string) {
