@@ -12,7 +12,7 @@ export function useLangConverter(langId: Ref<string>) {
   const { data: mappings } = useAsyncData(
     `lang-mappings-${langId.value}`,
     async () => {
-      if (!config.value) return [];
+      if (!config.value) return;
 
       const mappings: Mapping[] = [];
       for (const mappingId of config.value.mappings) {
