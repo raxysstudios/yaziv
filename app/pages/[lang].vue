@@ -49,10 +49,10 @@ const output = computed(() => chainConvert(
 
 const placeholders = computed(() => {
   const defaultFromMapping = getMappingById(langConfig.value?.defaultPair[0] || '');
-const sample = langConfig.value?.sample ?? '';
+  const sample = langConfig.value?.sample ?? '';
   const convertedSample = chainConvert(sample, defaultFromMapping, undefined);
 
-return {
+  return {
     from: chainConvert(convertedSample, undefined, selectedMappings.value.from),
     to: chainConvert(convertedSample, undefined, selectedMappings.value.to)
   };
@@ -91,37 +91,18 @@ useSeoMeta({
 <template>
   <AppHeader link="/home" icon="i-material-symbols-menu" :badge="langName" />
   <AppSegment v-if="langConfig && mappings">
-    <ConverterControls
-      v-model:from="from"
-      v-model:to="to"
-      :mappings="mappings"
-      @reverse="reverse"
-    />
+    <ConverterControls v-model:from="from" v-model:to="to" :mappings="mappings" @reverse="reverse" />
 
     <div class="flex flex-col gap-2 md:flex-row">
-      <ConverterInputArea
-        v-model="input"
-        :placeholder="placeholders.from"
-        :mapping="selectedMappings.from"
-        :to-mapping="selectedMappings.to"
-      />
+      <ConverterInputArea v-model="input" :placeholder="placeholders.from" :mapping="selectedMappings.from"
+        :to-mapping="selectedMappings.to" />
 
-      <ConverterOutputArea
-        :value="output"
-        :placeholder="placeholders.to"
-        :mapping="selectedMappings.to"
-        v-model:show-pairs="showPairs"
-        :from-mapping="selectedMappings.from"
-      />
+      <ConverterOutputArea :value="output" :placeholder="placeholders.to" :mapping="selectedMappings.to"
+        v-model:show-pairs="showPairs" :from-mapping="selectedMappings.from" />
     </div>
 
     <div class="flex flex-row justify-center my-2">
-      <PairsList
-        v-if="showPairs"
-        :from="selectedMappings.from"
-        :to="selectedMappings.to"
-        class="sm:w-2/3"
-      />
+      <PairsList v-if="showPairs" :from="selectedMappings.from" :to="selectedMappings.to" class="sm:w-2/3" />
     </div>
   </AppSegment>
 </template>
