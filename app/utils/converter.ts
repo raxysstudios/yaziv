@@ -1,40 +1,38 @@
 import type { Pairs, Mapping } from "./types";
 
-export function convert(text: string, pairs: Pairs) {
-  text = " " + text.replace(/\n/g, "\n ").trim();
-  let result = "";
+export function convert(input: string, pairs: Pairs) {
+  input = " " + input.replace(/\n/g, "\n ").trim();
+  const output = [] as string[];
 
-  for (let i = 0; i < text.length; ) {
+  for (let i = 0; i < input.length;) {
     let found = false;
-    for (const [from, to] of pairs) {
-      if (!from || !to) continue;
 
-      const l = from.length;
-      const sub = text.substring(i, i + l);
+    for (const [from, to] of pairs) {
       const pairs = [
         [from, to],
         [capitalize(from), capitalize(to)],
         [from.toUpperCase(), to.toUpperCase()],
       ];
 
-      for (const [f, t] of pairs) {
-        if (sub === f) {
+      const text = input.substring(i, i + from.length);
+      for (const [from, to] of pairs) {
+        if (text === from) {
+          output.push(to!);
+          i += from.length;
           found = true;
-          result += t;
-          i += l;
-          if (t && t[t.length - 1] === " ") i--;
           break;
         }
       }
       if (found) break;
     }
+
     if (!found) {
-      result += text[i];
+      output.push(input[i] || "");
       i++;
     }
   }
 
-  return result.replace(/\n /g, "\n").trim();
+  return output.join('').replace(/\n /g, "\n").trim();
 }
 
 export function chainConvert(text: string, from?: Mapping, to?: Mapping) {
