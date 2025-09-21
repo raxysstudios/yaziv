@@ -1,5 +1,9 @@
 {
-  "name": "transliteration (Wikitionary)",
+  "id": "translit_wiki",
+  "name": {
+    "en": "Transliteration (Wiktionary)",
+    "ru": "Транслитерация (Wiktionary)"
+  },
   "pairs": [
     [
       "a",

@@ -1,5 +1,9 @@
 {
-  "name": "Georgian (Asomtavruli)",
+  "id": "georgian__asomtavruli_",
+  "name": {
+    "en": "Georgian (Asomtavruli)",
+    "ru": "Грузинский (Асомтаврули)"
+  },
   "pairs": [
     [
       "Ⴀ",

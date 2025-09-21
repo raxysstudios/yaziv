@@ -1,5 +1,9 @@
 {
-  "name": "abaza",
+  "id": "abq",
+  "name": {
+    "en": "Abaza",
+    "ru": "Абазиница"
+  },
   "pairs": [
     [
       "гъь",

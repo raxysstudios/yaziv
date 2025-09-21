@@ -1,4 +1,8 @@
 {
-  "name": "cyrillic",
+  "id": "cyr",
+  "name": {
+    "en": "Cyrillic",
+    "ru": "Кириллица"
+  },
   "pairs": []
 }

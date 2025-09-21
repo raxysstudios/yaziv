@@ -1,7 +1,8 @@
 {
+  "id": "ipa",
   "name": {
-    "en": "Phonemic /IPA/",
-    "ru": "Фонемная /МФА/"
+    "en": "IPA",
+    "ru": "МФА"
   },
   "lowercase": true,
   "pairs": [

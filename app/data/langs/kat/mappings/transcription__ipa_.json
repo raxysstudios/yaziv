@@ -1,5 +1,9 @@
 {
-  "name": "Transcription (IPA)",
+  "id": "transcription__ipa_",
+  "name": {
+    "en": "Transcription (IPA)",
+    "ru": "Транскрипция (МФА)"
+  },
   "pairs": [
     [
       "ɑ",

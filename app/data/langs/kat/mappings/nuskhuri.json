@@ -1,5 +1,9 @@
 {
-  "name": "Georgian (Nuskhuri)",
+  "id": "nuskhuri",
+  "name": {
+    "en": "Georgian (Nuskhuri)",
+    "ru": "Грузинский (Нусхури)"
+  },
   "pairs": [
     [
       "ⴀ",

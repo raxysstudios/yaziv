@@ -1,5 +1,9 @@
 {
-  "name": "Transcription (ISO 9984)",
+  "id": "transcription__iso_9984_",
+  "name": {
+    "en": "Transcription (ISO 9984)",
+    "ru": "Транскрипция (ISO 9984)"
+  },
   "pairs": [
     [
       "a",

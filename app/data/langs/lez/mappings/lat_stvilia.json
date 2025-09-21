@@ -1,5 +1,9 @@
 {
-  "name": "Latin (I. Stvilia)",
+  "id": "lat_stvilia",
+  "name": {
+    "en": "Latin (I. Stvilia)",
+    "ru": "Латиница (И. Ствилиа)"
+  },
   "pairs": [
     [
       "ghw",

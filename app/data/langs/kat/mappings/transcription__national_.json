@@ -1,4 +1,8 @@
 {
-  "name": "Transcription (National)",
+  "id": "transcription__national_",
+  "name": {
+    "en": "Transcription (National)",
+    "ru": "Национальная транскрипция"
+  },
   "pairs": []
 }

@@ -1,4 +1,8 @@
 {
-  "name": "Latin",
+  "id": "lat",
+  "name": {
+    "en": "Latin",
+    "ru": "Латиница"
+  },
   "pairs": []
 }

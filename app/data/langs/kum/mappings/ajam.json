@@ -1,5 +1,9 @@
 {
-  "name": "ajam",
+  "id": "ajam",
+  "name": {
+    "en": "Ajam",
+    "ru": "Аджам"
+  },
   "rtl": true,
   "pairs": [
     [

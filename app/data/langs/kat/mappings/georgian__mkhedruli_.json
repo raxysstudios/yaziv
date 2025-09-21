@@ -1,5 +1,9 @@
 {
-  "name": "Georgian (Mkhedruli)",
+  "id": "georgian__mkhedruli_",
+  "name": {
+    "en": "Georgian (Mkhedruli)",
+    "ru": "Грузинский (Мхедрули)"
+  },
   "pairs": [
     [
       "a",

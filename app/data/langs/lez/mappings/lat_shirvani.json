@@ -1,4 +1,8 @@
 {
-  "name": "Latin (M. Shirvani)",
+  "id": "lat_shirvani",
+  "name": {
+    "en": "Latin (M. Shirvani)",
+    "ru": "Латиница (М. Ширвани)"
+  },
   "pairs": []
 }

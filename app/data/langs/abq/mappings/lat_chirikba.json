@@ -1,5 +1,9 @@
 {
-  "name": "latin (Chirikba)",
+  "id": "lat_chirikba",
+  "name": {
+    "en": "Latin (Chirikba)",
+    "ru": "Латиница (Чирикба)"
+  },
   "pairs": [
     [
       "k’i",

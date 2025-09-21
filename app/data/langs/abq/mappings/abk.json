@@ -1,5 +1,9 @@
 {
-  "name": "abkhaz",
+  "id": "abk",
+  "name": {
+    "en": "Abkhaz",
+    "ru": "Абхазица"
+  },
   "pairs": [
     [
       "гә",
