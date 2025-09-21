@@ -1,0 +1,19 @@
+{
+  "name": "Nuxt Development",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "nuxt-app",
+  "workspaceFolder": "/workspace",
+  "forwardPorts": [
+    3000
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Vue.volar",
+        "ms-vscode.vscode-typescript-next"
+      ]
+    }
+  },
+  "postCreateCommand": "rm -rf node_modules && npm ci",
+  "postStartCommand": "npm run dev"
+}

@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  nuxt-app:
+    image: node:24
+    volumes:
+      - .:/workspace:cached
+    command: sleep infinity
+    ports:
+      - "3000:3000"
+    working_dir: /workspace

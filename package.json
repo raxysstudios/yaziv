@@ -21,6 +21,7 @@
     "vue": "^3.4.21"
   },
   "devDependencies": {
+    "@anthropic-ai/claude-code": "^1.0.120",
     "@iconify-json/material-symbols": "^1.2.30",
     "@nuxt/eslint-config": "^0.2.0",
     "eslint": "^8.57.0",
