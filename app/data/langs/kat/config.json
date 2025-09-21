@@ -1,0 +1,16 @@
+{
+  "iso": "kat",
+  "sample": "ⴈⴗⴍ ⴃⴀ ⴀⴐⴀ ⴈⴗⴍ ⴐⴀ, ⴖⴅⴇⴈⴑ ⴓⴉⴄⴇⴄⴑⴈ ⴐⴀ ⴈⴕⴌⴄⴁⴍⴃⴀ",
+  "default": [
+    "transcription__national_",
+    "nuskhuri"
+  ],
+  "mappings": [
+    "nuskhuri",
+    "transcription__national_",
+    "georgian__mkhedruli_",
+    "transcription__ipa_",
+    "transcription__iso_9984_",
+    "georgian__asomtavruli_"
+  ]
+}

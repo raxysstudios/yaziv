@@ -1,0 +1,15 @@
+{
+  "iso": "xdq",
+  "sample": "Цигле бил ҳарра ниҳол ьел биранда.",
+  "default": [
+    "cyr",
+    "sov"
+  ],
+  "mappings": [
+    "cyr",
+    "sov",
+    "ipa",
+    "lat",
+    "lat_alt"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "iso": "oss",
+  "sample": "Цӕй ма, лӕппутӕ, бавналӕм,\nНӕ тыхтӕ иумӕ бавзарӕм!",
+  "default": [
+    "cyr",
+    "lat"
+  ],
+  "mappings": [
+    "cyr",
+    "lat",
+    "geo",
+    "lat_soviet",
+    "transcr_en",
+    "ipa"
+  ]
+}

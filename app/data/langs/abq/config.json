@@ -1,0 +1,15 @@
+{
+  "iso": "abq",
+  "sample": "Бызшва йъау зымгӏва удырында — зквла йгьынкъвугум.",
+  "default": [
+    "cyr",
+    "lat_chirikba"
+  ],
+  "mappings": [
+    "ipa",
+    "cyr",
+    "lat_chirikba",
+    "translit_wiki",
+    "abk"
+  ]
+}

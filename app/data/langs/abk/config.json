@@ -1,0 +1,17 @@
+{
+  "iso": "abk",
+  "sample": "Дасу идгьыл иара изын и-Аԥсынроуп!",
+  "default": [
+    "cyr",
+    "lat_chirikba"
+  ],
+  "mappings": [
+    "ipa",
+    "cyr",
+    "lat_chirikba",
+    "iso",
+    "titus",
+    "translit_wiki",
+    "abq"
+  ]
+}
