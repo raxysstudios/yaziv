@@ -15,7 +15,7 @@ export type Mapping = {
   pairs: Pairs;
 };
 
-export type LanguageConfig = {
+export type ConverterConfig = {
   iso: string;
   sample?: string;
   defaultPair: [string, string];

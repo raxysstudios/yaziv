@@ -8,23 +8,34 @@ definePageMeta({
 });
 
 const { t, locale } = useI18n();
-
 const router = useRouter();
+
 const langId = computed(() => router.currentRoute.value.params.lang as string);
+const langName = computed(() => {
+  const lang = getLangById(langId.value);
+  return tDict(lang?.name, locale.value);
+});
 
-const {
-  config,
-  mappings,
-  getMappingById
-} = useLangConverter(langId);
+const { data: converter } = useConverter(langId);
 
-const from = queryState(ref(config.value?.defaultPair[0] || ''), 'from');
-const to = queryState(ref(config.value?.defaultPair[1] || ''), 'to');
+const from = queryState(ref(''), 'from');
+const to = queryState(ref(''), 'to');
+
+watch(converter, (converter) => {
+  if (!converter) return;
+  if (converter.mappingById(from.value)) {
+    from.value = converter.config.defaultPair[0];
+  }
+  if (!converter.mappingById(to.value)) {
+    to.value = converter.config.defaultPair[1];
+  }
+}, {
+  immediate: true
+});
 
 watch([from, to], ([from, to]) => {
-  const route = router.currentRoute.value;
   const url = router.resolve({
-    path: route.path,
+    path: router.currentRoute.value.path,
     query: { from, to },
   }).fullPath;
 
@@ -37,8 +48,8 @@ const input = queryState(ref(''), 'text');
 const showPairs = ref(false);
 
 const selectedMappings = computed(() => ({
-  from: getMappingById(from.value),
-  to: getMappingById(to.value)
+  from: converter.value?.mappingById(from.value),
+  to: converter.value?.mappingById(to.value)
 }));
 
 const output = computed(() => chainConvert(
@@ -48,13 +59,23 @@ const output = computed(() => chainConvert(
 ));
 
 const placeholders = computed(() => {
-  const defaultFromMapping = getMappingById(config.value?.defaultPair[0] || '');
-  const sample = config.value?.sample ?? '';
+  const defaultFromMapping = converter.value?.mappingById(
+    converter.value?.config.defaultPair[0] || ''
+  );
+  const sample = converter.value?.config.sample ?? '';
   const convertedSample = chainConvert(sample, defaultFromMapping, undefined);
 
   return {
-    from: chainConvert(convertedSample, undefined, selectedMappings.value.from),
-    to: chainConvert(convertedSample, undefined, selectedMappings.value.to)
+    from: chainConvert(
+      convertedSample,
+      undefined,
+      selectedMappings.value.from
+    ),
+    to: chainConvert(
+      convertedSample,
+      undefined,
+      selectedMappings.value.to
+    )
   };
 });
 
@@ -71,18 +92,13 @@ function reverse() {
   })
 }
 
-const langName = computed(() => {
-  const lang = getLangById(langId.value);
-  return tDict(lang?.name, locale.value);
-});
-
 useSeoMeta({
   title: t('lang.seo.title', {
     lang: langName.value,
   }),
   description: t('lang.seo.description', {
     lang: langName.value,
-    scripts: mappings.value
+    scripts: converter.value?.mappings
       ?.map(m => tDict(m.name, locale.value)).join(', ') || '',
   }),
 });
@@ -90,8 +106,8 @@ useSeoMeta({
 
 <template>
   <AppHeader link="/home" icon="i-material-symbols-menu-rounded" :badge="langName" />
-  <AppSegment v-if="config && mappings">
-    <ConverterControls v-model:from="from" v-model:to="to" :mappings="mappings" @reverse="reverse" />
+  <AppSegment v-if="converter">
+    <ConverterControls v-model:from="from" v-model:to="to" :mappings="converter.mappings" @reverse="reverse" />
 
     <div class="flex flex-col gap-2 md:flex-row">
       <ConverterInputArea v-model="input" :placeholder="placeholders.from" :mapping="selectedMappings.from"

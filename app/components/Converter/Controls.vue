@@ -24,6 +24,7 @@ const toModel = defineModel<string>('to', { required: true });
       <template #item-label="{ item }">
         {{ tDict(item.name, locale) }}
       </template>
+      {{ fromModel }}
     </USelect>
 
     <div class="relative">
@@ -39,6 +40,7 @@ const toModel = defineModel<string>('to', { required: true });
       <template #item-label="{ item }">
         {{ tDict(item.name, locale) }}
       </template>
+      {{ toModel }}
     </USelect>
   </div>
 </template>
