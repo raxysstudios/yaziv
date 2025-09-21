@@ -18,31 +18,27 @@ const langName = computed(() => {
 
 const { data: converter } = useConverter(langId);
 
-const from = queryState(ref(''), 'from');
-const to = queryState(ref(''), 'to');
+const from = ref('');
+const to = ref('');
 
 watch(converter, (converter) => {
   if (!converter) return;
-  if (converter.mappingById(from.value)) {
-    from.value = converter.config.defaultPair[0];
-  }
-  if (!converter.mappingById(to.value)) {
-    to.value = converter.config.defaultPair[1];
-  }
+  from.value = converter.config.defaultPair[0];
+  to.value = converter.config.defaultPair[1];
 }, {
   immediate: true
 });
 
-watch([from, to], ([from, to]) => {
-  const url = router.resolve({
-    path: router.currentRoute.value.path,
-    query: { from, to },
-  }).fullPath;
+// watch([from, to], ([from, to]) => {
+//   const url = router.resolve({
+//     path: router.currentRoute.value.path,
+//     query: { from, to },
+//   }).fullPath;
 
-  useCookie('lastUrl').value = url;
-}, {
-  immediate: true
-});
+//   useCookie('lastUrl').value = url;
+// }, {
+//   immediate: true
+// });
 
 const input = queryState(ref(''), 'text');
 const showPairs = ref(false);
