@@ -2,7 +2,7 @@ import type { Ref } from 'vue';
 import type { Mapping, ConverterConfig } from '~/utils/types';
 import { convert } from '~/utils/converter';
 
-export function chainConvert(text: string, from?: Mapping, to?: Mapping) {
+function chainConvert(text: string, from?: Mapping, to?: Mapping) {
   if (to?.lowercase) text = text.toLowerCase();
   if (from) text = convert(text, from.pairs);
   if (to) {

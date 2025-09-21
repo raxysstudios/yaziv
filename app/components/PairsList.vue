@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { Mapping, Pairs } from '~/utils/types';
-import { chainConvert } from '~/composables/useTextConverter';
 
 const props = defineProps<{
     from?: Mapping
     to?: Mapping
+    convert?: (text: string) => string
 }>()
 
 const mergedPairs = computed(() => {
@@ -12,7 +12,7 @@ const mergedPairs = computed(() => {
     if (props.from?.pairs.length) {
         pairs = props.from.pairs.map(([a, b]) => [
             a,
-            chainConvert(b, props.from, props.to)
+            props.convert ? props.convert(b) : b
         ]);
     } else if (props.to?.pairs?.length) {
         pairs = props.to.pairs.map(([a, b]) => [b, a]);

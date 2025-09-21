@@ -1,5 +1,3 @@
-import type { Mapping } from "./types";
-import { chainConvert } from "~/composables/useTextConverter";
 
 let a: HTMLAnchorElement;
 export function downloadFile(content: string, filename: string) {
@@ -29,12 +27,3 @@ export function uploadFile(
   input.click();
 }
 
-export function processFile(
-  from: Mapping | undefined,
-  to: Mapping | undefined
-) {
-  uploadFile((c, n) => {
-    const text = chainConvert(c, from, to);
-    downloadFile(text, `${to?.name} - ${n}`);
-  });
-}

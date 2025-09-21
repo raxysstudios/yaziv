@@ -14,16 +14,9 @@ const props = defineProps({
   fromMapping: Object as PropType<Mapping>
 });
 
-const { t } = useI18n();
-
-const showPairs = defineModel<boolean>('showPairs', { required: true });
 
 function copyToClipboard() {
   navigator.clipboard.writeText(props.value);
-}
-
-function togglePairs() {
-  showPairs.value = !showPairs.value;
 }
 </script>
 
@@ -37,10 +30,7 @@ function togglePairs() {
     </template>
 
     <template #h-bar>
-      <UTooltip :delay-duration="0" :text="t('lang.pairs')">
-        <UButton icon="i-material-symbols-info-rounded" :variant="showPairs ? 'subtle' : 'ghost'"
-          @click="togglePairs" />
-      </UTooltip>
+      <slot />
     </template>
   </TextToolbarArea>
 </template>

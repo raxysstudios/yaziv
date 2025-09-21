@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Mapping } from '~/utils/types';
-import { processFile } from '~/utils/file-manager';
 
 const props = defineProps({
   placeholder: {
@@ -8,14 +7,12 @@ const props = defineProps({
     default: ''
   },
   mapping: Object as PropType<Mapping>,
-  toMapping: Object as PropType<Mapping>,
   maxLength: {
     type: Number,
     default: 2000
   }
 });
 
-const { t } = useI18n();
 
 const inputModel = defineModel<string>({ required: true });
 
@@ -29,10 +26,6 @@ watch(inputModel, (value) => {
 function clearInput() {
   inputModel.value = '';
 }
-
-function handleFileUpload() {
-  processFile(props.mapping, props.toMapping);
-}
 </script>
 
 <template>
@@ -45,9 +38,7 @@ function handleFileUpload() {
     </template>
 
     <template #h-bar>
-      <UTooltip :delay-duration="0" :text="t('lang.file')">
-        <UButton icon="i-material-symbols-upload-file-rounded" @click="handleFileUpload" />
-      </UTooltip>
+      <slot />
 
       <div class="flex-1" />
 

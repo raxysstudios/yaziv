@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { getLangById } from '~/utils/langs';
 import { useTextConverter } from '~/composables/useTextConverter';
+import { uploadFile, downloadFile } from '~/utils/file-manager';
 
 definePageMeta({
   middleware: 'guard-lang'
@@ -18,6 +19,14 @@ const langName = computed(() => {
 const converter = useTextConverter(langId);
 
 const showPairs = ref(false);
+
+function handleFileUpload() {
+  uploadFile((content, name) => {
+    const output = converter.convert(content);
+    const mappingName = tDict(converter.outputMapping.value?.name, locale);
+    downloadFile(output, `${name} — ${mappingName}`);
+  });
+}
 
 useSeoMeta({
   title: t('lang.seo.title', {
@@ -39,16 +48,24 @@ useSeoMeta({
 
     <div class="flex flex-col gap-2 md:flex-row">
       <ConverterInputArea v-model="converter.state.input" :placeholder="converter.inputSample.value"
-        :mapping="converter.inputMapping.value" :to-mapping="converter.outputMapping.value" />
+        :mapping="converter.inputMapping.value">
+        <UTooltip :delay-duration="0" :text="t('lang.file')">
+          <UButton icon="i-material-symbols-upload-file-rounded" @click="handleFileUpload" />
+        </UTooltip>
+      </ConverterInputArea>
 
       <ConverterOutputArea :value="converter.output.value" :placeholder="converter.outputSample.value"
-        :mapping="converter.outputMapping.value" v-model:show-pairs="showPairs"
-        :from-mapping="converter.inputMapping.value" />
+        :mapping="converter.outputMapping.value" :from-mapping="converter.inputMapping.value">
+        <UTooltip :delay-duration="0" :text="t('lang.pairs')">
+          <UButton icon="i-material-symbols-info-rounded" :variant="showPairs ? 'subtle' : 'ghost'"
+            @click="showPairs = !showPairs" />
+        </UTooltip>
+      </ConverterOutputArea>
     </div>
 
     <div class="flex flex-row justify-center my-2">
       <PairsList v-if="showPairs" :from="converter.inputMapping.value" :to="converter.outputMapping.value"
-        class="sm:w-2/3" />
+        :convert="converter.convert" class="sm:w-2/3" />
     </div>
   </AppSegment>
 </template>
