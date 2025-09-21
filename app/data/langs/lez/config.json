@@ -2,11 +2,11 @@
   "iso": "lez",
   "sample": "Етим Эмин фугъара я мубтала.  \nБала я вун, дуьнья, бала я, бала.  \nНиз амукьна и дуьнья, бес, заз къала?  \nБениагьад гьич са касдиз, дуьнья гьей!",
   "defaultPair": [
-    "cyrilli_",
+    "cyr",
     "lat_shirvani"
   ],
   "mappings": [
-    "cyrilli_",
+    "cyr",
     "lat_shirvani",
     "lat_stvilia"
   ]
