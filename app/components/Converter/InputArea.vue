@@ -37,38 +37,21 @@ function handleFileUpload() {
 
 <template>
   <TextToolbarArea class="flex-1">
-    <UTextarea
-      v-model="inputModel"
-      class="flex-1 native"
-      autoresize
-      variant="none"
-      size="xl"
-      :placeholder="placeholder"
-      :dir="mapping?.rtl ? 'rtl' : 'auto'"
-    />
+    <UTextarea v-model="inputModel" class="flex-1 native" autoresize variant="none" size="xl" :placeholder="placeholder"
+      :dir="mapping?.rtl ? 'rtl' : 'auto'" />
 
     <template #v-bar>
-      <UButton
-        v-if="inputModel.length"
-        icon="i-material-symbols-close"
-        @click="clearInput"
-      />
+      <UButton v-if="inputModel.length" icon="i-material-symbols-close" @click="clearInput" />
     </template>
 
     <template #h-bar>
       <UTooltip :delay-duration="0" :text="t('lang.file')">
-        <UButton
-          icon="i-material-symbols-upload-file-outline"
-          @click="handleFileUpload"
-        />
+        <UButton icon="i-material-symbols-upload-file-outline" @click="handleFileUpload" />
       </UTooltip>
 
       <div class="flex-1" />
 
-      <span
-        v-if="maxLength - inputModel.length < 100"
-        class="text-xs opacity-50"
-      >
+      <span v-if="maxLength - inputModel.length < 100" class="text-xs opacity-50">
         {{ inputModel.length }} / {{ maxLength }}
       </span>
     </template>
