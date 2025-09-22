@@ -1,6 +1,6 @@
-# Yaziv - Script Conversion Tool
+# Yaziv
 
-A web application for converting text between different writing systems and transliteration schemes. Built with Nuxt 3 and optimized for Caucasian and regional languages.
+Text converter between different writing systems and transliteration schemes for the languages of the Caucasus.
 
 ## 🌍 Supported Languages
 
