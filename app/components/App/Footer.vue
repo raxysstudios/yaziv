@@ -6,7 +6,7 @@
                 {{ $t('home.raxys') }}
             </UButton>
             <UButton to="https://github.com/raxysstudios/yaziv" target="_blank" size="xs">
-                v1.3.0
+                v1.3.1
             </UButton>
         </div>
     </AppSegment>
