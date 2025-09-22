@@ -130,14 +130,14 @@ Use descriptive IDs for writing systems:
 - `translit_[standard]` - Transliteration schemes
 - `[script_name]` - Native scripts (e.g., `georgian`)
 
-### 7. Testing Your Contribution
+### 8. Testing Your Contribution
 
 1. Add sample conversions to verify correctness
 2. Test edge cases (capitalization, punctuation)
 3. Ensure bidirectional conversion works
 4. Check that longer patterns take precedence
 
-### 8. Pull Request Guidelines
+### 9. Pull Request Guidelines
 
 When submitting:
 1. Include language metadata and sample text
@@ -169,7 +169,9 @@ npm run build
   "id": "cyrillic",
   "name": { "en": "Cyrillic", "ru": "Кириллица" },
   "pairs": [
-    ["а", "a"], ["б", "b"], ["в", "v"]
+    ["а", "a"],
+    ["б", "b"],
+    ["в", "v"]
   ]
 }
 ```
@@ -197,16 +199,17 @@ npm run build
   "name": { "en": "IPA", "ru": "МФА" },
   "constraint": "to",   // Only usable as conversion target
   "pairs": [
-    ["ə", "а"], ["ʃ", "ш"]
+    ["ə", "а"],
+    ["ʃ", "ш"]
   ]
 }
 ```
 
-### Conversion Logic
+## 🔄 How Conversion Works
 
 The system uses a **hub-and-spoke model** for script conversion:
 
-1. **Central Script**: One writing system (chosen by language maintainer) serves as the intermediate "hub"
+1. **Central Script**: One writing system serves as the intermediate "hub"
 2. **All mappings** link to this central script, not to each other
 3. **Any-to-any conversion**: Text goes `Source → Central → Target`
 
@@ -230,8 +233,7 @@ When adding a language, choose the central script carefully:
 
 ## 🧪 Testing Your Mappings
 
-Before submitting, test your character mappings using our **Conversion Editor**:
-👉 **[Test at yaziv.raxys.app/editor](https://yaziv.raxys.app/editor)**
+Before submitting, test your character mappings using our **Conversion Editor** at [yaziv.raxys.app/editor](https://yaziv.raxys.app/editor).
 
 The editor allows you to:
 - Paste your character pairs directly
