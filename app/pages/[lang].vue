@@ -4,7 +4,7 @@ import { useTextConverter } from '~/composables/useTextConverter';
 import { uploadFile, downloadFile } from '~/utils/file-manager';
 
 definePageMeta({
-  middleware: 'guard-lang'
+  middleware: ['guard-lang', 'store-url']
 });
 
 const { t, locale } = useI18n();
