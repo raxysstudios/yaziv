@@ -20,14 +20,12 @@ const langName = computed(() => {
 const converter = useTextConverter(langId);
 
 useUrlSync(converter.input, 'text');
-useUrlSync(converter.inputMappingId, 'from', (id) => {
-  if (!converter.mappings.value) return true;
-  return !!converter.mappingById(id);
-});
-useUrlSync(converter.outputMappingId, 'to', (id) => {
-  if (!converter.mappings.value) return true;
-  return !!converter.mappingById(id);
-});
+useUrlSync(converter.inputMappingId, 'from', (id) =>
+  !converter.mappings.value || !!converter.mappingById(id)
+);
+useUrlSync(converter.outputMappingId, 'to', (id) =>
+  !converter.mappings.value || !!converter.mappingById(id)
+);
 
 const showPairs = ref(false);
 
