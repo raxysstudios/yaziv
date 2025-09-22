@@ -15,6 +15,10 @@ Currently supports **9 languages** with multiple writing systems:
 - **Ossetian** (oss) - Cyrillic, Latin, Georgian, IPA
 - **Tsakhur** (tkr) - Cyrillic, Latin
 
+## 🌐 Localization
+
+The application is localized in **English** and **Russian**. All language and mapping names must be provided in both languages for proper display in the interface.
+
 ## 🤝 Contributing New Languages
 
 We welcome contributions of new languages and writing systems! Here's how to add support for a new language:
@@ -58,8 +62,8 @@ Each mapping file defines a writing system:
 {
   "id": "latin",
   "name": {
-    "en": "Latin",
-    "ru": "Латиница"
+    "en": "Latin",            // Required: English name
+    "ru": "Латиница"          // Required: Russian name
   },
   "constraint": "from",       // Optional: "from", "to", or omit
   "rtl": false,               // Optional: right-to-left direction
@@ -101,8 +105,8 @@ Add your language to `/app/data/langs.json`:
   {
     "id": "xyz",
     "name": {
-      "en": "Language Name",
-      "ru": "Название языка"
+      "en": "Language Name",      // Required: English name
+      "ru": "Название языка"      // Required: Russian name
     }
   }
 ]
@@ -175,10 +179,10 @@ npm run build
   "id": "latin",
   "name": { "en": "Latin", "ru": "Латиница" },
   "pairs": [
-    ["кьво", "q'w"],    // Complex sequences first
-    ["къ'", "q'"],      // Then shorter variants
-    ["къ", "q"],        // Single characters last
-    ["к", "k"]
+    ["къва", "qqo"],     // Complex sequences first
+    ["къ", "qq"],        // Then shorter variants
+    ["хъ", "q"],        // Then shorter variants
+    ["к", "k"]          // Single characters last
   ]
 }
 ```
