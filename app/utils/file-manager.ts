@@ -15,6 +15,7 @@ export function uploadFile(
 ) {
   input ??= document.createElement("input");
   input.type = "file";
+  input.value = "";
   input.onchange = () => {
     const file = input.files?.[0];
     if (!file) return;
