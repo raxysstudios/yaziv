@@ -15,5 +15,7 @@
     }
   },
   "postCreateCommand": "rm -rf node_modules && npm ci",
-  "postStartCommand": "npm run dev"
+  "postAttachCommand": {
+    "server": "npm run dev"
+  }
 }
