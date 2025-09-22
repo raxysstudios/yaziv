@@ -57,8 +57,8 @@ export function useTextConverter(langId: Ref<string>) {
 
   watch(config, (configData) => {
     if (!configData) return;
-    inputMappingId.value = configData.defaultPair[0];
-    outputMappingId.value = configData.defaultPair[1];
+    inputMappingId.value ||= configData.defaultPair[0];
+    outputMappingId.value ||= configData.defaultPair[1];
   }, {
     immediate: true
   });
