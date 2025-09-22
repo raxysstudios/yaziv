@@ -1,14 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  imports: {
-    presets: [
-      {
-        from: '~/utils/i18n',
-        imports: ['tDict']
-      }
-    ]
-  },
   modules: ["@nuxt/ui", '@nuxt/fonts', '@nuxt/icon', '@nuxtjs/i18n'],
   colorMode: {
     preference: 'system',
