@@ -1,7 +1,27 @@
-# Yaziv Project Instructions
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
-Yaziv is a text conversion tool for Caucasian and regional languages, supporting conversion between different writing systems (Cyrillic, Latin variants, IPA, etc.). Built with Nuxt 3 and TypeScript.
+Yaziv is a text conversion tool for Caucasian and regional languages, supporting conversion between different writing systems (Cyrillic, Latin variants, IPA, etc.). Built with Nuxt 4 and TypeScript.
+
+## Development Commands
+
+### Core Commands
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run generate     # Generate static site
+npm run preview      # Preview production build
+npm run lint         # Run ESLint
+npm run lint:fix     # Fix ESLint issues automatically
+```
+
+### Development Workflow
+- **Main development**: Use `npm run dev` for hot reload
+- **Before commits**: Run `npm run lint:fix` to fix code style issues
+- **Testing changes**: Use the `/editor` page to test conversion mappings
+- **Production testing**: Use `npm run build && npm run preview`
 
 ## Core Architecture Principles
 
@@ -15,6 +35,13 @@ Yaziv is a text conversion tool for Caucasian and regional languages, supporting
 - **Pure functions**: `utils/` for stateless logic (convert algorithm)
 - **Reactive logic**: `composables/` for stateful Vue logic (useTextConverter)
 - **Component structure**: Folder names become prefixes (App/, Converter/, Home/)
+
+### Key Architecture Files
+- **`utils/converter.ts`**: Core conversion algorithm with case variant handling
+- **`composables/useTextConverter.ts`**: Reactive converter state management with lazy loading
+- **`composables/useUrlSync.ts`**: URL parameter synchronization with global batching to prevent race conditions
+- **`utils/types.ts`**: TypeScript definitions for language configurations and mappings
+- **`app/data/langs/`**: Language data structure (config.json + mappings/ folder per language)
 
 ## Language Data Structure
 
@@ -40,11 +67,17 @@ app/data/langs/[lang-id]/
 - **Prefer refs**: Use `ref()` over `reactive()` for primitive values
 - **Computed properties**: Return computed refs directly, not `.value` wrapped
 - **Composables**: Return object with refs/computed, not reactive state
+- **URL synchronization**: Use `useUrlSync` composable for linking refs to query parameters
 
 ### Components
 - **Slots over props**: Prefer flexibility (actions slots vs fixed buttons)
 - **Auto-imports**: Leverage Nuxt auto-imports for components and composables
 - **TypeScript**: Always use proper typing, especially for language data
+
+### Nuxt-Specific Patterns
+- **Data loading**: Use `useAsyncData` with reactive keys for dynamic imports
+- **Internationalization**: All user-facing text must have English and Russian translations
+- **Static assets**: Language flags in `public/flags/` named by ISO code (e.g., `abq.png`)
 
 ### Performance
 - **Optimize for patterns**: Algorithm optimized for 1-4 character sequences
