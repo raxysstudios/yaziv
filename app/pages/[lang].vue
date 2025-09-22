@@ -35,7 +35,13 @@ function handleFileUpload() {
     const mappingName = tDict(
       converter.outputMapping.value?.name, locale.value
     );
-    downloadFile(output, `${name} — ${mappingName}`);
+    const di = name.lastIndexOf('.');
+    downloadFile(output, [
+      di >= 0 ? name.slice(0, di) : name,
+      ' — ',
+      mappingName,
+      di >= 0 ? name.slice(di) : ''
+    ].join(''));
   });
 }
 
