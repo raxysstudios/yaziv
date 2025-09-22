@@ -43,10 +43,10 @@ app/data/langs/
 
 ```jsonc
 {
-  "iso": "xyz",                           // ISO 639-3 language code
+  "iso": "xyz",                             // ISO 639-3 language code
   "sample": "Sample text in the language",
-  "defaultPair": ["script1", "script2"],   // Default conversion pair
-  "mappings": [                           // Available writing systems
+  "defaultPair": ["script1", "script2"],    // Default conversion pair
+  "mappings": [                             // Available writing systems
     "script1",
     "script2",
     "ipa"
@@ -163,7 +163,8 @@ npm run build
 ## 📝 Mapping Examples
 
 ### Simple Character Mapping
-```json
+
+```jsonc
 {
   "id": "cyrillic",
   "name": { "en": "Cyrillic", "ru": "Кириллица" },
@@ -174,21 +175,23 @@ npm run build
 ```
 
 ### Complex Digraphs
-```json
+
+```jsonc
 {
   "id": "latin",
   "name": { "en": "Latin", "ru": "Латиница" },
   "pairs": [
     ["къва", "qqo"],     // Complex sequences first
     ["къ", "qq"],        // Then shorter variants
-    ["хъ", "q"],        // Then shorter variants
-    ["к", "k"]          // Single characters last
+    ["хъ", "q"],         // Then shorter variants
+    ["к", "k"]           // Single characters last
   ]
 }
 ```
 
 ### Directional Constraints
-```json
+
+```jsonc
 {
   "id": "ipa",
   "name": { "en": "IPA", "ru": "МФА" },
