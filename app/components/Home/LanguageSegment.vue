@@ -8,7 +8,7 @@ const props = defineProps<{
 const { locale } = useI18n();
 
 const flagUrl = computed(() => {
-    return `/data/langs/${props.lang.id}/f.png`;
+    return `/flags/${props.lang.id}.png`;
 });
 </script>
 

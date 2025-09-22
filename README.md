@@ -31,12 +31,15 @@ Each language needs files in `/app/data/langs/[language-id]/`:
 app/data/langs/
 ├── [lang-id]/
 │   ├── config.json          # Language configuration
-│   ├── flag.png             # Language flag (optional)
 │   └── mappings/
 │       ├── script1.json     # Writing system 1
 │       ├── script2.json     # Writing system 2
 │       └── ...
 └── langs.json               # Language registry
+
+public/flags/                # Language flags (optional)
+├── {iso-code}.png           # Flag files named by ISO code
+└── ...
 ```
 
 ### 2. Language Configuration (`config.json`)
@@ -114,10 +117,11 @@ Add your language to `/app/data/langs.json`:
 
 ### 6. Language Flag (Optional)
 
-Add a flag image as `flag.png` in your language folder:
+Add a flag image in the `public/flags/` directory:
 - **Format**: PNG format recommended
 - **Size**: Square aspect ratio (e.g., 64x64, 128x128)
-- **Naming**: Must be exactly `flag.png`
+- **Naming**: Must be exactly `{iso-code}.png` (e.g., `abq.png`, `kat.png`)
+- **Location**: `public/flags/{iso-code}.png`
 - **Auto-detection**: System automatically displays flags when present
 
 ### 7. Naming Conventions
