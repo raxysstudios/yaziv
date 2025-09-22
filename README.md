@@ -41,7 +41,7 @@ app/data/langs/
 
 ### 2. Language Configuration (`config.json`)
 
-```json
+```jsonc
 {
   "iso": "xyz",                           // ISO 639-3 language code
   "sample": "Sample text in the language",
@@ -58,7 +58,7 @@ app/data/langs/
 
 Each mapping file defines a writing system:
 
-```json
+```jsonc
 {
   "id": "latin",
   "name": {
@@ -81,7 +81,7 @@ Each mapping file defines a writing system:
 
 **Critical:** Order matters! Arrange pairs by length (longest first):
 
-```json
+```jsonc
 "pairs": [
   // ✅ Correct order (longest first)
   ["sch", "щ"],     // 3 characters
@@ -100,7 +100,7 @@ Each mapping file defines a writing system:
 
 Add your language to `/app/data/langs.json`:
 
-```json
+```jsonc
 [
   {
     "id": "xyz",
