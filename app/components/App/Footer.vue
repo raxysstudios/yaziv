@@ -1,3 +1,7 @@
+<script setup>
+import { version } from '../../package.json';
+</script>
+
 <template>
     <AppSegment>
         <USeparator />
@@ -6,7 +10,7 @@
                 {{ $t('home.raxys') }}
             </UButton>
             <UButton to="https://github.com/raxysstudios/yaziv" target="_blank" size="xs">
-                v1.3.1
+                v{{ version }}
             </UButton>
         </div>
     </AppSegment>
