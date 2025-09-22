@@ -84,7 +84,13 @@ useSeoMeta({
 </script>
 
 <template>
-    <AppHeader link="/home" :badge="$t('editor.badge')" />
+    <AppHeader link="/home" :badge="$t('editor.badge')">
+        <NuxtLink to="https://github.com/raxysstudios/yaziv#contributing-new-languages" target="_blank">
+            <UTooltip :delay-duration="0" :text="$t('editor.contribution_guide')">
+                <UButton icon="i-material-symbols-help-rounded" />
+            </UTooltip>
+        </NuxtLink>
+    </AppHeader>
     <AppSegment>
         <div class="flex flex-col gap-6 md:flex-row">
             <div class="flex-1 flex flex-col gap-2">

@@ -28,6 +28,7 @@
         "from_json": "Из JSON",
         "to_json": "В JSON",
         "input": "Вводной текст",
-        "output": "Результат"
+        "output": "Результат",
+        "contribution_guide": "Руководство по участию"
     }
 }

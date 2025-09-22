@@ -27,6 +27,7 @@
         "from_json": "From JSON",
         "to_json": "To JSON",
         "input": "Input text",
-        "output": "Result"
+        "output": "Result",
+        "contribution_guide": "Contribution Guide"
     }
 }
