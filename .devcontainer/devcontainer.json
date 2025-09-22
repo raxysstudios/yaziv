@@ -13,9 +13,5 @@
         "ms-vscode.vscode-typescript-next"
       ]
     }
-  },
-  "postCreateCommand": "rm -rf node_modules && npm ci",
-  "postAttachCommand": {
-    "server": "npm run dev"
   }
 }
