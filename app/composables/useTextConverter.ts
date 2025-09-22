@@ -55,6 +55,10 @@ export function useTextConverter(langId: Ref<string>) {
     mappingById(outputMappingId.value)
   );
 
+  watch(inputMapping, (newMapping, oldMapping) => {
+    input.value = chainConvert(input.value, oldMapping, newMapping);
+  });
+
   watch(config, (configData) => {
     if (!configData) return;
     inputMappingId.value ||= configData.defaultPair[0];
