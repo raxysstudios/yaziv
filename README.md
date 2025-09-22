@@ -21,12 +21,13 @@ We welcome contributions of new languages and writing systems! Here's how to add
 
 ### 1. Language Structure
 
-Each language needs two files in `/app/data/langs/[language-id]/`:
+Each language needs files in `/app/data/langs/[language-id]/`:
 
 ```
 app/data/langs/
 ├── [lang-id]/
 │   ├── config.json          # Language configuration
+│   ├── flag.png             # Language flag (optional)
 │   └── mappings/
 │       ├── script1.json     # Writing system 1
 │       ├── script2.json     # Writing system 2
@@ -102,13 +103,20 @@ Add your language to `/app/data/langs.json`:
     "name": {
       "en": "Language Name",
       "ru": "Название языка"
-    },
-    "flag": "optional-flag-code"  // Optional flag identifier
+    }
   }
 ]
 ```
 
-### 6. Naming Conventions
+### 6. Language Flag (Optional)
+
+Add a flag image as `flag.png` in your language folder:
+- **Format**: PNG format recommended
+- **Size**: Square aspect ratio (e.g., 64x64, 128x128)
+- **Naming**: Must be exactly `flag.png`
+- **Auto-detection**: System automatically displays flags when present
+
+### 7. Naming Conventions
 
 Use descriptive IDs for writing systems:
 - `cyr` - Cyrillic

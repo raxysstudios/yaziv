@@ -1,4 +1,3 @@
-
 let a: HTMLAnchorElement;
 export function downloadFile(content: string, filename: string) {
   a ??= document.createElement("a");
@@ -26,4 +25,3 @@ export function uploadFile(
   input.accept = accept;
   input.click();
 }
-

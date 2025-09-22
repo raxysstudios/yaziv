@@ -1,7 +1,6 @@
 export type Lang = {
   id: string;
   name: Record<string, string>;
-  flag?: string;
 };
 
 export type Pairs = [string, string][];

@@ -8,16 +8,14 @@ const props = defineProps<{
 const { locale } = useI18n();
 
 const flagUrl = computed(() => {
-    const base = 'https://firebasestorage.googleapis.com/v0/b/avzagapp.appspot.com/o/flags%2F';
-    const flag = props.lang.flag ?? props.lang.name.en!.toLowerCase();
-    return `${base}${flag}.png?alt=media`;
+    return `/data/langs/${props.lang.id}/f.png`;
 });
 </script>
 
 <template>
     <AppSegment class="transition hover:bg-neutral-100 active:bg-neutral-200 dark:hover:bg-neutral-800 dark:active:bg-neutral-700">
         <div class="flex gap-2 items-center">
-            <img :src="flagUrl" :alt="lang.id"
+            <img :src="flagUrl" :alt="lang.id" @error="$event.target.style.display='none'"
                 class="size-8 rounded-md object-cover border border-neutral-200 dark:border-neutral-700">
             <p class="capitalize">{{ tDict(lang.name, locale) }}</p>
             <UBadge size="sm" variant="soft">
