@@ -1,3 +1,6 @@
+let queue: Record<string, string | undefined> = {};
+let scheduled = false;
+
 export default function useUrlSync<T>(
     ref: Ref<T>,
     key: string,
@@ -6,7 +9,7 @@ export default function useUrlSync<T>(
     const router = useRouter();
 
     watch(() => router.currentRoute.value.query[key], (value) => {
-        if (!value) return;
+        if (value == undefined) return;
 
         const parsed = (typeof ref.value === 'number'
             ? Number(value)
@@ -21,17 +24,25 @@ export default function useUrlSync<T>(
     });
 
     watch(ref, (value) => {
-        const query = { ...router.currentRoute.value.query };
-        if (query[key] === String(value)) return;
+        const param = value == undefined ? undefined : String(value);
+        const route = router.currentRoute;
 
-        if (value) {
-            query[key] = String(value);
-        }
-        else {
-            delete query[key];
-        }
+        if (route.value.query[key] == param) return;
+        queue[key] = param;
 
-        router.replace({ query });
+        if (scheduled) return;
+        scheduled = true;
+        nextTick(() => {
+            const query = { ...route.value.query };
+            for (const [k, v] of Object.entries(queue)) {
+                if (v == undefined) delete query[k];
+                else query[k] = v;
+            }
+            router.replace({ query });
+
+            queue = {};
+            scheduled = false;
+        });
     });
 
     return ref;
