@@ -2,6 +2,7 @@
 import { getLangById } from '~/utils/langs';
 import { useTextConverter } from '~/composables/useTextConverter';
 import { uploadFile, downloadFile } from '~/utils/file-manager';
+import useUrlSync from '~/composables/useUrlSync';
 
 definePageMeta({
   middleware: ['guard-lang', 'store-url']
@@ -17,6 +18,16 @@ const langName = computed(() => {
 });
 
 const converter = useTextConverter(langId);
+
+useUrlSync(converter.input, 'text');
+useUrlSync(converter.inputMappingId, 'from', (id) => {
+  if (!converter.mappings.value) return true;
+  return !!converter.mappingById(id);
+});
+useUrlSync(converter.outputMappingId, 'to', (id) => {
+  if (!converter.mappings.value) return true;
+  return !!converter.mappingById(id);
+});
 
 const showPairs = ref(false);
 
