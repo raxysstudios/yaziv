@@ -11,13 +11,14 @@ npm run dev
 
 Test your conversions live at [yaziv.raxys.app/editor](https://yaziv.raxys.app/editor)
 
-## 🔄 How Conversion Works
+## 🔄 How It Works
 
-Uses a **hub-and-spoke model**: All conversions go through a central script.
+The system uses a **hub-and-spoke model** where all conversions flow through a central script.
 
-**Example**: For Abaza, Cyrillic serves as the central script
-- Conversion path: `Latin → Cyrillic → IPA`
-- Choose the most complete/unambiguous script as central
+**Example with Abaza:**
+- Central script: Cyrillic (most complete)
+- Conversion: `Latin → Cyrillic → IPA`
+- Any script can convert to any other through the hub
 
 ## 🤝 Contributing Languages
 
@@ -45,11 +46,11 @@ public/flags/[iso-code].png  # Optional PNG flag
 ```
 
 ### Mapping File (`mappings/[script].json`)
-Each mapping file defines a writing system with bilingual names:
+Each mapping file defines a writing system. The `id` field must match the filename, and all IDs must be listed in the config's `mappings` array:
 
 ```jsonc
 {
-  "id": "lat",
+  "id": "lat",             // Filename: lat.json
   "name": { "en": "Latin", "ru": "Латиница" },
   "constraint": "from",    // Optional: "from", "to", or omit
   "rtl": false,            // Optional: true for right-to-left
@@ -63,6 +64,8 @@ Each mapping file defines a writing system with bilingual names:
   ]
 }
 ```
+
+**Note:** All [language](#language-registry) and mapping names must be provided in both English (`en`) and Russian (`ru`).
 
 **Why order matters:**
 ```jsonc
