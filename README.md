@@ -35,7 +35,7 @@ public/flags/[iso-code].png  # Optional PNG flag
 ```
 
 ### Configuration (`config.json`)
-```json
+```jsonc
 {
   "iso": "xyz",
   "sample": "Sample text in the language",
@@ -47,7 +47,7 @@ public/flags/[iso-code].png  # Optional PNG flag
 ### Mapping File (`mappings/[script].json`)
 Each mapping file defines a writing system with bilingual names:
 
-```json
+```jsonc
 {
   "id": "lat",
   "name": { "en": "Latin", "ru": "Латиница" },
@@ -65,7 +65,7 @@ Each mapping file defines a writing system with bilingual names:
 ```
 
 **Why order matters:**
-```json
+```jsonc
 // ✅ Correct - "sch" matches before "ch"
 ["sch", "щ"], ["ch", "ч"], ["c", "ц"]
 
@@ -75,7 +75,7 @@ Each mapping file defines a writing system with bilingual names:
 
 ### Language Registry
 Add your language to `/app/data/langs.json`:
-```json
+```jsonc
 {
   "id": "xyz",
   "name": { "en": "Language Name", "ru": "Название языка" }
