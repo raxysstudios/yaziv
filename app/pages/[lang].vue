@@ -62,7 +62,7 @@ useSeoMeta({
   <AppSegment v-if="converter.config">
     <ConverterControls v-model:from="converter.inputMappingId.value" v-model:to="converter.outputMappingId.value"
       :mappings="converter.mappings.value" :reverse="converter.reverse" />
-
+    <USeparator />
     <div class="flex flex-col gap-2 md:flex-row">
       <ConverterInputArea v-model="converter.input.value" :placeholder="converter.inputSample.value"
         :mapping="converter.inputMapping.value">

@@ -17,19 +17,16 @@ const items = computed(() => props.mappings?.map(m => ({
 </script>
 
 <template>
-  <div class="flex gap-3">
-    <USelect v-model="fromModel" class="flex-1" :items="items" :content="{
+  <div class="flex gap-2 items-center">
+    <USelect v-model="fromModel" class="flex-1 min-w-0" variant="ghost" :items="items" :content="{
       align: 'center',
       side: 'bottom'
     }" />
 
-    <div class="relative">
-      <UButton icon="i-material-symbols-swap-horiz-rounded" variant="subtle"
-        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 hover:scale-105 active:scale-100 rounded-full"
-        size="lg" @click="reverse" />
-    </div>
+    <UButton icon="i-material-symbols-swap-horiz-rounded" variant="ghost" class="z-10 scale-105 hover:scale-110 active:scale-100 rounded-full shrink-0"
+      @click="reverse" />
 
-    <USelect v-model="toModel" class="flex-1" :items="items" :content="{
+    <USelect v-model="toModel" class="flex-1 min-w-0" variant="ghost" :items="items" :content="{
       align: 'center',
       side: 'bottom'
     }" />
