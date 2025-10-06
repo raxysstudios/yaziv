@@ -35,8 +35,8 @@ function clearInput() {
       :dir="mapping?.rtl ? 'rtl' : 'auto'" />
 
     <template #v-bar>
-      <UTooltip :delay-duration="0" :text="t('lang.clear')">
-        <UButton v-if="inputModel.length" icon="i-material-symbols-close-rounded" @click="clearInput" />
+      <UTooltip v-if="inputModel.length" :delay-duration="0" :text="t('lang.clear')">
+        <UButton icon="i-material-symbols-close-rounded" @click="clearInput" />
       </UTooltip>
     </template>
 
