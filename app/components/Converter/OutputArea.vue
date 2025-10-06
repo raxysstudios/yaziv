@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Mapping } from '~/utils/types';
 
+const { t } = useI18n();
+
 const props = defineProps({
   value: {
     type: String,
@@ -26,7 +28,9 @@ function copyToClipboard() {
       :placeholder="placeholder" :dir="mapping?.rtl ? 'rtl' : 'auto'" />
 
     <template #v-bar>
-      <UButton v-if="value" icon="i-material-symbols-content-copy-rounded" @click="copyToClipboard" />
+      <UTooltip :delay-duration="0" :text="t('lang.copy')">
+        <UButton v-if="value" icon="i-material-symbols-content-copy-rounded" @click="copyToClipboard" />
+      </UTooltip>
     </template>
 
     <template #h-bar>

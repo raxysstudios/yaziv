@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Mapping } from '~/utils/types';
 
+const { t } = useI18n();
+
 const props = defineProps({
   placeholder: {
     type: String,
@@ -12,7 +14,6 @@ const props = defineProps({
     default: 2000
   }
 });
-
 
 const inputModel = defineModel<string>({ required: true });
 
@@ -34,7 +35,9 @@ function clearInput() {
       :dir="mapping?.rtl ? 'rtl' : 'auto'" />
 
     <template #v-bar>
-      <UButton v-if="inputModel.length" icon="i-material-symbols-close-rounded" @click="clearInput" />
+      <UTooltip :delay-duration="0" :text="t('lang.clear')">
+        <UButton v-if="inputModel.length" icon="i-material-symbols-close-rounded" @click="clearInput" />
+      </UTooltip>
     </template>
 
     <template #h-bar>

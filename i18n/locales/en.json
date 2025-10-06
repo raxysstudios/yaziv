@@ -14,7 +14,9 @@
             "description": "Convert between {lang} {scripts} alphabets, transcriptions, scripts."
         },
         "file": "Convert .txt file",
-        "pairs": "Show conversion pairs"
+        "pairs": "Show conversion pairs",
+        "copy": "Copy the resulttttt",
+        "clear": "Clear input"
     },
     "editor": {
         "seo": {
