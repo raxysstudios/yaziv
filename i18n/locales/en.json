@@ -15,7 +15,7 @@
         },
         "file": "Convert .txt file",
         "pairs": "Show conversion pairs",
-        "copy": "Copy the resulttttt",
+        "copy": "Copy the result",
         "clear": "Clear input"
     },
     "editor": {
@@ -24,6 +24,7 @@
             "description": "Test your own text conversion mappings."
         },
         "badge": "[editor]",
+        "open": "Open editor",
         "pairs": "Conversion pairs",
         "example": "View example",
         "from_json": "From JSON",
