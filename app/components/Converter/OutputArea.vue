@@ -16,7 +16,6 @@ const props = defineProps({
   fromMapping: Object as PropType<Mapping>
 });
 
-
 function copyToClipboard() {
   navigator.clipboard.writeText(props.value);
 }
@@ -28,8 +27,8 @@ function copyToClipboard() {
       :placeholder="placeholder" :dir="mapping?.rtl ? 'rtl' : 'auto'" />
 
     <template #v-bar>
-      <UTooltip v-if="value" :delay-duration="0" :text="t('lang.copy')">
-        <UButton icon="i-material-symbols-content-copy-rounded" @click="copyToClipboard" />
+      <UTooltip v-if="value" :text="t('lang.copy')">
+        <UButton icon="i-material-symbols-content-copy-rounded" :aria-label="t('lang.copy')" @click="copyToClipboard" />
       </UTooltip>
     </template>
 

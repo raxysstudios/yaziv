@@ -46,7 +46,6 @@ watch(input, (val) => {
     if (val.length > MAX_INPUT) {
         input.value = val.substring(0, MAX_INPUT);
     }
-
     localStorage.setItem('editor-input', input.value);
 }, {
     flush: 'post'
@@ -86,8 +85,8 @@ useSeoMeta({
 <template>
     <AppHeader link="/home" :badge="$t('editor.badge')">
         <NuxtLink to="https://github.com/raxysstudios/yaziv#-contributing-new-languages" target="_blank">
-            <UTooltip :delay-duration="0" :text="$t('editor.contribution_guide')">
-                <UButton icon="i-material-symbols-help-rounded" />
+            <UTooltip :text="$t('editor.contribution_guide')">
+                <UButton icon="i-material-symbols-help-rounded" :aria-label="$t('editor.contribution_guide')" />
             </UTooltip>
         </NuxtLink>
     </AppHeader>
@@ -98,8 +97,10 @@ useSeoMeta({
                     <UTextarea v-model="pairsInput" :placeholder="placeholders[0]" :rows="12" class="native" />
                 </Labeled>
                 <div class="flex gap-2">
-                    <UButton @click="reverse" icon="i-material-symbols-swap-horiz-rounded"
-                        :aria-label="$t('lang.reverse')" />
+                    <UTooltip :text="$t('lang.reverse')">
+                        <UButton @click="reverse" icon="i-material-symbols-swap-horiz-rounded"
+                            :aria-label="$t('lang.reverse')" />
+                    </UTooltip>
                     <div class="flex-1" />
                     <UButton size="sm" @click="pairsFromJson">
                         {{ $t('editor.from_json') }}
@@ -110,8 +111,8 @@ useSeoMeta({
                     <NuxtLink
                         to="https://github.com/raxysstudios/yaziv/blob/49fdc2d6eb505c2ae83827455fc2270b528f29d8/app/data/langs/xdq/mappings/ipa.json#L8C12-L185C4"
                         target="_blank">
-                        <UTooltip :delay-duration="0" :text="$t('editor.example')">
-                            <UButton icon="i-material-symbols-open-in-new-rounded" />
+                        <UTooltip :text="$t('editor.example')">
+                            <UButton icon="i-material-symbols-open-in-new-rounded" :aria-label="$t('editor.example')" />
                         </UTooltip>
                     </NuxtLink>
                 </div>

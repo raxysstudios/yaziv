@@ -4,6 +4,8 @@
             "title": "Yaziv",
             "description": "Text converter for the languages of the Caucasus."
         },
+        "back": "Return to converter",
+        "menu": "Open menu",
         "github": "View on GitHub",
         "editor": "Open editor",
         "raxys": "Made in Caucasus"
@@ -17,8 +19,8 @@
         "pairs": "Show conversion pairs",
         "copy": "Copy the result",
         "clear": "Clear input",
-        "back": "Go back",
-        "reverse": "Reverse conversion"
+        "reverse": "Reverse conversion",
+        "switch_language": "Switch language"
     },
     "editor": {
         "seo": {

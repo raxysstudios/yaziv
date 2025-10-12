@@ -11,7 +11,9 @@ const nextLocale = computed(() => {
 </script>
 
 <template>
-    <UTooltip v-if="nextLocale" :delay-duration="0" :text="nextLocale.name">
-        <UButton v-if="nextLocale" icon="i-material-symbols-translate-rounded" @click="setLocale(nextLocale.code)" />
+    <UTooltip v-if="nextLocale" :text="nextLocale.name">
+        <UButton v-if="nextLocale" icon="i-material-symbols-translate-rounded"
+            :aria-label="$t('lang.switch_language')"
+            @click="setLocale(nextLocale.code)" />
     </UTooltip>
 </template>

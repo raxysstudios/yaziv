@@ -66,16 +66,17 @@ useSeoMeta({
     <div class="flex flex-col gap-2 md:flex-row">
       <ConverterInputArea v-model="converter.input.value" :placeholder="converter.inputSample.value"
         :mapping="converter.inputMapping.value">
-        <UTooltip :delay-duration="0" :text="t('lang.file')">
-          <UButton icon="i-material-symbols-upload-file-rounded" @click="handleFileUpload" />
+        <UTooltip :text="t('lang.file')">
+          <UButton icon="i-material-symbols-upload-file-rounded" :aria-label="t('lang.file')"
+            @click="handleFileUpload" />
         </UTooltip>
       </ConverterInputArea>
 
       <ConverterOutputArea :value="converter.output.value" :placeholder="converter.outputSample.value"
         :mapping="converter.outputMapping.value" :from-mapping="converter.inputMapping.value">
-        <UTooltip :delay-duration="0" :text="t('lang.pairs')">
+        <UTooltip :text="t('lang.pairs')">
           <UButton icon="i-material-symbols-info-rounded" :variant="showPairs ? 'subtle' : 'ghost'"
-            @click="showPairs = !showPairs" />
+            :aria-label="t('lang.pairs')" @click="showPairs = !showPairs" />
         </UTooltip>
       </ConverterOutputArea>
     </div>

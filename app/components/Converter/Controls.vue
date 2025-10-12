@@ -23,8 +23,12 @@ const items = computed(() => props.mappings?.map(m => ({
       side: 'bottom'
     }" />
 
-    <UButton icon="i-material-symbols-swap-horiz-rounded" variant="ghost" class="z-10 scale-105 hover:scale-110 active:scale-100 rounded-full shrink-0"
-      @click="reverse" />
+    <UTooltip :text="$t('lang.reverse')">
+      <UButton icon="i-material-symbols-swap-horiz-rounded" variant="ghost"
+        class="z-10 scale-105 hover:scale-110 active:scale-100 rounded-full shrink-0"
+        :aria-label="$t('lang.reverse')"
+        @click="reverse" />
+    </UTooltip>
 
     <USelect v-model="toModel" class="flex-1 min-w-0" variant="ghost" :items="items" :content="{
       align: 'center',
