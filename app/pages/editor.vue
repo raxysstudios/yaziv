@@ -92,14 +92,14 @@ useSeoMeta({
         </NuxtLink>
     </AppHeader>
     <AppSegment>
-        <div class="flex flex-col gap-6 md:flex-row">
+        <div class="flex flex-col gap-4 md:flex-row">
             <div class="flex-1 flex flex-col gap-2">
                 <Labeled :label="$t('editor.pairs')">
-                    <UTextarea v-model="pairsInput" :placeholder="placeholders[0]" :rows="12" class="native"
-                        :ui="{ base: 'font-[Noto_Sans_Mono]!' }" />
+                    <UTextarea v-model="pairsInput" :placeholder="placeholders[0]" :rows="12" class="native" />
                 </Labeled>
                 <div class="flex gap-2">
-                    <UButton @click="reverse" icon="i-material-symbols-swap-horiz-rounded" :aria-label="$t('lang.reverse')" />
+                    <UButton @click="reverse" icon="i-material-symbols-swap-horiz-rounded"
+                        :aria-label="$t('lang.reverse')" />
                     <div class="flex-1" />
                     <UButton size="sm" @click="pairsFromJson">
                         {{ $t('editor.from_json') }}

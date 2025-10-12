@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-    <AppSegment class="shadow">
+    <AppSegment class="shadow-sm">
         <div class="flex flex-row items-center gap-2">
             <NuxtLinkLocale v-if="link" :to="link">
                 <UButton :icon="icon ?? 'i-material-symbols-arrow-back-rounded'" :aria-label="$t('lang.back')" />

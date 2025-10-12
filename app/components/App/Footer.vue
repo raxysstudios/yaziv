@@ -5,7 +5,7 @@ import { version } from '../../package.json';
 <template>
     <AppSegment>
         <USeparator />
-        <div class="flex justify-between font-bold!">
+        <div class="flex justify-between">
             <UButton to="https://raxys.app" target="_blank" icon="i-material-symbols-landscape-rounded" size="xs">
                 {{ $t('home.raxys') }}
             </UButton>

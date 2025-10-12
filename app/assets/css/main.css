@@ -1,12 +1,18 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-.native,
-.native * {
-    font-family: "Noto Sans", "Noto Sans Arabic", "Noto Sans Georgian", sans-serif;
+@theme {
+    --font-ui: "Roboto Flex", sans-serif;
+    --font-native: "Noto Sans", "Noto Sans Arabic", "Noto Sans Georgian", sans-serif;
 }
 
-* {
-    font-family: "Roboto Flex";
-    @apply font-medium;
+@layer base {
+    body {
+        @apply font-ui font-medium;
+    }
+
+    .native,
+    .native * {
+        @apply font-native;
+    }
 }
