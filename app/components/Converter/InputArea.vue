@@ -45,7 +45,7 @@ function clearInput() {
 
       <div class="flex-1" />
 
-      <span v-if="maxLength - inputModel.length < 100" class="text-xs opacity-50">
+      <span v-if="maxLength - inputModel.length < 200" class="text-xs text-dimmed px-3">
         {{ inputModel.length }} / {{ maxLength }}
       </span>
     </template>
