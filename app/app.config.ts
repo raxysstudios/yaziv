@@ -15,23 +15,23 @@ export default defineAppConfig({
       compoundVariants: [
         {
           variant: "ghost",
-          class: "hover:bg-neutral-100 active:bg-neutral-200 dark:hover:bg-neutral-800 dark:active:bg-neutral-700",
+          class: "hover:bg-elevated/75 active:bg-accented/75",
         },
-        {
-          variant: "subtle",
-          class: "hover:bg-accented!",
-        }
       ],
     },
     select: {
       slots: {
         base: [
           "justify-center font-medium capitalize cursor-pointer! pe-2.5!",
-          "hover:bg-neutral-100 active:bg-neutral-200 dark:hover:bg-neutral-800 dark:active:bg-neutral-700"
+          "hover:bg-elevated/75 active:bg-accented/75"
         ],
         trailing: 'hidden',
         item: "justify-center font-medium capitalize cursor-pointer!",
         itemTrailing: "hidden",
+      },
+      defaultVariants: {
+        color: "neutral",
+        variant: "ghost",
       },
     },
   },

@@ -22,7 +22,7 @@ function copyToClipboard() {
 </script>
 
 <template>
-  <TextToolbars class="bg-elevated/50 flex-1">
+  <TextToolbars class="bg-elevated/75 flex-1">
     <UTextarea :model-value="value" class="flex-1 native" autoresize readonly size="xl" variant="none"
       :placeholder="placeholder" :dir="mapping?.rtl ? 'rtl' : 'auto'" />
 
