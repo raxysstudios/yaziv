@@ -18,12 +18,10 @@ const items = computed(() => props.mappings?.map(m => ({
 
 <template>
   <div class="flex gap-2 items-center">
-    <UTooltip :text="$t('lang.input_mapping')">
-      <USelect v-model="fromModel" class="flex-1 min-w-0" :items="items" :content="{
-        align: 'center',
-        side: 'bottom'
-      }" :aria-label="$t('lang.input_mapping')" />
-    </UTooltip>
+    <USelect v-model="fromModel" class="flex-1 min-w-0" :items="items" :content="{
+      align: 'center',
+      side: 'bottom'
+    }" :aria-label="$t('lang.input_mapping')" />
 
     <UTooltip :text="$t('lang.reverse')">
       <div class="shrink-0">
@@ -33,11 +31,9 @@ const items = computed(() => props.mappings?.map(m => ({
       </div>
     </UTooltip>
 
-    <UTooltip :text="$t('lang.output_mapping')">
-      <USelect v-model="toModel" class="flex-1 min-w-0" :items="items" :content="{
-        align: 'center',
-        side: 'bottom'
-      }" :aria-label="$t('lang.output_mapping')" />
-    </UTooltip>
+    <USelect v-model="toModel" class="flex-1 min-w-0" :items="items" :content="{
+      align: 'center',
+      side: 'bottom'
+    }" :aria-label="$t('lang.output_mapping')" />
   </div>
 </template>
