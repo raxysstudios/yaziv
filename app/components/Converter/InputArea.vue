@@ -30,9 +30,9 @@ function clearInput() {
 </script>
 
 <template>
-  <TextToolbars class="flex-1">
-    <UTextarea v-model="inputModel" class="flex-1 native" autoresize variant="none" size="xl" :placeholder="placeholder"
-      :dir="mapping?.rtl ? 'rtl' : 'auto'" />
+  <TextToolbars class="flex-1 border border-default">
+    <UTextarea v-model="inputModel" class="flex-1 native" autofocus autoresize variant="none" size="xl"
+      :placeholder="placeholder" :dir="mapping?.rtl ? 'rtl' : 'auto'" />
 
     <template #v-bar>
       <UTooltip v-if="inputModel.length" :text="t('lang.clear')">

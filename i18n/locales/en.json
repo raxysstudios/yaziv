@@ -6,21 +6,22 @@
         },
         "back": "Return to converter",
         "menu": "Open menu",
-        "github": "View on GitHub",
+        "switch_language": "Switch language",
         "editor": "Open editor",
         "raxys": "Made in Caucasus"
     },
     "lang": {
         "seo": {
             "title": "Yaziv ∙ {lang}",
-            "description": "Convert between {lang} {scripts} alphabets, transcriptions, scripts."
+            "description": "Convert text between {lang} {scripts} alphabets, transcriptions, scripts."
         },
         "file": "Convert .txt file",
         "pairs": "Show conversion pairs",
         "copy": "Copy the result",
         "clear": "Clear input",
         "reverse": "Reverse conversion",
-        "switch_language": "Switch language"
+        "input_mapping": "Source alphabet",
+        "output_mapping": "Target alphabet"
     },
     "editor": {
         "seo": {

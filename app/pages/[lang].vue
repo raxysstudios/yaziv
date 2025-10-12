@@ -62,11 +62,10 @@ useSeoMeta({
   <AppSegment v-if="converter.config">
     <ConverterControls v-model:from="converter.inputMappingId.value" v-model:to="converter.outputMappingId.value"
       :mappings="converter.mappings.value" :reverse="converter.reverse" />
-    <USeparator />
     <div class="flex flex-col gap-2 md:flex-row">
       <ConverterInputArea v-model="converter.input.value" :placeholder="converter.inputSample.value"
         :mapping="converter.inputMapping.value">
-        <UTooltip :text="t('lang.file')">
+        <UTooltip :text="$t('lang.file')">
           <UButton icon="i-material-symbols-upload-file-rounded" :aria-label="t('lang.file')"
             @click="handleFileUpload" />
         </UTooltip>
@@ -76,7 +75,7 @@ useSeoMeta({
         :mapping="converter.outputMapping.value" :from-mapping="converter.inputMapping.value">
         <UTooltip :text="t('lang.pairs')">
           <UButton icon="i-material-symbols-info-rounded" :variant="showPairs ? 'subtle' : 'ghost'"
-            :aria-label="t('lang.pairs')" @click="showPairs = !showPairs" />
+            :aria-label="$t('lang.pairs')" @click="showPairs = !showPairs" />
         </UTooltip>
       </ConverterOutputArea>
     </div>
