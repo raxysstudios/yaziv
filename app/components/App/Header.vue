@@ -10,7 +10,7 @@ defineProps<{
     <AppSegment class="shadow">
         <div class="flex flex-row items-center gap-2">
             <NuxtLinkLocale v-if="link" :to="link">
-                <UButton :icon="icon ?? 'i-material-symbols-arrow-back-rounded'" />
+                <UButton :icon="icon ?? 'i-material-symbols-arrow-back-rounded'" :aria-label="$t('lang.back')" />
             </NuxtLinkLocale>
             <p class="text-lg capitalize font-medium ">Yaziv</p>
             <UBadge v-if="badge" variant="soft">

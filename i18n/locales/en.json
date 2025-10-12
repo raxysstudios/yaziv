@@ -16,7 +16,9 @@
         "file": "Convert .txt file",
         "pairs": "Show conversion pairs",
         "copy": "Copy the result",
-        "clear": "Clear input"
+        "clear": "Clear input",
+        "back": "Go back",
+        "reverse": "Reverse conversion"
     },
     "editor": {
         "seo": {

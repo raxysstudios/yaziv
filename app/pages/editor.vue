@@ -99,7 +99,7 @@ useSeoMeta({
                         :ui="{ base: 'font-[Noto_Sans_Mono]!' }" />
                 </Labeled>
                 <div class="flex gap-2">
-                    <UButton @click="reverse" icon="i-material-symbols-swap-horiz-rounded" />
+                    <UButton @click="reverse" icon="i-material-symbols-swap-horiz-rounded" :aria-label="$t('lang.reverse')" />
                     <div class="flex-1" />
                     <UButton size="sm" @click="pairsFromJson">
                         {{ $t('editor.from_json') }}
