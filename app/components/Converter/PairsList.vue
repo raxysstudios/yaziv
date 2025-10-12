@@ -24,9 +24,14 @@ const mergedPairs = computed(() => {
 
 <template>
     <div class="flex native justify-center flex-row flex-wrap gap-1 text-sm">
-        <div v-for="p in mergedPairs" class="flex border border-default rounded-sm">
-            <span class="px-1">{{ p[0] }}</span>
-            <span class="px-1 bg-elevated/75">{{ p[1] }}</span>
+        <div v-for="p in mergedPairs" class="flex px-1.5 rounded-sm bg-elevated/75">
+            <span class="text-dimmed">
+                {{ p[0].replaceAll(' ', '·') }}
+            </span>
+            <span>&nbsp;</span>
+            <span>
+                {{ p[1].replaceAll(' ', '·') }}
+            </span>
         </div>
     </div>
 </template>
