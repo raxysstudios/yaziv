@@ -14,7 +14,7 @@ useSeoMeta({
     <AppHeader :link="lastUrl ?? undefined" :iconLabel="$t('home.back')">
         <NuxtLinkLocale to="/editor">
             <UTooltip :delay-duration="0" :text="$t('home.editor')">
-                <UButton icon="i-material-symbols-table-edit-rounded" />
+                <UButton icon="i-material-symbols-edit-note-outline-rounded" />
             </UTooltip>
         </NuxtLinkLocale>
     </AppHeader>

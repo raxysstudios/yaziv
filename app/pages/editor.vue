@@ -86,7 +86,7 @@ useSeoMeta({
     <AppHeader link="/home" :badge="$t('editor.badge')">
         <NuxtLink to="https://github.com/raxysstudios/yaziv#-contributing-new-languages" target="_blank">
             <UTooltip :text="$t('editor.contribution_guide')">
-                <UButton icon="i-material-symbols-help-rounded" :aria-label="$t('editor.contribution_guide')" />
+                <UButton icon="i-material-symbols-help-outline-rounded" :aria-label="$t('editor.contribution_guide')" />
             </UTooltip>
         </NuxtLink>
     </AppHeader>

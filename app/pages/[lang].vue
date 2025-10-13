@@ -66,7 +66,7 @@ useSeoMeta({
       <ConverterInputArea v-model="converter.input.value" :placeholder="converter.inputSample.value"
         :mapping="converter.inputMapping.value">
         <UTooltip :text="$t('lang.file')">
-          <UButton icon="i-material-symbols-upload-file-rounded" :aria-label="t('lang.file')"
+          <UButton icon="i-material-symbols-upload-file-outline-rounded" :aria-label="t('lang.file')"
             @click="handleFileUpload" />
         </UTooltip>
       </ConverterInputArea>
@@ -74,7 +74,7 @@ useSeoMeta({
       <ConverterOutputArea :value="converter.output.value" :placeholder="converter.outputSample.value"
         :mapping="converter.outputMapping.value" :from-mapping="converter.inputMapping.value">
         <UTooltip :text="t('lang.pairs')">
-          <UButton icon="i-material-symbols-info-rounded" :variant="showPairs ? 'subtle' : 'ghost'"
+          <UButton :icon="showPairs ? 'i-material-symbols-info-rounded' : 'i-material-symbols-info-outline-rounded'"
             :aria-label="$t('lang.pairs')" @click="showPairs = !showPairs" />
         </UTooltip>
       </ConverterOutputArea>

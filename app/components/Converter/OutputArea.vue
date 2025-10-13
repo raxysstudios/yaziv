@@ -28,7 +28,8 @@ function copyToClipboard() {
 
     <template #v-bar>
       <UTooltip v-if="value" :text="t('lang.copy')">
-        <UButton icon="i-material-symbols-content-copy-rounded" :aria-label="t('lang.copy')" @click="copyToClipboard" />
+        <UButton icon="i-material-symbols-content-copy-outline-rounded" :aria-label="t('lang.copy')"
+          @click="copyToClipboard" />
       </UTooltip>
     </template>
 
