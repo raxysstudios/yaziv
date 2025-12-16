@@ -88,11 +88,9 @@ export function useTextConverter(langId: Ref<string>) {
   });
 
   function reverse() {
-    const tempOutput = output.value;
     const tempInputId = inputMappingId.value;
     inputMappingId.value = outputMappingId.value;
     outputMappingId.value = tempInputId;
-    input.value = tempOutput;
   };
 
   function convert(text: string) {
