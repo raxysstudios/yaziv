@@ -19,13 +19,13 @@ const langName = computed(() => {
 
 const converter = useTextConverter(langId);
 
-useUrlSync(converter.input, 'text');
 useUrlSync(converter.inputMappingId, 'from', (id) =>
   !converter.mappings.value || !!converter.mappingById(id)
 );
 useUrlSync(converter.outputMappingId, 'to', (id) =>
   !converter.mappings.value || !!converter.mappingById(id)
 );
+nextTick(() => useUrlSync(converter.input, 'text'));
 
 const showPairs = ref(false);
 
