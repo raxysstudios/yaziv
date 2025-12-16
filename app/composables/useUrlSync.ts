@@ -8,9 +8,8 @@ export default function useUrlSync<T>(
 ) {
     const router = useRouter();
 
-    watch(() => router.currentRoute.value.query[key], (value) => {
-        if (value == undefined) return;
-
+    const value = router.currentRoute.value.query[key];
+    if (value) {
         const parsed = (typeof ref.value === 'number'
             ? Number(value)
             : value
@@ -19,9 +18,7 @@ export default function useUrlSync<T>(
         if (!validate || validate(parsed)) {
             ref.value = parsed;
         }
-    }, {
-        immediate: true
-    });
+    }
 
     watch(ref, (value) => {
         const param = value == undefined ? undefined : String(value);
