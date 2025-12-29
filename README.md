@@ -67,7 +67,7 @@ Each mapping file defines a writing system. The `id` field must match the filena
 
 **Note:** All [language](#language-registry) and mapping names must be provided in both English (`en`) and Russian (`ru`).
 
-**Why order matters:**
+**How order matters:**
 ```jsonc
 // ✅ Correct - "sch" matches before "ch"
 ["sch", "щ"], ["ch", "ч"], ["c", "ц"]
@@ -88,7 +88,7 @@ Restrict mappings to one direction using the optional `constraint` field:
 - `">"` = deprecated (accept as input, don't generate: `["к1", "кь", ">"]`)
 - `"<"` = output-only (rarely used, auto-created when reversing)
 
-**Why order still matters:**
+**Order still matters:**
 ```jsonc
 // ✅ Correct - longer deprecated form first
 [["къкъ", "ҡҡ", ">"], ["къ", "ҡҡ"]]
