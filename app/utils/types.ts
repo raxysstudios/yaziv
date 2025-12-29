@@ -3,15 +3,16 @@ export type Lang = {
   name: Record<string, string>;
 };
 
-export type Pairs = [string, string][];
+export type Constraint = "<" | ">";
+export type Pair = [string, string, Constraint?];
 
 export type Mapping = {
   id: string;
   name: Record<string, string>;
-  constraint?: "to" | "from";
+  constraint?: Constraint;
   rtl?: boolean;
   lowercase?: boolean;
-  pairs: Pairs;
+  pairs: Pair[];
 };
 
 export type ConverterConfig = {
