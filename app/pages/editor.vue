@@ -60,8 +60,11 @@ function pairsFromJson() {
     if (!json) return;
     try {
         const arr = JSON.parse(json);
-        if (Array.isArray(arr) && arr.every(p => Array.isArray(p) && p.length === 2)) {
-            pairsInput.value = arr.map(([a, b]) => `${a} ${b}`).join('\n');
+        if (Array.isArray(arr)
+            && arr.every(p => Array.isArray(p) && (p.length > 2))) {
+            pairsInput.value = arr
+                .map(([a, b]) => [a, b].join(' '))
+                .join('\n');
         } else {
             alert('Invalid JSON format.');
         }
