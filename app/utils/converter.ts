@@ -1,13 +1,14 @@
-import type { Pairs } from "./types";
+import type { Pair } from "./types";
 
-export function convert(input: string, pairs: Pairs) {
+export function convert(input: string, pairs: Pair[]) {
   input = " " + input.replace(/\n/g, "\n ").trim();
   const output = [] as string[];
 
   for (let i = 0; i < input.length;) {
     let found = false;
 
-    for (const [from, to] of pairs) {
+    for (const [from, to, ct] of pairs) {
+      if (ct == '<') continue;
       const pairs = [
         [from, to],
         [capitalize(from), capitalize(to)],
