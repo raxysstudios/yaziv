@@ -15,8 +15,7 @@ const flagUrl = computed(() => {
 <template>
     <AppSegment class="transition hover:bg-elevated/75 active:bg-accented/75">
         <div class="flex gap-2 items-center">
-            <img :src="flagUrl" :alt="lang.id" @error="$event.target.style.display = 'none'"
-                class="size-8 rounded-md object-cover border border-default">
+            <img :src="flagUrl" :alt="lang.id" class="size-8 rounded-md object-cover border border-default">
             <p class="capitalize">{{ tDict(lang.name, locale) }}</p>
             <UBadge size="sm" variant="soft">
                 {{ lang.id }}
