@@ -52,7 +52,7 @@ Each mapping file defines a writing system. The `id` field must match the filena
 {
   "id": "lat",             // Filename: lat.json
   "name": { "en": "Latin", "ru": "Латиница" },
-  "constraint": "from",    // Optional: "from", "to", or omit
+  "constraint": ">",       // Optional: "<" (output-only) or ">" (input-only)
   "rtl": false,            // Optional: true for right-to-left
   "lowercase": false,      // Optional: apply lowercase first
   "pairs": [
@@ -74,6 +74,27 @@ Each mapping file defines a writing system. The `id` field must match the filena
 
 // ❌ Wrong - "c" would match first, breaking "ch" and "sch"
 ["c", "ц"], ["ch", "ч"], ["sch", "щ"]
+```
+
+### One-Directional Constraints
+
+Restrict mappings to one direction using the optional `constraint` field:
+
+**File-Level** (`"constraint": "<"` or `">"`)
+- `"<"` = output-only (can only convert TO this script, like IPA)
+- `">"` = input-only (rarely used)
+
+**Pair-Level** (third array element: `"<"` or `">"`)
+- `">"` = deprecated (accept as input, don't generate: `["к1", "кь", ">"]`)
+- `"<"` = output-only (rarely used, auto-created when reversing)
+
+**Why order still matters:**
+```jsonc
+// ✅ Correct - longer deprecated form first
+[["къкъ", "ҡҡ", ">"], ["къ", "ҡҡ"]]
+
+// ❌ Wrong - shorter form matches first
+[["къ", "ҡҡ"], ["къкъ", "ҡҡ", ">"]]
 ```
 
 ### Language Registry

@@ -61,6 +61,52 @@ app/data/langs/[lang-id]/
 3. **Bidirectional**: All mappings should work in both directions
 4. **No information loss**: Central script must preserve all distinctions
 
+### One-Directional Constraints
+
+The system supports constraints that restrict mappings to work in only one direction:
+
+#### File-Level Constraints
+Apply to entire mapping files via the `constraint` field:
+
+- **`"<"`** (output-only): Mapping can ONLY be used as conversion target
+  - Example: IPA - can convert TO IPA, cannot use IPA as input (information loss)
+  - Used when reverse conversion would be ambiguous or lossy
+
+- **`">"`** (input-only): Mapping can ONLY be used as conversion source
+  - Rarely used; most input-only needs are pair-level
+
+#### Pair-Level Constraints
+Apply to individual pairs via third array element:
+
+- **`">"`** (deprecated/input-only): Accept as input, don't generate as output
+  - Example: `["к1", "кь", ">"]` - accept legacy "к1" but output modern "кь"
+  - Used for deprecated orthography variants
+
+- **`"<"`** (output-only): Generate as output, don't accept as input
+  - Rarely used; automatically created when reversing `>` pairs
+
+**Implementation Detail:** When `chainConvert` reverses pairs for TO direction, it flips constraints (`>` becomes `<`, `<` becomes `>`). The `convert` function then skips any pair with `<` constraint, achieving the correct directional behavior.
+
+**Example:**
+```json
+// Soviet Cyrillic mapping
+{
+  "id": "cyr_soviet",
+  "pairs": [
+    ["къкъ", "ҡҡ", ">"],  // Accept къкъ input, output ҡҡ
+    ["къ", "ҡҡ"],         // Bidirectional
+    ["к1", "кь", ">"]     // Accept к1 (legacy digit), output кь
+  ]
+}
+
+// IPA mapping
+{
+  "id": "ipa",
+  "constraint": "<",  // Output-only mapping
+  "pairs": [...]
+}
+```
+
 ## Vue/Nuxt Coding Standards
 
 ### Reactivity
