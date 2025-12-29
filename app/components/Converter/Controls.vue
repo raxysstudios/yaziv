@@ -12,13 +12,14 @@ const toModel = defineModel<string>('to', { required: true });
 
 const items = computed(() => props.mappings?.map(m => ({
   value: m.id,
-  label: tDict(m.name, locale.value)
+  label: tDict(m.name, locale.value),
+  constraint: m.constraint,
 })));
 </script>
 
 <template>
   <div class="flex gap-2 items-center">
-    <USelect v-model="fromModel" class="flex-1 min-w-0" :items="items" :content="{
+    <USelect v-model="fromModel" class="flex-1 min-w-0" :items="items?.filter(i => i.constraint != '<')" :content="{
       align: 'center',
       side: 'bottom'
     }" :aria-label="$t('lang.input_mapping')" />
@@ -31,7 +32,7 @@ const items = computed(() => props.mappings?.map(m => ({
       </div>
     </UTooltip>
 
-    <USelect v-model="toModel" class="flex-1 min-w-0" :items="items" :content="{
+    <USelect v-model="toModel" class="flex-1 min-w-0" :items="items?.filter(i => i.constraint != '>')" :content="{
       align: 'center',
       side: 'bottom'
     }" :aria-label="$t('lang.output_mapping')" />
