@@ -5,5 +5,5 @@ langs.sort((a, b) => a.id.localeCompare(b.id));
 export { langs }
 
 export function getLangById(id: string) {
-    return langs.find((l) => l.id === id);
+  return langs.find((l) => l.id === id);
 }

@@ -2,17 +2,17 @@
 @import "@nuxt/ui";
 
 @theme {
-    --font-ui: "Roboto Flex", sans-serif;
-    --font-native: "Noto Sans", "Noto Sans Arabic", "Noto Sans Georgian", sans-serif;
+  --font-ui: "Roboto Flex", sans-serif;
+  --font-native: "Noto Sans", "Noto Sans Arabic", "Noto Sans Georgian", sans-serif;
 }
 
 @layer base {
-    body {
-        @apply font-ui font-medium;
-    }
+  body {
+    @apply font-ui font-medium;
+  }
 
-    .native,
-    .native * {
-        @apply font-native;
-    }
+  .native,
+  .native * {
+    @apply font-native;
+  }
 }
