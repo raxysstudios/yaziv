@@ -13,15 +13,19 @@ const mergedPairs = computed(() => {
 
   pairs.push(...props.from.pairs
     .filter(([, , ct]) => ct != '<')
-    .map(([a, b]) =>
-      <Pair>[a, chainConvert(b, undefined, props.to)]
-    )
+    .map(([a, b]) => <Pair>[
+      a,
+      (b.startsWith(' ') ? ' ' : '')
+      + chainConvert(b, undefined, props.to)
+    ])
   );
   pairs.push(...props.to.pairs
     .filter(([, , ct]) => ct != '>')
-    .map(([a, b]) =>
-      <Pair>[chainConvert(b, undefined, props.from), a]
-    )
+    .map(([a, b]) => <Pair>[
+      (b.startsWith(' ') ? ' ' : '') +
+      chainConvert(b, undefined, props.from),
+      a
+    ])
   );
 
   const keys = new Set<string>();
