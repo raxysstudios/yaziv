@@ -12,6 +12,7 @@ const mergedPairs = computed(() => {
   let pairs = [] as Pair[];
 
   pairs.push(...props.from.pairs
+    .filter(([, , ct]) => ct != '<')
     .map(([a, b]) =>
       <Pair>[a, chainConvert(b, undefined, props.to)]
     )
