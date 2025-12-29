@@ -1,25 +1,39 @@
 <script setup lang="ts">
 import type { Mapping } from '~/utils/types';
+import { chainConvert } from '~/utils/converter';
 
 const props = defineProps<{
   from: Mapping
   to: Mapping
-  convert: (text: string) => string
 }>()
 
 const mergedPairs = computed(() => {
-  let pairs = [] as [string, string][];
-  if (props.from.pairs.length) {
-    pairs = props.from.pairs
-      .map(([a]) => [a, props.convert(a)]);
-  } else if (props.to.pairs.length) {
-    pairs = props.to.pairs
-      .filter(([, , ct]) => ct != '>')
-      .map(([a, b]) => [b, a]);
-  }
-  return pairs.map(
-    p => p.map(e => e.replaceAll(' ', '·'))
+  type Pair = [string, string];
+  let pairs = [] as Pair[];
+
+  pairs.push(...props.from.pairs
+    .map(([a, b]) =>
+      <Pair>[a, chainConvert(b, undefined, props.to)]
+    )
   );
+  pairs.push(...props.to.pairs
+    .filter(([, , ct]) => ct != '>')
+    .map(([a, b]) =>
+      <Pair>[chainConvert(b, undefined, props.from), a]
+    )
+  );
+
+  const keys = new Set<string>();
+  pairs = pairs.filter(([a, b]) => {
+    const key = `${a}\0${b}`;
+    if (keys.has(key)) return false;
+    keys.add(key);
+    return true;
+  });
+
+  return pairs
+    .sort((p1, p2) => p2[0].length - p1[0].length)
+    .map(p => p.map(e => e.replaceAll(' ', '·')));
 });
 </script>
 
