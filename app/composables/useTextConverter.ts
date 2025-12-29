@@ -1,21 +1,6 @@
 import type { Ref } from 'vue';
 import type { Mapping, ConverterConfig } from '~/utils/types';
-import { convert } from '~/utils/converter';
-
-function chainConvert(text: string, from?: Mapping, to?: Mapping) {
-  if (to?.lowercase) text = text.toLowerCase();
-  if (from) text = convert(text, from.pairs);
-  if (to) {
-    const pairs = to.pairs.map((p) => <Pair>[
-      p[1], p[0],
-      p[2]
-        ? p[2] == '<' ? '>' : '<'
-        : undefined,
-    ]);
-    text = convert(text, pairs);
-  }
-  return text;
-}
+import { chainConvert } from '~/utils/converter';
 
 export function useTextConverter(langId: Ref<string>) {
   const { data: converterData } = useAsyncData(

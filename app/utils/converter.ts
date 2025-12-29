@@ -1,4 +1,19 @@
-import type { Pair } from "./types";
+import type { Pair, Mapping } from "./types";
+
+export function chainConvert(text: string, from?: Mapping, to?: Mapping) {
+  if (to?.lowercase) text = text.toLowerCase();
+  if (from) text = convert(text, from.pairs);
+  if (to) {
+    const pairs = to.pairs.map((p) => <Pair>[
+      p[1], p[0],
+      p[2]
+        ? p[2] == '<' ? '>' : '<'
+        : undefined,
+    ]);
+    text = convert(text, pairs);
+  }
+  return text;
+}
 
 export function convert(input: string, pairs: Pair[]) {
   input = " " + input.replace(/\n/g, "\n ").trim();
