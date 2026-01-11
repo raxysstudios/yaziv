@@ -1,6 +1,6 @@
 FROM node:24-alpine
 
-RUN apk add --no-cache bash git
+RUN apk add --no-cache bash git curl
 ENV SHELL=/bin/bash
 
 WORKDIR /workspace
