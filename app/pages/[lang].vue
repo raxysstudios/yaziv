@@ -51,8 +51,6 @@ useSeoMeta({
   }),
   description: t('lang.seo.description', {
     lang: langName.value,
-    scripts: converter.mappings.value
-      ?.map(m => tDict(m.name, locale.value)).join(', ') || '',
   }),
 });
 </script>

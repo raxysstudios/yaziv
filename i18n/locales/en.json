@@ -13,7 +13,7 @@
     "lang": {
         "seo": {
             "title": "Yaziv ∙ {lang}",
-            "description": "Convert text between {lang} {scripts} alphabets, transcriptions, scripts."
+            "description": "Convert {lang} text between alphabets, transcriptions, scripts."
         },
         "file": "Convert .txt file",
         "pairs": "Show conversion pairs",
