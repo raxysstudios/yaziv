@@ -4,6 +4,7 @@
     "en": "Latin",
     "ru": "Латиница"
   },
+  "constraint": "<",
   "pairs": [
     [
       "ph",
