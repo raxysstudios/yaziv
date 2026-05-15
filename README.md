@@ -92,7 +92,7 @@ Restrict mappings to one direction using the optional `constraint` field:
 
 **Pair-Level** (third array element: `"<"` or `">"`)
 
-- `">"` = deprecated (accept as input, don't generate: `["к1", "кь", ">"]`)
+- `">"` = deprecated (accept as input, don't generate: `["к1", "кӏ", ">"]`)
 - `"<"` = output-only (rarely used, auto-created when reversing)
 
 **Order still matters:**
